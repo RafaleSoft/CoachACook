@@ -3,7 +3,6 @@ package com.rafalesoft.org.coachacook;
 public class RecipeComponent 
 {
 	public static final String TABLE_NAME = "recipe_parts";
-	public static final String _ID = "_id";
 	public static final String COLUMN_RECIPE_TITLE = "recipeId";
 	public static final String COLUMN_INGREDIENT_TITLE = "ingredientId";
 	public static final String COLUMN_AMOUNT_TITLE = "amount";

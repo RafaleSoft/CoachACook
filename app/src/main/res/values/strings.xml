@@ -1,12 +1,55 @@
 <resources>
     <string name="app_name">CoachACook</string>
-    <string name="action_settings">Settings</string>
-    <string name="app_background">Background</string>
-    <string name="invalid_recipe">Invalid Recipe</string>
+
+    <!-- Database -->
     <string name="recipe_table_name">recipe_parts</string>
     <string name="recipe_table_id">_id</string>
     <string name="recipe_id">recipeId</string>
     <string name="ingredient_id">ingredientId</string>
     <string name="ingredient_amount">amount</string>
     <string name="ingredient_unit">unit</string>
+
+    <!-- Data files -->
+    <string name="category_file">Categories.xml</string>
+    <string name="ingredient_file">Ingredients.xml</string>
+    <string name="recipe_file">Recipes.xml</string>
+
+    <!-- GUI -->
+        <!-- Buttons -->
+        <string name="NewRecipe">Cook Book</string>
+        <string name="ManageStock">Manage Stock</string>
+        <string name="BuildRecipe">Build Menu</string>
+
+        <!-- Main Menu -->
+        <string name="action_settings">Settings</string>
+        <string name="action_reset">Reset all data</string>
+        <string name="action_update_stock">Update stock database</string>
+        <string name="action_search">Search</string>
+
+        <!-- HMI -->
+        <string name="app_background">Background</string>
+        <string name="Available">Available Recipes:</string>
+        <string name="on_choose">onChoseRecipe</string>
+        <string name="recipe_proposal">Recipes</string>
+        <string name="recipe_generation">Recipe generation</string>
+        <string name="number_recipes">Recipes generated</string>
+        <string name="number_recipes_summary">Number of recipes generated at each query</string>
+        <string name="default_guests">Default guests</string>
+        <string name="default_guests_summary">Number of persons in family</string>
+        <string name="invalid_recipe">Invalid recipe found in downloaded data</string>
+        <string name="data_updated">Recipe and ingredients database updated</string>
+        <string name="data_erased">Recipe and ingredients database empty!</string>
+
+
+    <!-- Dialogs -->
+    <string name="exit_message">Are you sure you want to exit ?</string>
+    <string name="exit_yes">Yes</string>
+    <string name="exit_no">No</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="no_recipe">Impossible to find a recipe matching stock status</string>
+    <string name="update_ingredient">Update stock ingredient</string>
+    <string name="update_yes">Commit</string>
+    <string name="update_no">Abort</string>
+    <string name="invalid_ingredient">Error found while updating ingredient stock</string>
+    <string name="search_stock">Search stock</string>
 </resources>
