@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <EditTextPreference
+        android:defaultValue="1"
+        android:inputType="number"
+        android:key="@string/number_recipes_key"
+        android:numeric="integer"
+        android:summary="@string/pref_summary_number_recipes"
+        android:title="@string/pref_title_number_recipes" />
+
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_guests_list_titles"
+        android:entryValues="@array/pref_guests_list_values"
+        android:key="@string/number_guests_key"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_number_guests"
+        android:summary="@string/pref_summary_number_guests"/>
+
+</PreferenceScreen>

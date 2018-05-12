@@ -9,9 +9,12 @@ public class Category
 	public static final String COLUMN_CATEGORY_NAME_TITLE = "name";
 	
 	private String 	_name;
-	
-	
-	public Category(String name)
+
+
+    /**
+     * @param name: the name of the category
+     */
+	Category(String name)
 	{		
 		_name = name;
 	}
@@ -37,7 +40,7 @@ public class Category
         private boolean _parsingCategory = false;
         private RecipesDB _db;
 
-        public CategoryLoader(RecipesDB db)
+        CategoryLoader(RecipesDB db)
         {
             _db = db;
         }

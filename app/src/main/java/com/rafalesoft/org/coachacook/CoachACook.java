@@ -2,6 +2,7 @@ package com.rafalesoft.org.coachacook;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,15 +12,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
+
 
 public class CoachACook extends AppCompatActivity {
 
     private RecipesDB _dbRecipes = null;
     private int currentView = 0;
-    //ManageStock _manageStock = null;
+    ViewFlipper _mainView = null;
     ProgressBar _pg = null;
+    ManageStock _manageStock = null;
+
     private static CoachACook theCoach = null;
 
 
@@ -30,11 +36,18 @@ public class CoachACook extends AppCompatActivity {
         theCoach = this;
         _dbRecipes = new RecipesDB(this);
 
-        //View startView = getLayoutInflater().inflate(R.layout.activity_coach_acook,null);
-        setContentView(R.layout.activity_coach_acook);
-        _pg = findViewById(R.id.progress_bar);
+        View startView = getLayoutInflater().inflate(R.layout.activity_coach_acook,null);
+        _pg = startView.findViewById(R.id.progress_bar);
         _pg.setVisibility(View.INVISIBLE);
         currentView = R.id.coach_a_cook;
+
+        final Button manageButton = startView.findViewById(R.id.manage_stock);
+        _manageStock = new ManageStock(this, manageButton);
+        _dbRecipes.addCursorHolder(_manageStock);
+
+        _mainView = new ViewFlipper(this);
+        _mainView.addView(startView);
+        setContentView(_mainView);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,6 +61,46 @@ public class CoachACook extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public RecipesDB getRecipesDB()
+    {
+        return _dbRecipes;
+    }
+
+    public View switchToView(int viewId)
+    {
+        View view = _mainView.findViewById(viewId);
+        if (view == null)
+        {
+            int layout = 0;
+
+            if (viewId == R.id.stock_view)
+                layout = R.layout.stock_view;
+            /*
+            else if (viewId == R.id.recipe_stockview)
+                layout = R.layout.recipe_stockview;
+            else if (viewId == R.id.recipe_view)
+                layout = R.layout.recipe_view;
+            else if (viewId == R.id.recipe_buildview)
+                layout = R.layout.recipe_buildview;
+                */
+            else if (viewId == R.id.coach_a_cook)
+                layout = R.layout.activity_coach_acook;
+
+            view = getLayoutInflater().inflate(layout,null);
+
+            _mainView.addView(view);
+        }
+
+        if (view != null)
+        {
+            currentView = viewId;
+            int index = _mainView.indexOfChild(view);
+            _mainView.setDisplayedChild(index);
+        }
+
+        return view;
     }
 
     private class UpdateDataTask extends AsyncTask<Void, Void, Boolean>
@@ -108,6 +161,8 @@ public class CoachACook extends AppCompatActivity {
         switch (id)
         {
             case R.id.action_settings:
+                Intent intent = new Intent(this, SettingsManager.class);
+                startActivity(intent);
                 return true;
             case R.id.action_reset:
                 new UpdateDataTask(true).execute();
@@ -125,13 +180,13 @@ public class CoachACook extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-      //  if ((currentView == R.id.stock_view) ||
+        if (currentView == R.id.stock_view)
       //          (currentView == R.id.recipe_stockview) ||
       //          (currentView == R.id.recipe_buildview))
-      //      switchToView(R.id.coach_a_cook);
+            switchToView(R.id.coach_a_cook);
       //  else if (currentView == R.id.recipe_view)
       //      switchToView(R.id.recipe_stockview);
-      //  else
+        else
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(R.string.exit_message);

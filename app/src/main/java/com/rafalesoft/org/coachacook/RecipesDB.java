@@ -33,7 +33,8 @@ public class RecipesDB
 		_categories.clear();
 		
 		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
-		Cursor c = db.rawQuery("SELECT * FROM "+ Category.TABLE_NAME,	null);
+		String query = "SELECT * FROM "+ Category.TABLE_NAME;
+		Cursor c = db.rawQuery(query,null);
 		c.moveToFirst();
 		while (c.isAfterLast() == false)
 		{
@@ -124,8 +125,8 @@ public class RecipesDB
 	       projection,    // The columns to return from the query
 	       selection,     // The columns for the where clause
 	       selectionArgs, // The values for the where clause
-	       null,          // don't group the rows
-	       null,          // don't filter by row groups
+	       null, // don't group the rows
+	       null,  // don't filter by row groups
 	       sortOrder);    // The sort order
 	   
 	   return c;
