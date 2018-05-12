@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Recipes>
+	<Recipe name="Soupe de légumes" guests="4">
+		<Component name="Oignons" quantity="1"/>
+		<Component name="Poireaux" quantity="4"/>
+		<Component name="Navets" quantity="4"/>
+		<Component name="Carottes" quantity="4"/>
+		<Component name="Pommes de terre" quantity="250" unit="g"/>
+		<Preparation>Faire dorer l'oignon. Eplucher les légumes, les couper en morceaux. Quand l'oignon est doré, ajouter les légumes et recouvrir d'eau</Preparation>
+	</Recipe>
+</Recipes>

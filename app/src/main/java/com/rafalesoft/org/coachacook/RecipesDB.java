@@ -16,6 +16,7 @@ import android.widget.Toast;
 public class RecipesDB
 {
 	private static final String DATABASE_NAME = "recipes.db";
+    public static final String ID = "_id";
 	private static final int DATABASE_VERSION = 2;
 	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<RecipesCursorHolder>();
 	private final Map<String, Long> _categories = new HashMap<String, Long>();
@@ -32,13 +33,14 @@ public class RecipesDB
 		_categories.clear();
 		
 		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
-		Cursor c = db.rawQuery("SELECT * FROM "+ Category.TABLE_NAME,	null);
+		String query = "SELECT * FROM "+ Category.TABLE_NAME;
+		Cursor c = db.rawQuery(query,null);
 		c.moveToFirst();
 		while (c.isAfterLast() == false)
 		{
-			long catagoryId = c.getLong(c.getColumnIndex(Category._ID));
+			long categoryId = c.getLong(c.getColumnIndex(ID));
 			String category = c.getString(c.getColumnIndex(Category.COLUMN_CATEGORY_NAME_TITLE));
-			_categories.put(category, catagoryId);
+			_categories.put(category, categoryId);
 
 			c.moveToNext();
 		}
@@ -81,9 +83,11 @@ public class RecipesDB
 	
 	public boolean updateData()
 	{
-		boolean res = Category.load_categories(this);
-		res = res && Ingredient.load_ingredients(this);
-		res = res && Recipe.load_recipes(this);
+        String xmlPath = _context.getFilesDir().getPath() + "/";
+
+		boolean res = Category.load_categories(this, xmlPath+_context.getString(R.string.category_file));
+		res = res && Ingredient.load_ingredients(this, xmlPath+_context.getString(R.string.ingredient_file));
+		res = res && Recipe.load_recipes(this,xmlPath+_context.getString(R.string.recipe_file));
 		return res;
 	}
 	
@@ -121,8 +125,8 @@ public class RecipesDB
 	       projection,    // The columns to return from the query
 	       selection,     // The columns for the where clause
 	       selectionArgs, // The values for the where clause
-	       null,          // don't group the rows
-	       null,          // don't filter by row groups
+	       null, // don't group the rows
+	       null,  // don't filter by row groups
 	       sortOrder);    // The sort order
 	   
 	   return c;
@@ -133,7 +137,7 @@ public class RecipesDB
 	{
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();
-	    values.put(Recipe.COLUMN_NAME_TITLE, category.get_name());
+	    values.put(Category.COLUMN_CATEGORY_NAME_TITLE, category.get_name());
 		
 	    // Opens the database object in "write" mode.
 	    SQLiteDatabase db = _mOpenHelper.getWritableDatabase();
@@ -185,13 +189,13 @@ public class RecipesDB
 	    	{
 	    		RecipeComponent component = recipe.getComponent(i);
 
-	    		Cursor c = db.rawQuery(	"SELECT "+Ingredient._ID+" FROM "+Ingredient.TABLE_NAME+
+	    		Cursor c = db.rawQuery(	"SELECT "+ID+" FROM "+Ingredient.TABLE_NAME+
 	    								" WHERE "+Ingredient.COLUMN_NAME_TITLE+"='"+component.get_name()+"'",
 	    								null);
 	    		c.moveToFirst();
 	    		int ingredientId = -1;
 	    		if (c.getCount() > 0)
-	    			ingredientId = c.getInt(c.getColumnIndex(RecipeComponent._ID));
+	    			ingredientId = c.getInt(c.getColumnIndex(ID));
 	    		c.close();
 	    		
 	    		if (ingredientId > 0)
@@ -273,7 +277,7 @@ public class RecipesDB
 								" WHERE "+Recipe.COLUMN_NAME_TITLE+"='"+name+"'",
 								null);
 		c.moveToFirst();
-		int recipeId = c.getInt(c.getColumnIndex(Recipe._ID));
+		int recipeId = c.getInt(c.getColumnIndex(ID));
 		Recipe recipe = new Recipe(name);
 		recipe.set_guests(c.getInt(c.getColumnIndex(Recipe.COLUMN_GUESTS_TITLE)));
 		recipe.set_preparation(c.getString(c.getColumnIndex(Recipe.COLUMN_PREPARATION_TITLE)));
@@ -292,7 +296,7 @@ public class RecipesDB
 			
 			Cursor c2 = db.rawQuery("SELECT "+Ingredient.COLUMN_NAME_TITLE+
 									" FROM "+Ingredient.TABLE_NAME+
-									" WHERE "+Ingredient._ID+"="+ingredientId,
+									" WHERE "+ID+"="+ingredientId,
 									null);
 			
 			RecipeComponent component = new RecipeComponent();
@@ -317,7 +321,7 @@ public class RecipesDB
 		
 		String query = "SELECT DISTINCT " + RecipeComponent.COLUMN_RECIPE_TITLE +
 				" FROM "+RecipeComponent.TABLE_NAME+", "+Ingredient.TABLE_NAME+" AS i"+
-				" WHERE "+RecipeComponent.COLUMN_INGREDIENT_TITLE+ " = i."+Ingredient._ID+
+				" WHERE "+RecipeComponent.COLUMN_INGREDIENT_TITLE+ " = i."+ID+
 				" AND "+RecipeComponent.COLUMN_AMOUNT_TITLE+" <= i."+Ingredient.COLUMN_STOCK_TITLE;
 		Cursor c = db.rawQuery(	query, null);
 		if (c.getCount() < 1)
@@ -333,7 +337,7 @@ public class RecipesDB
 			
 			Cursor c2 = db.rawQuery("SELECT "+Recipe.COLUMN_NAME_TITLE+
 					" FROM "+Recipe.TABLE_NAME+
-					" WHERE "+Recipe._ID+"="+recipeId,
+					" WHERE "+ID+"="+recipeId,
 					null);
 			c2.moveToFirst();
 			String name = c2.getString(c2.getColumnIndex(Recipe.COLUMN_NAME_TITLE));
@@ -377,14 +381,14 @@ public class RecipesDB
 	   public void onCreate(SQLiteDatabase db) 
 	   {   
 	       db.execSQL("CREATE TABLE " + Recipe.TABLE_NAME + " ("
-	               + Recipe._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 	               + Recipe.COLUMN_NAME_TITLE + " VARCHAR(32) NOT NULL,"
 	               + Recipe.COLUMN_GUESTS_TITLE + " INTEGER,"
 	               + Recipe.COLUMN_PREPARATION_TITLE + " TEXT"
 	               + ");");
 	       
 	       db.execSQL("CREATE TABLE " + RecipeComponent.TABLE_NAME + " ("
-	               + RecipeComponent._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 	               + RecipeComponent.COLUMN_RECIPE_TITLE + " INTEGER,"
 	               + RecipeComponent.COLUMN_INGREDIENT_TITLE + " INTEGER,"
 	               + RecipeComponent.COLUMN_AMOUNT_TITLE + " REAL,"
@@ -392,7 +396,7 @@ public class RecipesDB
 	               + ");");
 	       
 	       db.execSQL("CREATE TABLE " + Ingredient.TABLE_NAME + " ("
-	               + Ingredient._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 	               + Ingredient.COLUMN_NAME_TITLE + " VARCHAR(32) NOT NULL,"
 	               + Ingredient.COLUMN_STOCK_TITLE + " REAL,"
 	               + Ingredient.COLUMN_UNIT_TITLE + " VARCHAR(4),"
@@ -400,7 +404,7 @@ public class RecipesDB
 	               + ");");
 	       
 	       db.execSQL("CREATE TABLE " + Category.TABLE_NAME + " ("
-	               + Category._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 	               + Category.COLUMN_CATEGORY_NAME_TITLE + " VARCHAR(32) NOT NULL"
 	               + ");");
 	   }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Stock>
+	<Ingredient name="Carottes" quantity="10" type="Vegetable"/>
+	<Ingredient name="Tomates" quantity="6" type="Vegetable"/>
+	<Ingredient name="Poireaux" quantity="4" type="Vegetable"/>
+	<Ingredient name="Navets" quantity="15" type="Vegetable"/>
+	<Ingredient name="Choufleurs" quantity="1" type="Vegetable"/>
+	<Ingredient name="Pommes de terre" quantity="2" unit="kg" type="Vegetable"/>
+	<Ingredient name="Oignons" quantity="10" type="Vegetable"/>
+	<Ingredient name="Oeufs" quantity="12" type="Milk"/>
+	<Ingredient name="Lait" quantity="6" unit="l" type="Milk"/>
+	<Ingredient name="Yahourt" quantity="8" type="Milk"/>
+	<Ingredient name="Farine" quantity="1" unit="kg" type="Cereal"/>
+	<Ingredient name="Sucre" quantity="1" unit="kg" type="Other"/>
+	<Ingredient name="Pommes" quantity="6" type="Fruit"/>
+	<Ingredient name="Oranges" quantity="6" type="Fruit"/>
+	<Ingredient name="Bananes" quantity="5" type="Fruit"/>
+</Stock>

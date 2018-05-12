@@ -1,21 +1,10 @@
 package com.rafalesoft.org.coachacook;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
 import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
-import org.xml.sax.Locator;
-import org.xml.sax.SAXException;
-
-import android.os.Environment;
-import android.util.Xml;
 
 public class Ingredient 
 {
 	public static final String TABLE_NAME = "ingredients";
-	public static final String _ID = "_id";
 	public static final String COLUMN_NAME_TITLE = "name";
 	public static final String COLUMN_STOCK_TITLE = "quantity";
 	public static final String COLUMN_UNIT_TITLE = "unit";
@@ -74,91 +63,24 @@ public class Ingredient
 		_type = type;
 	}
 
-	public static boolean load_ingredients(RecipesDB db)
+	public static boolean load_ingredients(RecipesDB db,String xmlSource)
 	{
-		IngredientLoader loader = new IngredientLoader();
-		boolean res = loader.load_ingredients(db);
-		
-		return res;
+		IngredientLoader loader = new IngredientLoader(db);
+		return loader.load_data(xmlSource);
 	}
 		
-	private static class IngredientLoader implements ContentHandler
+	private static class IngredientLoader extends DataLoader
 	{
 		private boolean _parsingStock = false;
-		private RecipesDB _db = null;
-		
-		public boolean load_ingredients(RecipesDB db)
+		private RecipesDB _db;
+
+		public IngredientLoader(RecipesDB db)
 		{
-			try
-			{
-				_db = db;
-				String xmlSource = Environment.getExternalStorageDirectory().getPath();
-				xmlSource += "/CoachACook/Ingredients.xml";
-				InputStream input = new FileInputStream(xmlSource);
-				Xml.parse(input, Xml.Encoding.ISO_8859_1, this);
-			}
-			catch (IOException e) 
-			{
-				e.printStackTrace();
-				return false;
-			}
-			catch (SAXException e)
-			{
-				e.printStackTrace();
-				return false;
-			}
-			return true;
+			_db = db;
 		}
-	
+
 		@Override
-		public void characters(char[] ch, int start, int length)
-		{
-		}
-	
-		@Override
-		public void endDocument()
-		{
-		}
-	
-		@Override
-		public void endElement(String uri, String localName, String qName)
-		{
-			if (localName.compareTo("Stock") == 0)
-				_parsingStock = false;
-		}
-	
-		@Override
-		public void endPrefixMapping(String prefix)
-		{	
-		}
-	
-		@Override
-		public void ignorableWhitespace(char[] ch, int start, int length)
-		{
-		}
-	
-		@Override
-		public void processingInstruction(String target, String data)
-		{
-		}
-	
-		@Override
-		public void setDocumentLocator(Locator locator) 
-		{
-		}
-	
-		@Override
-		public void skippedEntity(String name) 
-		{
-		}
-	
-		@Override
-		public void startDocument() 
-		{
-		}
-	
-		@Override
-		public void startElement(String uri, String localName, String qName, Attributes attrs) 
+		public void onElementLoaded(String localName, Attributes attrs)
 		{
 			if (_parsingStock)
 			{
@@ -179,12 +101,15 @@ public class Ingredient
 				_db.insert(newIngredient);
 			}
 			else if (localName.compareTo("Stock") == 0)
-					_parsingStock = true;
+				_parsingStock = true;
+		}
+
+		@Override
+		public void endElement(String uri, String localName, String qName)
+		{
+			if (localName.compareTo("Stock") == 0)
+				_parsingStock = false;
 		}
 	
-		@Override
-		public void startPrefixMapping(String prefix, String uri)
-		{
-		}
 	}
 }
