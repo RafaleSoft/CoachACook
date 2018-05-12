@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -36,7 +38,12 @@ public class CoachACook extends AppCompatActivity {
         theCoach = this;
         _dbRecipes = new RecipesDB(this);
 
-        View startView = getLayoutInflater().inflate(R.layout.activity_coach_acook,null);
+        setContentView(R.layout.activity_coach_acook);
+        _mainView = findViewById(R.id.view_flipper);
+        _mainView.setInAnimation(new AlphaAnimation(0.0f, 1.0f));
+        _mainView.setOutAnimation(new AlphaAnimation(1.0f, 0.0f));
+
+        View startView = getLayoutInflater().inflate(R.layout.content_coach_acook,_mainView);
         _pg = startView.findViewById(R.id.progress_bar);
         _pg.setVisibility(View.INVISIBLE);
         currentView = R.id.coach_a_cook;
@@ -44,10 +51,6 @@ public class CoachACook extends AppCompatActivity {
         final Button manageButton = startView.findViewById(R.id.manage_stock);
         _manageStock = new ManageStock(this, manageButton);
         _dbRecipes.addCursorHolder(_manageStock);
-
-        _mainView = new ViewFlipper(this);
-        _mainView.addView(startView);
-        setContentView(_mainView);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -88,9 +91,7 @@ public class CoachACook extends AppCompatActivity {
             else if (viewId == R.id.coach_a_cook)
                 layout = R.layout.activity_coach_acook;
 
-            view = getLayoutInflater().inflate(layout,null);
-
-            _mainView.addView(view);
+            view = getLayoutInflater().inflate(layout,_mainView);
         }
 
         if (view != null)

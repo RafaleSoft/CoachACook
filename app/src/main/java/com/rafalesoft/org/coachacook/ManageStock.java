@@ -26,8 +26,8 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 	@Override
 	public void onClick(View v)
 	{
-		LinearLayout layout = (LinearLayout)_cook.switchToView(R.id.stock_view);
-		ListView lvl = layout.findViewById(R.id.stock_list_view);
+		View view = _cook.switchToView(R.id.stock_view);
+		ListView lvl = view.findViewById(R.id.stock_list_view);
 		
 		String[] projection = { RecipesDB.ID,
 								Ingredient.COLUMN_NAME_TITLE, 
