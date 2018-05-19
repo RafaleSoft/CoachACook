@@ -47,6 +47,15 @@ public class RecipesDB
 		c.close();
 	}
 
+	public void addCursorHolder(RecipesCursorHolder holder)
+	{
+		_cursors.add(holder);
+	}
+	public void delCursorHolder(RecipesCursorHolder holder)
+	{
+		_cursors.remove(holder);
+	}
+
 	public void close()
 	{
 		for (RecipesCursorHolder cursor:_cursors)
@@ -91,11 +100,7 @@ public class RecipesDB
 		return res;
 	}
 	
-	public void addCursorHolder(RecipesCursorHolder holder)
-	{	   
-		_cursors.add(holder);
-	}
-	
+
 	/**
 	 * Queries the database and returns a cursor containing the results.
 	 *

@@ -10,10 +10,14 @@ public class RecipesCursorHolder
 	public RecipesCursorHolder(CoachACook owner)
 	{
 		_cook = owner;
+        RecipesDB recipesDB = _cook.getRecipesDB();
+        recipesDB.addCursorHolder(this);
 	}
 	
 	public void close()
 	{
+        // Remove from RecipesDB is done at destruction, by calling RecipesDB.close()
+
 		if (_cursor != null)
 			_cursor.close();
 	}

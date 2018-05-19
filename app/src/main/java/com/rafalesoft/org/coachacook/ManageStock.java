@@ -17,10 +17,9 @@ import android.widget.Toast;
 
 public class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItemClickListener 
 {
-	public ManageStock(CoachACook owner,View v) 
+	public ManageStock(CoachACook owner)
 	{
 		super(owner);
-		v.setOnClickListener(this);
 	}
 	
 	@Override
@@ -56,8 +55,9 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 	{
-		/*
+
 	    LayoutInflater inflater = _cook.getLayoutInflater();
+	    /*
 	    View dialogView = inflater.inflate(R.layout.stock_dialog, null);
 	    
 	    TextView ingredient_name_tv = (TextView)view.findViewById(R.id.stock_item_name);
