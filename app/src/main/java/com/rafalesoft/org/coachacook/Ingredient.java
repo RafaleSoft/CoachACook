@@ -5,7 +5,6 @@ import org.xml.sax.Attributes;
 public class Ingredient 
 {
 	public static final String TABLE_NAME = "ingredients";
-	public static final String COLUMN_NAME_TITLE = "name";
 	public static final String COLUMN_STOCK_TITLE = "quantity";
 	public static final String COLUMN_UNIT_TITLE = "unit";
 	public static final String COLUMN_TYPE_TITLE = "type";

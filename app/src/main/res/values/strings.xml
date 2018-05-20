@@ -26,7 +26,11 @@
         <string name="action_update_stock">Update stock</string>
         <string name="action_search">Search</string>
 
-        <!-- HMI -->
+        <!-- Recipe View -->
+        <string name="recipe_component">Component</string>
+
+
+        <!-- General HMI -->
         <string name="app_background">Background</string>
         <string name="Available">Available Recipes:</string>
         <string name="on_choose">onChoseRecipe</string>

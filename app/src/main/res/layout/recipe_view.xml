@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/recipe_image"
         android:layout_width="192dp"
         android:layout_height="192dp"
         android:layout_marginStart="8dp"
@@ -18,45 +18,95 @@
 
     <TableLayout
         android:id="@+id/recipe_ingredients"
-        android:layout_width="160dp"
-        android:layout_height="495dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/recipe_image"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/component1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/recipe_component" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/component2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/recipe_component" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/component3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/recipe_component" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/component4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/recipe_component" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/component5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/recipe_component" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/component6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/recipe_component" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/component7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/recipe_component" />
+        </TableRow>
+    </TableLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
-
-    <ScrollView
-        android:layout_width="196dp"
-        android:layout_height="295dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/recipe_ingredients"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+        app:layout_constraintTop_toBottomOf="@+id/recipe_image"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,14 +117,16 @@
                 android:id="@+id/recipe_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textSize="@dimen/big_text" />
 
-            <EditText
+            <TextView
                 android:id="@+id/recipe_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fab_margin"
                 android:ems="10"
-                android:inputType="textMultiLine"
+                android:inputType="none"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="208dp" />
         </LinearLayout>

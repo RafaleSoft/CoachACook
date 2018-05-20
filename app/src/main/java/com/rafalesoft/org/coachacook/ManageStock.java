@@ -8,7 +8,6 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -29,7 +28,7 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 		ListView lvl = view.findViewById(R.id.stock_list_view);
 		
 		String[] projection = { RecipesDB.ID,
-								Ingredient.COLUMN_NAME_TITLE, 
+                                RecipesDB.NAME,
 								Ingredient.COLUMN_STOCK_TITLE,
 								Ingredient.COLUMN_UNIT_TITLE };
 		String[] selectionArgs = { };
@@ -37,9 +36,9 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 		_cursor = _cook.getRecipesDB().query(	Ingredient.TABLE_NAME,
 												projection,
 												"", selectionArgs,
-												Ingredient.COLUMN_NAME_TITLE);
+                                                RecipesDB.NAME);
 		
-		String[] fromColumns = {Ingredient.COLUMN_NAME_TITLE,
+		String[] fromColumns = {RecipesDB.NAME,
 								Ingredient.COLUMN_STOCK_TITLE,
 								Ingredient.COLUMN_UNIT_TITLE};
 		int[] toViews = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
@@ -57,15 +56,14 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 	{
 
 	    LayoutInflater inflater = _cook.getLayoutInflater();
-	    /*
 	    View dialogView = inflater.inflate(R.layout.stock_dialog, null);
 	    
-	    TextView ingredient_name_tv = (TextView)view.findViewById(R.id.stock_item_name);
+	    TextView ingredient_name_tv = view.findViewById(R.id.stock_item_name);
 	    final String ingredient_name = ingredient_name_tv.getText().toString();
-	    TextView ingredient_quantity = (TextView)view.findViewById(R.id.stock_item_quantity);
-		TextView ingredient_unit = (TextView)view.findViewById(R.id.stock_item_unit);
+	    TextView ingredient_quantity = view.findViewById(R.id.stock_item_quantity);
+		TextView ingredient_unit = view.findViewById(R.id.stock_item_unit);
 		
-		final EditText quantity = (EditText)dialogView.findViewById(R.id.stock_dialog_item_quantity);
+		final EditText quantity = dialogView.findViewById(R.id.stock_dialog_item_quantity);
 		((TextView)dialogView.findViewById(R.id.stock_dialog_item_name)).setText(ingredient_name);
 		quantity.setText(ingredient_quantity.getText());
 		((TextView)dialogView.findViewById(R.id.stock_dialog_item_unit)).setText(ingredient_unit.getText());
@@ -93,7 +91,6 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 		}); 
 		AlertDialog dialog = builder.create();
 		dialog.show();
-		*/
 	}
 
 	public void search(String query)

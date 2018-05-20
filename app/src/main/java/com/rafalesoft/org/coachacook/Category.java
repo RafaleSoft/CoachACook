@@ -6,10 +6,7 @@ import org.xml.sax.Attributes;
 public class Category
 {
 	public static final String TABLE_NAME = "categories";
-	public static final String COLUMN_CATEGORY_NAME_TITLE = "name";
-	
 	private String 	_name;
-
 
     /**
      * @param name: the name of the category
