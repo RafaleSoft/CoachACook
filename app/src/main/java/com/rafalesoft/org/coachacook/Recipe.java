@@ -67,10 +67,10 @@ public class Recipe
 			return null;
 	}
 	
-	public static boolean load_recipes(RecipesDB db,String xmlSource)
+	public static boolean load_recipes(CoachACook cook)
 	{
-		RecipeLoader loader = new RecipeLoader(db);
-		return loader.load_data(xmlSource);
+		RecipeLoader loader = new RecipeLoader(cook.getRecipesDB());
+		return loader.load_data(cook, cook.getString(R.string.recipe_file));
 	}
 	
 	private static class RecipeLoader extends DataLoader

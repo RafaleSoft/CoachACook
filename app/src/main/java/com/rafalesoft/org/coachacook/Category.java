@@ -26,10 +26,10 @@ public class Category
 		_name = name;
 	}
 
-	public static boolean load_categories(RecipesDB db, String xmlSource)
+	public static boolean load_categories(CoachACook cook)
 	{
-		CategoryLoader loader = new CategoryLoader(db);
-		return loader.load_data(xmlSource);
+		CategoryLoader loader = new CategoryLoader(cook.getRecipesDB());
+		return loader.load_data(cook, cook.getString(R.string.category_file));
 	}
 	
 	private static class CategoryLoader extends DataLoader

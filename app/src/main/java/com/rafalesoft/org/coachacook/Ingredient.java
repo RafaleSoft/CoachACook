@@ -62,10 +62,10 @@ public class Ingredient
 		_type = type;
 	}
 
-	public static boolean load_ingredients(RecipesDB db,String xmlSource)
+	public static boolean load_ingredients(CoachACook cook)
 	{
-		IngredientLoader loader = new IngredientLoader(db);
-		return loader.load_data(xmlSource);
+		IngredientLoader loader = new IngredientLoader(cook.getRecipesDB());
+		return loader.load_data(cook, cook.getString(R.string.ingredient_file));
 	}
 		
 	private static class IngredientLoader extends DataLoader

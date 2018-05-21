@@ -146,11 +146,17 @@ public class CoachACook extends AppCompatActivity {
             String message;
             if (_reset)
             {
-                message = theCoach.getResources().getString(R.string.data_erased);
+                if (result)
+                    message = theCoach.getResources().getString(R.string.data_erased);
+                else
+                    message = theCoach.getResources().getString(R.string.data_not_erased);
             }
             else
             {
-                message = theCoach.getResources().getString(R.string.data_updated);
+                if (result)
+                    message = theCoach.getResources().getString(R.string.data_updated);
+                else
+                    message = theCoach.getResources().getString(R.string.data_not_updated);
             }
             Toast toast = Toast.makeText(theCoach, message, Toast.LENGTH_SHORT);
             toast.show();
@@ -246,6 +252,7 @@ public class CoachACook extends AppCompatActivity {
     @Override
     protected void onDestroy()
     {
+        _chooseRecipe.DestroySpeech();
         _dbRecipes.close();
         super.onDestroy();        // The activity is about to be destroyed.
     }

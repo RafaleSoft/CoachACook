@@ -39,8 +39,10 @@
         <string name="number_recipes">Recipes generated</string>
         <string name="number_recipes_summary">Number of recipes generated at each query</string>
         <string name="invalid_recipe">Invalid recipe found in downloaded data</string>
-        <string name="data_updated">Recipe and ingredients database updated</string>
+        <string name="data_updated">Recipe and ingredients database updated!</string>
+        <string name="data_not_updated">Failed to update recipe and ingredients database!</string>
         <string name="data_erased">Recipe and ingredients database empty!</string>
+        <string name="data_not_erased">Failed to erase recipe and ingredients database!</string>
 
 
     <!-- Dialogs -->

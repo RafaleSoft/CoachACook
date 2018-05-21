@@ -24,10 +24,10 @@ public class RecipesDB
 	
 	private DatabaseHelper _mOpenHelper;
 	private SQLiteQueryBuilder _qb = new SQLiteQueryBuilder();
-	private Context _context;
+	private CoachACook _context;
 
 	
-	public RecipesDB(Context ctx)
+	public RecipesDB(CoachACook ctx)
 	{
 		_context = ctx;
 		_mOpenHelper = new DatabaseHelper(ctx);
@@ -93,12 +93,10 @@ public class RecipesDB
 	
 	public boolean updateData()
 	{
-        String xmlPath = _context.getFilesDir().getPath() + "/";
-
-		boolean res = Category.load_categories(this, xmlPath+_context.getString(R.string.category_file));
-		res = res && Ingredient.load_ingredients(this, xmlPath+_context.getString(R.string.ingredient_file));
-		res = res && Recipe.load_recipes(this,xmlPath+_context.getString(R.string.recipe_file));
-		return res;
+        boolean res = Category.load_categories(_context);
+        res = res && Ingredient.load_ingredients(_context);
+        res = res && Recipe.load_recipes(_context);
+        return res;
 	}
 	
 
