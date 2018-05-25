@@ -14,6 +14,14 @@
     <string name="ingredient_file">Ingredients.xml</string>
     <string name="recipe_file">Recipes.xml</string>
 
+    <!-- Speech -->
+    <string name="speech_demarre">démarre</string>
+    <string name="speech_apres">après</string>
+    <string name="speech_avant">avant</string>
+    <string name="speech_repete">répète</string>
+    <string name="speech_recommence">recommence</string>
+    <string name="speech_not_understood">Je n\'ai pas compris, veuillez répéter</string>
+
     <!-- GUI -->
         <!-- Buttons -->
         <string name="NewRecipe">Cook Book</string>

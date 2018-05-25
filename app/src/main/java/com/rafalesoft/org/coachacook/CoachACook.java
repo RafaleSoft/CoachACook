@@ -26,10 +26,21 @@ public class CoachACook extends AppCompatActivity {
 
     private RecipesDB _dbRecipes = null;
     private int currentView = 0;
-    ViewFlipper _mainView = null;
-    ProgressBar _pg = null;
-    ManageStock _manageStock = null;
-    ChooseRecipe _chooseRecipe = null;
+    private ViewFlipper _mainView = null;
+    private ProgressBar _pg = null;
+    private ManageStock _manageStock = null;
+    private ChooseRecipe _chooseRecipe = null;
+
+    public RecipeSpeech getRecipeSpeech()
+    {
+        return _recipeSpeech;
+    }
+    public RecipesDB getRecipesDB()
+    {
+        return _dbRecipes;
+    }
+
+    private RecipeSpeech _recipeSpeech;
 
     private static CoachACook theCoach = null;
 
@@ -40,6 +51,7 @@ public class CoachACook extends AppCompatActivity {
 
         theCoach = this;
         _dbRecipes = new RecipesDB(this);
+        _recipeSpeech = new RecipeSpeech(this);
 
         setContentView(R.layout.activity_coach_acook);
         _mainView = findViewById(R.id.view_flipper);
@@ -78,11 +90,6 @@ public class CoachACook extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-    }
-
-    public RecipesDB getRecipesDB()
-    {
-        return _dbRecipes;
     }
 
     public View switchToView(int viewId)
@@ -252,7 +259,7 @@ public class CoachACook extends AppCompatActivity {
     @Override
     protected void onDestroy()
     {
-        _chooseRecipe.DestroySpeech();
+        _recipeSpeech.DestroySpeech();
         _dbRecipes.close();
         super.onDestroy();        // The activity is about to be destroyed.
     }

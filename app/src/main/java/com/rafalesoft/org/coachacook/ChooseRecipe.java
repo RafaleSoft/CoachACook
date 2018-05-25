@@ -1,13 +1,5 @@
 package com.rafalesoft.org.coachacook;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
-import android.speech.tts.TextToSpeech;
-import android.speech.tts.Voice;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -16,74 +8,83 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Set;
 
-public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener, RecognitionListener
+public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
-    private static TextToSpeech tts = null;
-    private static SpeechRecognizer sr = null;
+    private RecipeSpeech _rs;
+    private ArrayList<String> recipe_steps = new ArrayList<>();
+    private int current_step = 0;
 
-    public static final int components[] = {R.id.component1,
-                                            R.id.component2,
-                                            R.id.component3,
-                                            R.id.component4,
-                                            R.id.component5,
-                                            R.id.component6,
-                                            R.id.component7};
+    private static final int components[] = {   R.id.component1,
+                                                R.id.component2,
+                                                R.id.component3,
+                                                R.id.component4,
+                                                R.id.component5,
+                                                R.id.component6,
+                                                R.id.component7};
 
-    public void DestroySpeech()
+    private class RC implements RecipeSpeech.RecognitionCallback
     {
-        if (null != tts)
-            tts.shutdown();
-        if (null != sr)
-            sr.destroy();
+        @Override
+        public void onRecognized(int stringId)
+        {
+            if (recipe_steps.size() == 0)
+                return;
+
+            switch (stringId)
+            {
+                case R.string.speech_demarre:
+                {
+                    _rs.speak(recipe_steps.get(0));
+                    current_step = 1;
+                    _rs.Recognize(new RC());
+                    break;
+                }
+                case R.string.speech_apres:
+                {
+                    if (current_step < recipe_steps.size())
+                        _rs.speak(recipe_steps.get(current_step++));
+                    else
+                        _rs.speak("La recette est terminée");
+                    _rs.Recognize(new RC());
+                    break;
+                }
+                case R.string.speech_avant:
+                {
+                    if (current_step > 0)
+                        _rs.speak(recipe_steps.get(--current_step));
+                    else
+                        _rs.speak("C'est le début dela recette");
+                    _rs.Recognize(new RC());
+                    break;
+                }
+                case R.string.speech_repete:
+                {
+                    if (current_step < recipe_steps.size())
+                        _rs.speak(recipe_steps.get(current_step));
+                    else
+                        _rs.speak("La recette est terminée");
+                    _rs.Recognize(new RC());
+                    break;
+                }
+                case R.string.speech_recommence:
+                {
+                    _rs.speak(recipe_steps.get(0));
+                    current_step = 1;
+                    _rs.Recognize(new RC());
+                    break;
+                }
+            }
+        }
     }
 
     public ChooseRecipe(CoachACook owner)
 	{
 		super(owner);
-		if (!SpeechRecognizer.isRecognitionAvailable(owner))
-        {
-            Toast toast = Toast.makeText(owner, "Speech recognition unavailable", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-        else
-        {
-            sr = SpeechRecognizer.createSpeechRecognizer(owner);
-            sr.setRecognitionListener(this);
-        }
-
-		tts = new TextToSpeech(owner, new TextToSpeech.OnInitListener()
-        {
-            @Override
-            public void onInit(int i)
-            {
-                if (TextToSpeech.SUCCESS == i)
-                {
-                    int max = tts.getMaxSpeechInputLength();
-
-                    Set<Voice> voices = tts.getVoices();
-                    Set<Locale> languages = tts.getAvailableLanguages();
-
-                    int lang = tts.setLanguage(new Locale("fr_FR"));
-                    Voice V = null;
-                    for (Voice vv: voices)
-                    {
-                        if (vv.getName().startsWith("fr-FR") || (vv.getName().startsWith("fr-fr")))
-                            V = vv;
-                    }
-
-                    int v = tts.setVoice(V);
-                    int s = tts.speak("Bienvenue a Coach eu cook", tts.QUEUE_ADD, null, "bienvenue");
-                }
-            }
-        });
+		_rs = owner.getRecipeSpeech();
 	}
-
 
 	@Override
 	public void onClick(View v)
@@ -145,107 +146,17 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
             tvi.setText("");
         }
 
-        //if (null != tts)
-        // tts.speak(r.get_preparation(),tts.QUEUE_ADD, null, "recette");
-        if (null != sr)
+        parseDescription(r.get_preparation());
+        if (null != _rs)
         {
-            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.rafalesoft.org.coachacook");
-            intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
-
-            sr.startListening(intent);
-            Log.d("STT", "startListening()");
+            _rs.Recognize(new RC());
         }
     }
 
-    @Override
-    public void onReadyForSpeech(Bundle bundle)
+    private void parseDescription(String recipe_description)
     {
-        //Log.d("STT","onReadyForSpeech()");
-    }
-
-    @Override
-    public void onBeginningOfSpeech()
-    {
-        Log.d("STT","onBeginningOfSpeech()");
-    }
-
-    @Override
-    public void onRmsChanged(float v)
-    {
-        //Log.d("STT","onRmsChanged()");
-    }
-
-    @Override
-    public void onBufferReceived(byte[] bytes)
-    {
-        //Log.d("STT","onBufferReceived()");
-    }
-
-    @Override
-    public void onEndOfSpeech()
-    {
-        Log.d("STT","onEndOfSpeech()");
-    }
-
-    @Override
-    public void onError(int i)
-    {
-        Log.d("STT",  "error " +  i);
-    }
-
-    @Override
-    public void onResults(Bundle bundle)
-    {
-        Log.d("STT","onResults()");
-        final ArrayList<String> stringArrayList = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        final float[] floatArray = bundle.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES);
-
-        if (!stringArrayList.isEmpty())
-        {
-            //for (int i = 0; i < stringArrayList.size(); i++)
-            //{
-            //Log.d("STT", "result: " + stringArrayList.get(i));
-            //}
-            //for (int i = 0; i < floatArray.length; i++)
-            //{
-            //    Log.d("STT", "confidence: " + floatArray[i]);
-            //}
-            if (floatArray[0] < 0.5f)
-                tts.speak("Je n'ai pas compris", tts.QUEUE_ADD, null, "incompris");
-            else
-            {
-                String msg = stringArrayList.get(0);
-                Toast toast = Toast.makeText(_cook, "J'ai compris: " + msg, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-    }
-
-    @Override
-    public void onPartialResults(Bundle bundle)
-    {
-        Log.d("STT","onPartialResults()");
-        final ArrayList<String> stringArrayList = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        final float[] floatArray = bundle.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES);
-
-        if (!stringArrayList.isEmpty())
-        {
-            for (int i = 0; i < stringArrayList.size(); i++)
-            {
-                Log.d("STT", "result: " + stringArrayList.get(i));
-            }
-            for (int i = 0; i < floatArray.length; i++)
-            {
-                Log.d("STT", "confidence: " + floatArray[i]);
-            }
-        }
-    }
-
-    @Override
-    public void onEvent(int i, Bundle bundle)
-    {
-        Log.d("STT","onEvent() " + i);
+        String [] tmp = recipe_description.split("[.]");
+        for (String s: tmp)
+            recipe_steps.add(s);
     }
 }
