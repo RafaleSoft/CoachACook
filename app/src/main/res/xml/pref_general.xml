@@ -23,4 +23,14 @@
         android:title="@string/pref_title_number_guests"
         android:summary="@string/pref_summary_number_guests"/>
 
+    <ListPreference
+        android:defaultValue="fr_FR"
+        android:entries="@array/pref_language_list_titles"
+        android:entryValues="@array/pref_language_list_values"
+        android:key="@string/language_key"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="@string/pref_title_language"
+        android:summary="@string/pref_summary_language"/>
+
 </PreferenceScreen>

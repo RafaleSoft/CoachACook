@@ -224,6 +224,7 @@ public class SettingsManager extends AppCompatPreferenceActivity
             // guidelines.
             bindPreferenceSummaryToValue(findPreference(getString(R.string.number_recipes_key)));
             bindPreferenceSummaryToValue(findPreference(getString(R.string.number_guests_key)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.language_key)));
         }
     }
 

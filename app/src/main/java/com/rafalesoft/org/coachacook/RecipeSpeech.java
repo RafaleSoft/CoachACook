@@ -3,6 +3,7 @@ package com.rafalesoft.org.coachacook;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
@@ -62,18 +63,20 @@ public class RecipeSpeech implements RecognitionListener
             {
                 if (TextToSpeech.SUCCESS == i)
                 {
-                    int max = _tts.getMaxSpeechInputLength();
-
                     Set<Voice> voices = _tts.getVoices();
-                    Set<Locale> languages = _tts.getAvailableLanguages();
+                    String lan = PreferenceManager.getDefaultSharedPreferences(_ctx)
+                        .getString(_ctx.getString(R.string.language_key), "");
 
-                    int lang = _tts.setLanguage(new Locale("fr_FR"));
+                    if (TextToSpeech.SUCCESS != _tts.setLanguage(new Locale(lan)))
+                    {
+                        Toast toast = Toast.makeText(_ctx, "Unsupported language "+lan, Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+
                     Voice V = null;
                     for (Voice vv : voices)
-                    {
-                        if (vv.getName().startsWith("fr-FR") || (vv.getName().startsWith("fr-fr")))
+                        if (vv.getLocale().toString().equals(lan))
                             V = vv;
-                    }
 
                     int v = _tts.setVoice(V);
                     int s = _tts.speak("Bienvenue a Coach eu cook", _tts.QUEUE_ADD, null, "bienvenue");
@@ -87,6 +90,16 @@ public class RecipeSpeech implements RecognitionListener
         if (null != _sr)
         {
             _rc = rc;
+
+            try
+            {
+                while (_tts.isSpeaking())
+                    Thread.sleep(100);
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
 
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);

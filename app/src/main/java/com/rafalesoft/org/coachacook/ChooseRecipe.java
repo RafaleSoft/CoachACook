@@ -16,6 +16,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
     private RecipeSpeech _rs;
     private ArrayList<String> recipe_steps = new ArrayList<>();
     private int current_step = 0;
+    private RC _rc = new RC();
 
     private static final int components[] = {   R.id.component1,
                                                 R.id.component2,
@@ -39,7 +40,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                 {
                     _rs.speak(recipe_steps.get(0));
                     current_step = 1;
-                    _rs.Recognize(new RC());
+                    _rs.Recognize(this);
                     break;
                 }
                 case R.string.speech_apres:
@@ -47,8 +48,8 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                     if (current_step < recipe_steps.size())
                         _rs.speak(recipe_steps.get(current_step++));
                     else
-                        _rs.speak("La recette est terminée");
-                    _rs.Recognize(new RC());
+                        _rs.speak(_cook.getString(R.string.speech_recipe_over));
+                    _rs.Recognize(this);
                     break;
                 }
                 case R.string.speech_avant:
@@ -56,8 +57,8 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                     if (current_step > 0)
                         _rs.speak(recipe_steps.get(--current_step));
                     else
-                        _rs.speak("C'est le début dela recette");
-                    _rs.Recognize(new RC());
+                        _rs.speak(_cook.getString(R.string.speech_recipe_start));
+                    _rs.Recognize(this);
                     break;
                 }
                 case R.string.speech_repete:
@@ -65,15 +66,15 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                     if (current_step < recipe_steps.size())
                         _rs.speak(recipe_steps.get(current_step));
                     else
-                        _rs.speak("La recette est terminée");
-                    _rs.Recognize(new RC());
+                        _rs.speak(_cook.getString(R.string.speech_recipe_over));
+                    _rs.Recognize(this);
                     break;
                 }
                 case R.string.speech_recommence:
                 {
                     _rs.speak(recipe_steps.get(0));
                     current_step = 1;
-                    _rs.Recognize(new RC());
+                    _rs.Recognize(this);
                     break;
                 }
             }
@@ -149,7 +150,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         parseDescription(r.get_preparation());
         if (null != _rs)
         {
-            _rs.Recognize(new RC());
+            _rs.Recognize(_rc);
         }
     }
 
