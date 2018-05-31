@@ -28,8 +28,6 @@ public class CoachACook extends AppCompatActivity {
     private int currentView = 0;
     private ViewFlipper _mainView = null;
     private ProgressBar _pg = null;
-    private ManageStock _manageStock = null;
-    private ChooseRecipe _chooseRecipe = null;
 
     public RecipeSpeech getRecipeSpeech()
     {
@@ -71,12 +69,16 @@ public class CoachACook extends AppCompatActivity {
         currentView = R.id.coach_a_cook;
 
         Button chooseButton = startView.findViewById(R.id.cook_book);
-        _chooseRecipe = new ChooseRecipe(this);
+        ChooseRecipe _chooseRecipe = new ChooseRecipe(this);
         chooseButton.setOnClickListener(_chooseRecipe);
 
         Button manageButton = startView.findViewById(R.id.manage_stock);
-        _manageStock = new ManageStock(this);
+        ManageStock _manageStock = new ManageStock(this);
         manageButton.setOnClickListener(_manageStock);
+
+        Button buildButton = startView.findViewById(R.id.build_recipe);
+        BuildRecipe _buildRecipe = new BuildRecipe(this);
+        buildButton.setOnClickListener(_buildRecipe);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -128,7 +130,7 @@ public class CoachACook extends AppCompatActivity {
     private class UpdateDataTask extends AsyncTask<Void, Void, Boolean>
     {
         private boolean _reset;
-        public UpdateDataTask(boolean reset)
+        UpdateDataTask(boolean reset)
         {
             _reset = reset;
         }

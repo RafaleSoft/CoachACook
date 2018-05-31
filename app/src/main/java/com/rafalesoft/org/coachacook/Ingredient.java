@@ -8,15 +8,16 @@ public class Ingredient
 	public static final String COLUMN_STOCK_TITLE = "quantity";
 	public static final String COLUMN_UNIT_TITLE = "unit";
 	public static final String COLUMN_TYPE_TITLE = "type";
-
+	public static final String COLUMN_IMAGE_ID = "image";
 	
 	
 	private String 	_name;
 	private Double	_quantity;
 	private String 	_unit = null;
 	private int 	_type = 0;
+	private int 	_image = 0;
 
-	public Ingredient(String name, double q)
+	private Ingredient(String name, double q)
 	{		
 		_name = name;
 		_quantity = q;
@@ -27,7 +28,7 @@ public class Ingredient
 		return _name;
 	}
 
-	public void set_name(String _name) 
+	private void set_name(String _name)
 	{
 		this._name = _name;
 	}
@@ -37,7 +38,7 @@ public class Ingredient
 		return _quantity;
 	}
 
-	public void set_quantity(Double _quantity) 
+	private void set_quantity(Double _quantity)
 	{
 		this._quantity = _quantity;
 	}
@@ -47,7 +48,7 @@ public class Ingredient
 		return _unit;
 	}
 
-	public void set_unit(String _unit)
+	private void set_unit(String _unit)
 	{
 		this._unit = _unit;
 	}
@@ -57,10 +58,21 @@ public class Ingredient
 		return _type;
 	}
 
-	public void set_type(int type) 
+	private void set_type(int type)
 	{
 		_type = type;
 	}
+
+	public int get_image()
+	{
+		return _image;
+	}
+
+	private void set_image(int image)
+	{
+		_image = image;
+	}
+
 
 	public static boolean load_ingredients(CoachACook cook)
 	{
@@ -73,7 +85,7 @@ public class Ingredient
 		private boolean _parsingStock = false;
 		private RecipesDB _db;
 
-		public IngredientLoader(RecipesDB db)
+		IngredientLoader(RecipesDB db)
 		{
 			_db = db;
 		}
@@ -94,6 +106,8 @@ public class Ingredient
 						newIngredient.set_quantity(Double.parseDouble(attrs.getValue(i)));
 					else if (name.compareTo("unit") == 0)
 						newIngredient.set_unit(attrs.getValue(i));
+					else if (name.compareTo("image") == 0)
+						newIngredient.set_image(Integer.parseInt(attrs.getValue(i)));
 					else if (name.compareTo("type") == 0)
 						newIngredient.set_type(0); //attrs.getValue(i));
 				}

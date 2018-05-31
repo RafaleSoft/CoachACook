@@ -10,7 +10,7 @@ public class Recipe
 	public static final String COLUMN_PREPARATION_TITLE = "preparation";
 	
 	private String _name;
-	private ArrayList<RecipeComponent> _components = new ArrayList<RecipeComponent>();
+	private ArrayList<RecipeComponent> _components = new ArrayList<>();
 	private int _guests = 0;
 	private String _preparation = null;
 
@@ -25,7 +25,7 @@ public class Recipe
         return _name;
     }
 
-	public void set_name(String _name) 
+	private void set_name(String _name)
 	{
 		this._name = _name;
 	}
@@ -80,7 +80,7 @@ public class Recipe
 		private Recipe _recipe = null;
 		private RecipesDB _db;
 		
-		public RecipeLoader(RecipesDB db)
+		RecipeLoader(RecipesDB db)
 		{
 			_db = db;
 		}

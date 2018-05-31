@@ -2,12 +2,12 @@ package com.rafalesoft.org.coachacook;
 
 import android.database.Cursor;
 
-public class RecipesCursorHolder 
+class RecipesCursorHolder
 {
-	protected Cursor _cursor = null;
-	protected CoachACook _cook;
+	Cursor _cursor = null;
+	CoachACook _cook;
 	
-	public RecipesCursorHolder(CoachACook owner)
+	RecipesCursorHolder(CoachACook owner)
 	{
 		_cook = owner;
         RecipesDB recipesDB = _cook.getRecipesDB();

@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Set;
 
+import static android.speech.tts.TextToSpeech.*;
+
 public class RecipeSpeech implements RecognitionListener
 {
     private static TextToSpeech _tts = null;
@@ -36,9 +38,7 @@ public class RecipeSpeech implements RecognitionListener
 
     public boolean speak(String speech)
     {
-        if (null == _tts)
-            return false;
-        return (TextToSpeech.SUCCESS == _tts.speak(speech, _tts.QUEUE_ADD, null, "recipe_step"));
+        return (null != _tts) && (SUCCESS == _tts.speak(speech, QUEUE_ADD, null, "recipe_step"));
     }
 
     public RecipeSpeech(Context ctx)
@@ -56,18 +56,18 @@ public class RecipeSpeech implements RecognitionListener
             _sr.setRecognitionListener(this);
         }
 
-        _tts = new TextToSpeech(ctx, new TextToSpeech.OnInitListener()
+        _tts = new TextToSpeech(ctx, new OnInitListener()
         {
             @Override
             public void onInit(int i)
             {
-                if (TextToSpeech.SUCCESS == i)
+                if (SUCCESS == i)
                 {
                     Set<Voice> voices = _tts.getVoices();
                     String lan = PreferenceManager.getDefaultSharedPreferences(_ctx)
                         .getString(_ctx.getString(R.string.language_key), "");
 
-                    if (TextToSpeech.SUCCESS != _tts.setLanguage(new Locale(lan)))
+                    if (SUCCESS != _tts.setLanguage(new Locale(lan)))
                     {
                         Toast toast = Toast.makeText(_ctx, "Unsupported language "+lan, Toast.LENGTH_SHORT);
                         toast.show();
@@ -79,7 +79,7 @@ public class RecipeSpeech implements RecognitionListener
                             V = vv;
 
                     int v = _tts.setVoice(V);
-                    int s = _tts.speak("Bienvenue a Coach eu cook", _tts.QUEUE_ADD, null, "bienvenue");
+                    int s = _tts.speak("Bienvenue a Coach eu cook", QUEUE_ADD, null, "bienvenue");
                 }
             }
         });
@@ -167,7 +167,7 @@ public class RecipeSpeech implements RecognitionListener
         if (!stringArrayList.isEmpty())
         {
             if (floatArray[0] < 0.5f)
-                _tts.speak(_ctx.getString(R.string.speech_not_understood), _tts.QUEUE_ADD, null, "incompris");
+                _tts.speak(_ctx.getString(R.string.speech_not_understood), QUEUE_ADD, null, "incompris");
             else
             {
                 boolean understood = false;
@@ -184,7 +184,8 @@ public class RecipeSpeech implements RecognitionListener
 
                 if (!understood)
                 {
-                    _tts.speak(_ctx.getString(R.string.speech_not_understood), _tts.QUEUE_ADD, null, "incompris");
+                    _tts.speak(_ctx.getString(R.string.speech_not_understood), QUEUE_ADD, null, "incompris");
+                    Recognize(_rc);
                 }
             }
         }
@@ -200,13 +201,9 @@ public class RecipeSpeech implements RecognitionListener
         if (!stringArrayList.isEmpty())
         {
             for (int i = 0; i < stringArrayList.size(); i++)
-            {
                 Log.d("STT", "result: " + stringArrayList.get(i));
-            }
-            for (int i = 0; i < floatArray.length; i++)
-            {
-                Log.d("STT", "confidence: " + floatArray[i]);
-            }
+            for (float aFloatArray : floatArray)
+                Log.d("STT", "confidence: " + aFloatArray);
         }
     }
 

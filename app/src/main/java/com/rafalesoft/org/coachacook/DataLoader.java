@@ -1,6 +1,7 @@
 package com.rafalesoft.org.coachacook;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.os.Environment;
 import android.util.Xml;
 
@@ -14,7 +15,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public abstract class DataLoader implements ContentHandler
+abstract class DataLoader implements ContentHandler
 {
     public boolean load_data(Context ctx, String filename)
     {
@@ -29,12 +30,7 @@ public abstract class DataLoader implements ContentHandler
             else
                 return false;
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        catch (SAXException e)
+        catch (IOException | SAXException | SQLException e)
         {
             e.printStackTrace();
             return false;
@@ -65,7 +61,7 @@ public abstract class DataLoader implements ContentHandler
         return dataDir.getPath();
     }
 
-    public abstract void onElementLoaded(String localName, Attributes attrs);
+    protected abstract void onElementLoaded(String localName, Attributes attrs);
 
     @Override
     public void characters(char[] ch, int start, int length)

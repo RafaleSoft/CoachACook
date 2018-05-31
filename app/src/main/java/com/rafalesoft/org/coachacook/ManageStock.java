@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItemClickListener 
+class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
 	public ManageStock(CoachACook owner)
 	{

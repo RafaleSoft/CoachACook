@@ -18,9 +18,9 @@ public class RecipesDB
 	private static final String DATABASE_NAME = "recipes.db";
     public static final String ID = "_id";
     public static final String NAME = "name";
-	private static final int DATABASE_VERSION = 2;
-	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<RecipesCursorHolder>();
-	private final Map<String, Long> _categories = new HashMap<String, Long>();
+	private static final int DATABASE_VERSION = 3;
+	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
+	private final Map<String, Long> _categories = new HashMap<>();
 	
 	private DatabaseHelper _mOpenHelper;
 	private SQLiteQueryBuilder _qb = new SQLiteQueryBuilder();
@@ -37,7 +37,7 @@ public class RecipesDB
 		String query = "SELECT * FROM "+ Category.TABLE_NAME;
 		Cursor c = db.rawQuery(query,null);
 		c.moveToFirst();
-		while (c.isAfterLast() == false)
+		while (!c.isAfterLast())
 		{
 			long categoryId = c.getLong(c.getColumnIndex(ID));
 			String category = c.getString(c.getColumnIndex(NAME));
@@ -72,7 +72,7 @@ public class RecipesDB
 		// Erase all available tables except android specifics
 		Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
 		c.moveToFirst();
-		while (c.isAfterLast() == false)
+		while (!c.isAfterLast())
 		{
 			String s = c.getString(c.getColumnIndex("name"));
 			if ((s.compareTo("android_metadata") != 0) && (s.compareTo("sqlite_sequence") != 0))
@@ -123,17 +123,16 @@ public class RecipesDB
 	   // * Performs the query. If no problems occur trying to read the database, then a Cursor
 	   // * object is returned; otherwise, the cursor variable contains null. If no records were
 	   // * selected, then the Cursor object is empty, and Cursor.getCount() returns 0.
-	   // 
-	   Cursor c = _qb.query(
-	       db,            // The database to query
-	       projection,    // The columns to return from the query
-	       selection,     // The columns for the where clause
-	       selectionArgs, // The values for the where clause
-	       null, // don't group the rows
-	       null,  // don't filter by row groups
-	       sortOrder);    // The sort order
-	   
-	   return c;
+	   //
+
+		return _qb.query(
+            db,            // The database to query
+            projection,    // The columns to return from the query
+            selection,     // The columns for the where clause
+            selectionArgs, // The values for the where clause
+            null, // don't group the rows
+            null,  // don't filter by row groups
+            sortOrder);
 	}
 
 
@@ -210,13 +209,7 @@ public class RecipesDB
 		    	    );
 	    		}
 	    		else
-	    		{
-	    			String message = _context.getResources().getString(R.string.invalid_recipe);
-	    			message += ": ";
-	    			message += recipe.get_name();
-	    			Toast toast = Toast.makeText(_context, message, Toast.LENGTH_LONG);
-	    			toast.show();
-	    		}
+                    throw new SQLException(_context.getResources().getString(R.string.invalid_recipe) + ": " + recipe.get_name());
 	    	}
 	    	
 	        // Notifies observers registered against this provider that the data changed.
@@ -277,7 +270,7 @@ public class RecipesDB
 						" WHERE "+ RecipeComponent.COLUMN_RECIPE_TITLE+"="+recipeId,
 						null);
 		c.moveToFirst();
-		while (c.isAfterLast() == false)
+		while (!c.isAfterLast())
 		{
 			int ingredientId = c.getInt(c.getColumnIndex(RecipeComponent.COLUMN_INGREDIENT_TITLE));
 			double quantity = c.getDouble(c.getColumnIndex(RecipeComponent.COLUMN_AMOUNT_TITLE));
@@ -384,12 +377,14 @@ public class RecipesDB
 	               + NAME + " VARCHAR(32) NOT NULL,"
 	               + Ingredient.COLUMN_STOCK_TITLE + " REAL,"
 	               + Ingredient.COLUMN_UNIT_TITLE + " VARCHAR(4),"
-	               + Ingredient.COLUMN_TYPE_TITLE + " INTEGER"
+	               + Ingredient.COLUMN_TYPE_TITLE + " INTEGER,"
+				   + Ingredient.COLUMN_IMAGE_ID + " INTEGER"
 	               + ");");
 	       
 	       db.execSQL("CREATE TABLE " + Category.TABLE_NAME + " ("
 	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-	               + NAME + " VARCHAR(32) NOT NULL"
+	               + NAME + " VARCHAR(32) NOT NULL,"
+                   + Category.COLUMN_IMAGE_ID + " INTEGER"
 	               + ");");
 	   }
 
