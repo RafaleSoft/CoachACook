@@ -148,10 +148,23 @@ public class CoachACook extends AppCompatActivity {
         protected void onPreExecute()
         {
             _pg.setVisibility(View.VISIBLE);
+            Button chooseButton = _mainView.findViewById(R.id.cook_book);
+            chooseButton.setEnabled(false);
+            Button manageButton = _mainView.findViewById(R.id.manage_stock);
+            manageButton.setEnabled(false);
+            Button buildButton = _mainView.findViewById(R.id.build_recipe);
+            buildButton.setEnabled(false);
         }
         protected void onPostExecute(Boolean result)
         {
             _pg.setVisibility(View.INVISIBLE);
+            Button chooseButton = _mainView.findViewById(R.id.cook_book);
+            chooseButton.setEnabled(true);
+            Button manageButton = _mainView.findViewById(R.id.manage_stock);
+            manageButton.setEnabled(true);
+            Button buildButton = _mainView.findViewById(R.id.build_recipe);
+            buildButton.setEnabled(true);
+
             String message;
             if (_reset)
             {
