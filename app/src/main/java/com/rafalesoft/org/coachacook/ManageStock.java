@@ -31,12 +31,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
                                 RecipesDB.NAME,
 								Ingredient.COLUMN_STOCK_TITLE,
 								Ingredient.COLUMN_UNIT_TITLE };
-		String[] selectionArgs = { };
-		
-		_cursor = _cook.getRecipesDB().query(	Ingredient.TABLE_NAME,
-												projection,
-												"", selectionArgs,
-                                                RecipesDB.NAME);
+		updateCursor(Ingredient.TABLE_NAME, projection);
 		
 		String[] fromColumns = {RecipesDB.NAME,
 								Ingredient.COLUMN_STOCK_TITLE,
@@ -45,7 +40,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 	
 		SimpleCursorAdapter recipesDBAdapter = 
 				new SimpleCursorAdapter(_cook,R.layout.stock_view_item,
-										_cursor,fromColumns,toViews,0);
+										getCursor(),fromColumns,toViews,0);
 
 		lvl.setAdapter(recipesDBAdapter);
 		lvl.setOnItemClickListener(this);
@@ -56,7 +51,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 	{
 
 	    LayoutInflater inflater = _cook.getLayoutInflater();
-	    View dialogView = inflater.inflate(R.layout.stock_dialog, null);
+	    View dialogView = inflater.inflate(R.layout.stock_dialog, parent);
 	    
 	    TextView ingredient_name_tv = view.findViewById(R.id.stock_item_name);
 	    final String ingredient_name = ingredient_name_tv.getText().toString();
@@ -91,10 +86,5 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 		}); 
 		AlertDialog dialog = builder.create();
 		dialog.show();
-	}
-
-	public void search(String query)
-	{
-		// TODO Auto-generated method stub
 	}
 }

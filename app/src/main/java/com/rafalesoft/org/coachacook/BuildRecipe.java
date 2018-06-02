@@ -1,6 +1,5 @@
 package com.rafalesoft.org.coachacook;
 
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -11,7 +10,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 
 
-public class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
+class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
     public BuildRecipe(CoachACook owner)
 	{
@@ -35,20 +34,14 @@ public class BuildRecipe extends RecipesCursorHolder implements OnClickListener,
         ListView lvl = stock.findViewById(R.id.recipe_list);
 
         String[] projection = {RecipesDB.ID, RecipesDB.NAME};
-        String[] selectionArgs = {};
-
-        _cursor = _cook.getRecipesDB().query(   Recipe.TABLE_NAME,
-                                                projection,
-                                                "",
-                                                selectionArgs,
-                                                RecipesDB.NAME);
+        updateCursor(Recipe.TABLE_NAME, projection);
 
         String[] fromColumns = { RecipesDB.NAME };
         int[] toViews = { R.id.recipe_item_name };
 
         SimpleCursorAdapter recipesDBAdapter =
                 new SimpleCursorAdapter(_cook, R.layout.recipe_stockview_item,
-                        _cursor, fromColumns, toViews, 0);
+                                        getCursor(), fromColumns, toViews, 0);
 
         lvl.setAdapter(recipesDBAdapter);
         lvl.setOnItemClickListener(this);

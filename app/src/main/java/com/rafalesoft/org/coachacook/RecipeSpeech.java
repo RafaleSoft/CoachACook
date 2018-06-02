@@ -38,7 +38,10 @@ public class RecipeSpeech implements RecognitionListener
 
     public boolean speak(String speech)
     {
-        return (null != _tts) && (SUCCESS == _tts.speak(speech, QUEUE_ADD, null, "recipe_step"));
+        return (null != _tts) && (SUCCESS == _tts.speak(speech,
+                                                        QUEUE_ADD,
+                                                        null,
+                                                        "recipe_step"));
     }
 
     public RecipeSpeech(Context ctx)
@@ -78,8 +81,9 @@ public class RecipeSpeech implements RecognitionListener
                         if (vv.getLocale().toString().equals(lan))
                             V = vv;
 
-                    int v = _tts.setVoice(V);
-                    int s = _tts.speak("Bienvenue a Coach eu cook", QUEUE_ADD, null, "bienvenue");
+                    if (null != V)
+                        _tts.setVoice(V);
+                    _tts.speak("Bienvenue a Coach eu cook", QUEUE_ADD, null, "bienvenue");
                 }
             }
         });
@@ -154,7 +158,40 @@ public class RecipeSpeech implements RecognitionListener
     @Override
     public void onError(int i)
     {
-        Log.d("STT",  "error " +  i);
+        switch (i)
+        {
+            case SpeechRecognizer.ERROR_AUDIO:
+                Log.e("STT",  "Audio recording error");
+                break;
+            case SpeechRecognizer.ERROR_CLIENT:
+                Log.e("STT",  "Other client side errors");
+                break;
+            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
+                Log.e("STT",  "Insufficient permissions ");
+                break;
+            case SpeechRecognizer.ERROR_NETWORK:
+                Log.e("STT",  "Other network related errors");
+                break;
+            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
+                Log.e("STT",  "Network operation timed out");
+                break;
+            case SpeechRecognizer.ERROR_NO_MATCH:
+                Log.e("STT",  "No recognition result matched");
+                break;
+            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
+                Log.e("STT",  "Recognition service busy");
+                break;
+            case SpeechRecognizer.ERROR_SERVER:
+                Log.e("STT",  "Server sends error status");
+                break;
+            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
+                Log.e("STT",  "No speech input");
+                break;
+            default:
+                break;
+        }
+
+        Recognize(_rc);
     }
 
     @Override

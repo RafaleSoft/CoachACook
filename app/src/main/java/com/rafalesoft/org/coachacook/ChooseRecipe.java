@@ -1,5 +1,6 @@
 package com.rafalesoft.org.coachacook;
 
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 
 public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
-    private RecipeSpeech _rs;
-    private ArrayList<String> recipe_steps = new ArrayList<>();
+    private final RecipeSpeech _rs;
+    private final ArrayList<String> recipe_steps = new ArrayList<>();
     private int current_step = 0;
-    private RC _rc = new RC();
+    private final RC _rc = new RC();
 
     private static final int components[] = {   R.id.component1,
                                                 R.id.component2,
@@ -34,11 +35,12 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
             if (recipe_steps.size() == 0)
                 return;
 
+            boolean spk = false;
             switch (stringId)
             {
                 case R.string.speech_demarre:
                 {
-                    _rs.speak(recipe_steps.get(0));
+                    spk = _rs.speak(recipe_steps.get(0));
                     current_step = 1;
                     _rs.Recognize(this);
                     break;
@@ -46,38 +48,41 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                 case R.string.speech_apres:
                 {
                     if (current_step < recipe_steps.size())
-                        _rs.speak(recipe_steps.get(current_step++));
+                        spk = _rs.speak(recipe_steps.get(current_step++));
                     else
-                        _rs.speak(_cook.getString(R.string.speech_recipe_over));
+                        spk = _rs.speak(_cook.getString(R.string.speech_recipe_over));
                     _rs.Recognize(this);
                     break;
                 }
                 case R.string.speech_avant:
                 {
                     if (current_step > 0)
-                        _rs.speak(recipe_steps.get(--current_step));
+                        spk = _rs.speak(recipe_steps.get(--current_step));
                     else
-                        _rs.speak(_cook.getString(R.string.speech_recipe_start));
+                        spk = _rs.speak(_cook.getString(R.string.speech_recipe_start));
                     _rs.Recognize(this);
                     break;
                 }
                 case R.string.speech_repete:
                 {
                     if (current_step < recipe_steps.size())
-                        _rs.speak(recipe_steps.get(current_step));
+                        spk = _rs.speak(recipe_steps.get(current_step));
                     else
-                        _rs.speak(_cook.getString(R.string.speech_recipe_over));
+                        spk = _rs.speak(_cook.getString(R.string.speech_recipe_over));
                     _rs.Recognize(this);
                     break;
                 }
                 case R.string.speech_recommence:
                 {
-                    _rs.speak(recipe_steps.get(0));
+                    spk = _rs.speak(recipe_steps.get(0));
                     current_step = 1;
                     _rs.Recognize(this);
                     break;
                 }
             }
+
+            if (!spk)
+                Log.d("STT","onRecognized failed");
         }
     }
 
@@ -94,20 +99,14 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         ListView lvl = stock.findViewById(R.id.recipe_list);
 
         String[] projection = {RecipesDB.ID, RecipesDB.NAME};
-        String[] selectionArgs = {};
-
-        _cursor = _cook.getRecipesDB().query(   Recipe.TABLE_NAME,
-                                                projection,
-                                                "",
-                                                selectionArgs,
-                                                RecipesDB.NAME);
+        updateCursor( Recipe.TABLE_NAME, projection );
 
         String[] fromColumns = { RecipesDB.NAME };
         int[] toViews = { R.id.recipe_item_name };
 
         SimpleCursorAdapter recipesDBAdapter =
                 new SimpleCursorAdapter(_cook, R.layout.recipe_stockview_item,
-                        _cursor, fromColumns, toViews, 0);
+                                        getCursor(), fromColumns, toViews, 0);
 
         lvl.setAdapter(recipesDBAdapter);
         lvl.setOnItemClickListener(this);

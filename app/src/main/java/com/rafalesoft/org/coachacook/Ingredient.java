@@ -11,16 +11,13 @@ public class Ingredient
 	public static final String COLUMN_IMAGE_ID = "image";
 	
 	
-	private String 	_name;
-	private Double	_quantity;
+	private String 	_name = "";
+	private Double	_quantity = 0.0;
 	private String 	_unit = null;
 	private int 	_type = 0;
 	private int 	_image = 0;
 
-	private Ingredient(String name, double q)
-	{		
-		_name = name;
-		_quantity = q;
+	private Ingredient() {
 	}
 
 	public String get_name() 
@@ -95,7 +92,7 @@ public class Ingredient
 		{
 			if (_parsingStock)
 			{
-				Ingredient newIngredient = new Ingredient("",0);
+				Ingredient newIngredient = new Ingredient();
 				int nbAttrs = attrs.getLength();
 				for (int i=0;i<nbAttrs;i++)
 				{
@@ -109,7 +106,7 @@ public class Ingredient
 					else if (name.compareTo("image") == 0)
 						newIngredient.set_image(Integer.parseInt(attrs.getValue(i)));
 					else if (name.compareTo("type") == 0)
-						newIngredient.set_type(0); //attrs.getValue(i));
+						newIngredient.set_type(0); //Integer.parseInt(attrs.getValue(i)));
 				}
 				_db.insert(newIngredient);
 			}

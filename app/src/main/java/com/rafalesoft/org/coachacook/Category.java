@@ -8,16 +8,10 @@ public class Category
 	public static final String TABLE_NAME = "categories";
     public static final String COLUMN_IMAGE_ID = "image";
 
-	private String 	_name;
+	private String 	_name = "";
     private int 	_image = 0;
 
-    /**
-     * @param name : the name of the category
-     */
-    private Category(String name)
-	{		
-		_name = name;
-	}
+    private Category() { }
 	
 	public String get_name()
 	{
@@ -61,7 +55,7 @@ public class Category
         {
             if (_parsingCategory)
             {
-                Category newCategory = new Category("");
+                Category newCategory = new Category();
                 int nbAttrs = attrs.getLength();
                 for (int i = 0; i < nbAttrs; i++)
                 {

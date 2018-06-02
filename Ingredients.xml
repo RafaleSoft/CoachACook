@@ -162,4 +162,6 @@
 	<Ingredient name="Yahourt" quantity="8" type="Produit Laitier" image="0"/>
 	<Ingredient name="Farine" quantity="1" unit="kg" type="Epicerie_sucrée" image="0"/>
 	<Ingredient name="Sucre" quantity="1" unit="kg" type="Epicerie_sucrée" image="0"/>
+	<Ingredient name="Sel" quantity="1" unit="kg" type="Epicerie_salée" image="0"/>
+	<Ingredient name="Beurre" quantity="250" unit="g" type="Lait_beurre_oeufs" image="0"/>
 </Stock>

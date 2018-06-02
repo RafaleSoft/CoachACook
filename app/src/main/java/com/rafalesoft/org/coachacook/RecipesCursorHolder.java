@@ -4,7 +4,7 @@ import android.database.Cursor;
 
 class RecipesCursorHolder
 {
-	Cursor _cursor = null;
+	private Cursor _cursor = null;
 	CoachACook _cook;
 	
 	RecipesCursorHolder(CoachACook owner)
@@ -13,7 +13,19 @@ class RecipesCursorHolder
         RecipesDB recipesDB = _cook.getRecipesDB();
         recipesDB.addCursorHolder(this);
 	}
-	
+
+	Cursor getCursor()
+	{
+		return _cursor;
+	}
+
+	void updateCursor(String tableName, String[] projection)
+	{
+		close();
+		_cursor = _cook.getRecipesDB().query(	tableName,
+												projection);
+	}
+
 	public void close()
 	{
         // Remove from RecipesDB is done at destruction, by calling RecipesDB.close()

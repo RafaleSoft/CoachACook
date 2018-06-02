@@ -11,7 +11,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.widget.Toast;
+
 
 public class RecipesDB
 {
@@ -32,20 +32,8 @@ public class RecipesDB
 		_context = ctx;
 		_mOpenHelper = new DatabaseHelper(ctx);
 		_categories.clear();
-		
-		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
-		String query = "SELECT * FROM "+ Category.TABLE_NAME;
-		Cursor c = db.rawQuery(query,null);
-		c.moveToFirst();
-		while (!c.isAfterLast())
-		{
-			long categoryId = c.getLong(c.getColumnIndex(ID));
-			String category = c.getString(c.getColumnIndex(NAME));
-			_categories.put(category, categoryId);
-
-			c.moveToNext();
-		}
-		c.close();
+		// TODO: do this in an AsyncTask
+		loadCategories();
 	}
 
 	public void addCursorHolder(RecipesCursorHolder holder)
@@ -90,12 +78,31 @@ public class RecipesDB
 		
 		return true;
 	}
-	
+
+	private boolean loadCategories()
+	{
+		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
+		String query = "SELECT * FROM "+ Category.TABLE_NAME;
+		Cursor c = db.rawQuery(query,null);
+		c.moveToFirst();
+		while (!c.isAfterLast())
+		{
+			long categoryId = c.getLong(c.getColumnIndex(ID));
+			String category = c.getString(c.getColumnIndex(NAME));
+			_categories.put(category, categoryId);
+
+			c.moveToNext();
+		}
+		c.close();
+		return true;
+	}
+
 	public boolean updateData()
 	{
         boolean res = Category.load_categories(_context);
         res = res && Ingredient.load_ingredients(_context);
         res = res && Recipe.load_recipes(_context);
+        res = res && loadCategories();
         return res;
 	}
 	
@@ -108,10 +115,7 @@ public class RecipesDB
 	 * @throws IllegalArgumentException if the incoming URI pattern is invalid.
 	 */
 	public Cursor query(String table,
-						String[] projection, 
-						String selection, 
-						String[] selectionArgs,
-						String sortOrder) 
+						String[] projection)
 	{
 	   // Constructs a new query builder and sets its table name
 	   _qb.setTables(table);
@@ -125,14 +129,15 @@ public class RecipesDB
 	   // * selected, then the Cursor object is empty, and Cursor.getCount() returns 0.
 	   //
 
+        String[] selectionArgs = {};
 		return _qb.query(
             db,            // The database to query
             projection,    // The columns to return from the query
-            selection,     // The columns for the where clause
+            "",     // The columns for the where clause
             selectionArgs, // The values for the where clause
             null, // don't group the rows
             null,  // don't filter by row groups
-            sortOrder);
+			RecipesDB.NAME);
 	}
 
 
