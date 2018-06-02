@@ -65,19 +65,11 @@
     <string name="update_yes">Commit</string>
     <string name="update_no">Abort</string>
     <string name="invalid_ingredient">Error found while updating ingredient stock</string>
-    <string name="search_stock">Search stock</string>
     <string name="title_activity_settings_manager">Settings</string>
 
     <!-- Strings related to Settings -->
-
-        <!-- Example General settings -->
+        <!-- General settings -->
         <string name="pref_header_general">General</string>
-
-        <string name="pref_title_social_recommendations">Enable social recommendations</string>
-        <string name="pref_description_social_recommendations">Recommendations for people to contact
-            based on your message history
-        </string>
-
         <string name="pref_title_number_recipes">Number of Recipes</string>
         <string name="pref_summary_number_recipes">Number of recipes generated at each query</string>
         <string name="number_recipes_key">number_recipes_key</string>
