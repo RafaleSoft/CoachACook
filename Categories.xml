@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Stock>
-	<Category name="Vegetable"/>
-	<Category name="Milk"/>
-	<Category name="Cereal"/>
-	<Category name="Other"/>
-	<Category name="Fruit"/>
+	<Category name="Légumes" image="0"/>
+	<Category name="Fruit" image="0"/>
+	<Category name="Boucherie" image="0"/>
+	<Category name="Charcuterie" image="0"/>
+	<Category name="Poissonnerie" image="0"/>
+	<Category name="Boulangerie" image="0"/>
+	<Category name="Lait_beurre_oeufs" image="0"/>
+	<Category name="Fromages" image="0"/>
+	<Category name="Yahourts" image="0"/>
+	<Category name="Desserts" image="0"/>
+	<Category name="Epicerie_salée" image="0"/>
+	<Category name="Epicerie_sucrée" image="0"/>
+	<Category name="Petit_déjeuner" image="0"/>
+	<Category name="Other" image="0"/>
 </Stock>

@@ -1,18 +1,167 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Stock>
-	<Ingredient name="Carottes" quantity="10" type="Vegetable"/>
-	<Ingredient name="Tomates" quantity="6" type="Vegetable"/>
-	<Ingredient name="Poireaux" quantity="4" type="Vegetable"/>
-	<Ingredient name="Navets" quantity="15" type="Vegetable"/>
-	<Ingredient name="Choufleurs" quantity="1" type="Vegetable"/>
-	<Ingredient name="Pommes de terre" quantity="2" unit="kg" type="Vegetable"/>
-	<Ingredient name="Oignons" quantity="10" type="Vegetable"/>
-	<Ingredient name="Oeufs" quantity="12" type="Milk"/>
-	<Ingredient name="Lait" quantity="6" unit="l" type="Milk"/>
-	<Ingredient name="Yahourt" quantity="8" type="Milk"/>
-	<Ingredient name="Farine" quantity="1" unit="kg" type="Cereal"/>
-	<Ingredient name="Sucre" quantity="1" unit="kg" type="Other"/>
-	<Ingredient name="Pommes" quantity="6" type="Fruit"/>
-	<Ingredient name="Oranges" quantity="6" type="Fruit"/>
-	<Ingredient name="Bananes" quantity="5" type="Fruit"/>
+	<Ingredient name="Carottes" quantity="10" type="Légumes" image="0"/>
+	<Ingredient name="Navets" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Poireaux" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Betteraves" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Courges" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Topinambours" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Panais" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Haricots verts" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Haricots plats" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Asperges" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Artichauts" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Fenouils" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Radis Blanc" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Radis Rouge" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Radis Noir" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Chou fleur" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Chou blanc" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Chou rouge" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Chou vert" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Choux de Bruxelles" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Brocoli" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Côte de blette" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Céleri branche" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Céleri rave" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Blettes" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Pommes de terre" quantity="2" unit="kg" type="Légumes" image="0"/>
+	<Ingredient name="Pommes de terre rouge" quantity="0" unit="kg" type="Légumes" image="0"/>
+	<Ingredient name="Pommes de terre ratte" quantity="0" unit="kg" type="Légumes" image="0"/>
+	<Ingredient name="Pommes de terre purée" quantity="0" unit="kg" type="Légumes" image="0"/>
+	<Ingredient name="Salade Batavia" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Salade Laitue" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Salade feuille de chêne" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Salade frisée" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Salade mâche" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Salade scarole" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Endive" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Champignon blanc" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Pleurotes" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Tomate ronde" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Tomate cerise" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Tomate coeur de pigeon" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Tomate coeur de boeuf" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Courgette" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Courgette ronde" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Aubergine" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Poivron vert" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Poivron jaune" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Poivron rouge" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Concombre" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Avocat" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Ail" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Oignons" quantity="10" type="Légumes" image="0"/>
+	<Ingredient name="Oignons Jaune" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Oignons Rouge" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Oignons Botte" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Echalotte" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Ciboulette" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Persil plat" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Persil frisé" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Coriandre" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Menthe" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Aneth" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Thym" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Laurier" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Lentilles vertes" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Lentilles corail" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Lentilles" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Pois cassés" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Pois chiches" quantity="0" type="Légumes" image="0"/>
+	<Ingredient name="Pomelos rose" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Pomelos blanc" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Citron" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Citron vert" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Orange" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Orange" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Pomme Granny Smith" quantity="6" type="Fruit" image="0"/>
+	<Ingredient name="Pomme Pink Lady" quantity="6" type="Fruit" image="0"/>
+	<Ingredient name="Pomme Royal Gala" quantity="6" type="Fruit" image="0"/>
+	<Ingredient name="Pomme Golden" quantity="6" type="Fruit" image="0"/>
+	<Ingredient name="Poire Williams" quantity="6" type="Fruit" image="0"/>
+	<Ingredient name="Poire Conference" quantity="6" type="Fruit" image="0"/>
+	<Ingredient name="Raisin blanc" quantity="1" unit="kg" type="Fruit" image="0"/>
+	<Ingredient name="Raisin muscat" quantity="1" unit="kg" type="Fruit" image="0"/>
+	<Ingredient name="Fraise" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Fraise Gariguette" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Framboise" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Cerise" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Myrtille" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Groseille" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Rhubarbe" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Mûre" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Bananes" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Kiwi" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Fruit de la passion" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Grenade" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Banane" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Ananas" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Mangue" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Noix de coco" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Gingembre" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Papaye" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Physalis" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Melon" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Melon jaune" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Pastèque" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Pêche" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Abricot" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Nectarine" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Prune" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Noix" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Noix de cajou" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Noix de pécan" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Amandes" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Pignon de pin" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Pistaches" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Noisettes" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Cacahuettes" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Datte" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Figue" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Raisin sec" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Prunes" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Pruneaux" quantity="0" type="Fruit" image="0"/>
+	<Ingredient name="Steak haché" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Chipolatas" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Merguez" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Saucisse de Toulouse" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Steak de boeuf" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Bavette" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Hampe" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Entrecôte" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Faux filet" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Rumsteak" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Tournedos" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Tournedos" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Poulet" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Escalope de poulet" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Dinde" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Escalope de dinde" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Magret de canard" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Porc" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Veau" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Agneau" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Lapin" quantity="0" unit="kg" type="Boucherie" image="0"/>
+	<Ingredient name="Festif" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Jambons" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Lardons" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Emincés" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Bacon" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Saucissons" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Saucisses" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Rillettes" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Pâtés" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Végétarien" quantity="0" unit="kg" type="Charcuterie" image="0"/>
+	<Ingredient name="Poissons Frais" quantity="0" unit="kg" type="Poissonnerie" image="0"/>
+	<Ingredient name="Poissons Fumés" quantity="0" unit="kg" type="Poissonnerie" image="0"/>
+	<Ingredient name="Poissons Panés" quantity="0" unit="kg" type="Poissonnerie" image="0"/>
+	<Ingredient name="Fruits de mer" quantity="0" unit="kg" type="Poissonnerie" image="0"/>
+	<Ingredient name="Oeufs" quantity="12" type="Lait_beurre_oeufs" image="0"/>
+	<Ingredient name="Lait" quantity="6" unit="l" type="Lait_beurre_oeufs" image="0"/>
+	<Ingredient name="Yahourt" quantity="8" type="Produit Laitier" image="0"/>
+	<Ingredient name="Farine" quantity="1" unit="kg" type="Epicerie_sucrée" image="0"/>
+	<Ingredient name="Sucre" quantity="1" unit="kg" type="Epicerie_sucrée" image="0"/>
+	<Ingredient name="Sel" quantity="1" unit="kg" type="Epicerie_salée" image="0"/>
+	<Ingredient name="Beurre" quantity="250" unit="g" type="Lait_beurre_oeufs" image="0"/>
 </Stock>

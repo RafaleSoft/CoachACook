@@ -14,10 +14,25 @@
     <string name="ingredient_file">Ingredients.xml</string>
     <string name="recipe_file">Recipes.xml</string>
 
+    <!-- Speech -->
+    <string name="speech_quitte">quitte</string>
+    <string name="speech_termine">termine</string>
+    <string name="speech_demarre">démarre</string>
+    <string name="speech_apres">après</string>
+    <string name="speech_avant">avant</string>
+    <string name="speech_repete">répète</string>
+    <string name="speech_recommence">recommence</string>
+    <string name="speech_not_understood">Je n\'ai pas compris, veuillez répéter</string>
+    <string name="speech_recipe_start">C\'est le début dela recette</string>
+    <string name="speech_recipe_over">La recette est terminée</string>
+
     <!-- GUI -->
         <!-- Buttons -->
         <string name="NewRecipe">Cook Book</string>
         <string name="ManageStock">Manage Stock</string>
+        <string name="Légumes">Légumes</string>
+        <string name="Fruits">Fruits</string>
+        <string name="Boucherie">Boucherie</string>
         <string name="BuildRecipe">Build Menu</string>
 
         <!-- Main Menu -->
@@ -26,7 +41,14 @@
         <string name="action_update_stock">Update stock</string>
         <string name="action_search">Search</string>
 
-        <!-- HMI -->
+        <!-- Recipe View -->
+        <string name="recipe_component">Component</string>
+        <string name="recipe_difficulty">Difficulty</string>
+        <string name="recipe_cost">Cost</string>
+        <string name="recipe_duration">Duration</string>
+        <string name="recipe_image">Image</string>
+
+        <!-- General HMI -->
         <string name="app_background">Background</string>
         <string name="Available">Available Recipes:</string>
         <string name="on_choose">onChoseRecipe</string>
@@ -35,8 +57,10 @@
         <string name="number_recipes">Recipes generated</string>
         <string name="number_recipes_summary">Number of recipes generated at each query</string>
         <string name="invalid_recipe">Invalid recipe found in downloaded data</string>
-        <string name="data_updated">Recipe and ingredients database updated</string>
+        <string name="data_updated">Recipe and ingredients database updated!</string>
+        <string name="data_not_updated">Failed to update recipe and ingredients database!</string>
         <string name="data_erased">Recipe and ingredients database empty!</string>
+        <string name="data_not_erased">Failed to erase recipe and ingredients database!</string>
 
 
     <!-- Dialogs -->
@@ -49,19 +73,11 @@
     <string name="update_yes">Commit</string>
     <string name="update_no">Abort</string>
     <string name="invalid_ingredient">Error found while updating ingredient stock</string>
-    <string name="search_stock">Search stock</string>
     <string name="title_activity_settings_manager">Settings</string>
 
     <!-- Strings related to Settings -->
-
-        <!-- Example General settings -->
+        <!-- General settings -->
         <string name="pref_header_general">General</string>
-
-        <string name="pref_title_social_recommendations">Enable social recommendations</string>
-        <string name="pref_description_social_recommendations">Recommendations for people to contact
-            based on your message history
-        </string>
-
         <string name="pref_title_number_recipes">Number of Recipes</string>
         <string name="pref_summary_number_recipes">Number of recipes generated at each query</string>
         <string name="number_recipes_key">number_recipes_key</string>
@@ -81,6 +97,108 @@
             <item>3</item>
             <item>4</item>
         </string-array>
+
+        <string name="pref_title_language">Language</string>
+        <string name="pref_summary_language">Select the language for recipe speech</string>
+        <string name="language_key">language_key</string>
+        <string-array name="pref_language_list_titles">
+            <item>Bengali</item>
+            <item>Chinese</item>
+            <item>Czech</item>
+            <item>Danish</item>
+            <item>Dutch</item>
+            <item>English</item>
+            <item>Estonian</item>
+            <item>Finnish</item>
+            <item>French</item>
+            <item>German</item>
+            <item>Greek</item>
+            <item>Hindi</item>
+            <item>Hungarian</item>
+            <item>Indonesian</item>
+            <item>Italian</item>
+            <item>Japanese</item>
+            <item>Korean</item>
+            <item>Nepali</item>
+            <item>Norwegian</item>
+            <item>Polish</item>
+            <item>Portuguese</item>
+            <item>Romanian</item>
+            <item>Sinhala</item>
+            <item>Slovak</item>
+            <item>Spanish</item>
+            <item>Swedish</item>
+            <item>Thai</item>
+            <item>Turkish</item>
+            <item>Ukrainian</item>
+            <item>Vietnamese</item>
+        </string-array>
+        <string-array name="pref_language_list_values">
+            <item>bn_BD</item>
+            <item>zh_CN</item>
+            <item>cs_CZ</item>
+            <item>da_DK</item>
+            <item>nl_NL</item>
+            <item>en_GB</item>
+            <item>et_EE</item>
+            <item>fi_FI</item>
+            <item>fr_FR</item>
+            <item>de_DE</item>
+            <item>el_GR</item>
+            <item>hi_IN</item>
+            <item>hu_HU</item>
+            <item>in_ID</item>
+            <item>it_IT</item>
+            <item>ja_JP</item>
+            <item>ko_KR</item>
+            <item>ne_NP</item>
+            <item>nb_NO</item>
+            <item>pl_PL</item>
+            <item>pt_PT</item>
+            <item>ro_RO</item>
+            <item>ru_RU</item>
+            <item>si_LK</item>
+            <item>sk_SK</item>
+            <item>es_ES</item>
+            <item>sv_SE</item>
+            <item>th_TH</item>
+            <item>tr_TR</item>
+            <item>uk_UA</item>
+            <item>vi_VN</item>
+        </string-array>
+    <!--
+    bn_BD, Bengali ( BANGLADESH )
+    zh_CN, Chinese ( CHINA )
+    cs_CZ, Czech ( CZECHIA )
+    da_DK, Danish ( DENMARK)
+    nl_NL, Dutch ( NETHERLANDS )
+    en_GB, English ( UNITED KINGDOM )
+    et_EE, Estonian ( ESTONIA )
+    fi_FI, Finnish ( FINLAND )
+    fr_FR, French ( FRANCE )
+    de_DE, German ( GERMANY)
+    el_GR, Greek ( GREECE )
+    hi_IN, Hindi ( INDIA )
+    hu_HU, Hungarian ( HUNGARY )
+    in_ID, Indonesian ( INDONESIA )
+    it_IT, Italian ( ITALY )
+    ja_JP, Japanese ( JAPAN )
+    ko_KR, Korean  ( KOREA, REPUBLIC OF )
+    ne_NP, Nepali ( NEPAL )
+    nb_NO, Norwegian ( NORWAY )
+    pl_PL, Polish  ( POLAND )
+    pt_PT, Portuguese ( PORTUGAL )
+    ro_RO, Romanian ( ROMANIA )
+    ru_RU, Russian ( RUSSIAN FEDERATION )
+    si_LK, Sinhala ( SRI LANKA )
+    sk_SK, Slovak ( SLOVAKIA )
+    es_ES, Spanish ( SPAIN)
+    sv_SE, Swedish ( SWEDEN )
+    th_TH, Thai ( THAILAND )
+    tr_TR, Turkish ( TURKEY )
+    uk_UA, Ukrainian ( UKRAINE )
+    vi_VN, Vietnamese ( VIET NAM )
+    -->
 
         <!-- Example settings for Recipe Generation -->
         <string name="pref_header_recipe_gen">Recipe generation</string>

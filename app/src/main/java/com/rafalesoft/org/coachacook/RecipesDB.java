@@ -11,40 +11,39 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
-import android.widget.Toast;
+
 
 public class RecipesDB
 {
 	private static final String DATABASE_NAME = "recipes.db";
+
     public static final String ID = "_id";
-	private static final int DATABASE_VERSION = 2;
-	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<RecipesCursorHolder>();
-	private final Map<String, Long> _categories = new HashMap<String, Long>();
+    public static final String NAME = "name";
+	private static final int DATABASE_VERSION = 6;
+	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
+	private final Map<String, Long> _categories = new HashMap<>();
 	
 	private DatabaseHelper _mOpenHelper;
 	private SQLiteQueryBuilder _qb = new SQLiteQueryBuilder();
-	private Context _context;
+	private CoachACook _context;
 
 	
-	public RecipesDB(Context ctx)
+	public RecipesDB(CoachACook ctx)
 	{
 		_context = ctx;
 		_mOpenHelper = new DatabaseHelper(ctx);
 		_categories.clear();
-		
-		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
-		String query = "SELECT * FROM "+ Category.TABLE_NAME;
-		Cursor c = db.rawQuery(query,null);
-		c.moveToFirst();
-		while (c.isAfterLast() == false)
-		{
-			long categoryId = c.getLong(c.getColumnIndex(ID));
-			String category = c.getString(c.getColumnIndex(Category.COLUMN_CATEGORY_NAME_TITLE));
-			_categories.put(category, categoryId);
+		// TODO: do this in an AsyncTask
+		loadCategories();
+	}
 
-			c.moveToNext();
-		}
-		c.close();
+	public void addCursorHolder(RecipesCursorHolder holder)
+	{
+		_cursors.add(holder);
+	}
+	public void delCursorHolder(RecipesCursorHolder holder)
+	{
+		_cursors.remove(holder);
 	}
 
 	public void close()
@@ -62,7 +61,7 @@ public class RecipesDB
 		// Erase all available tables except android specifics
 		Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
 		c.moveToFirst();
-		while (c.isAfterLast() == false)
+		while (!c.isAfterLast())
 		{
 			String s = c.getString(c.getColumnIndex("name"));
 			if ((s.compareTo("android_metadata") != 0) && (s.compareTo("sqlite_sequence") != 0))
@@ -80,22 +79,37 @@ public class RecipesDB
 		
 		return true;
 	}
-	
+
+	private boolean loadCategories()
+	{
+		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
+		String query = "SELECT * FROM "+ Category.TABLE_NAME;
+		Cursor c = db.rawQuery(query,null);
+		if (!c.moveToFirst())
+		    return false;
+
+		while (!c.isAfterLast())
+		{
+			long categoryId = c.getLong(c.getColumnIndex(ID));
+			String category = c.getString(c.getColumnIndex(NAME));
+			_categories.put(category, categoryId);
+
+			c.moveToNext();
+		}
+		c.close();
+		return true;
+	}
+
 	public boolean updateData()
 	{
-        String xmlPath = _context.getFilesDir().getPath() + "/";
+        boolean res = Category.load_categories(_context);
+        res = res && Ingredient.load_ingredients(_context);
+        res = res && Recipe.load_recipes(_context);
+        //res = res && loadCategories();
+        return res;
+	}
+	
 
-		boolean res = Category.load_categories(this, xmlPath+_context.getString(R.string.category_file));
-		res = res && Ingredient.load_ingredients(this, xmlPath+_context.getString(R.string.ingredient_file));
-		res = res && Recipe.load_recipes(this,xmlPath+_context.getString(R.string.recipe_file));
-		return res;
-	}
-	
-	public void addCursorHolder(RecipesCursorHolder holder)
-	{	   
-		_cursors.add(holder);
-	}
-	
 	/**
 	 * Queries the database and returns a cursor containing the results.
 	 *
@@ -104,10 +118,7 @@ public class RecipesDB
 	 * @throws IllegalArgumentException if the incoming URI pattern is invalid.
 	 */
 	public Cursor query(String table,
-						String[] projection, 
-						String selection, 
-						String[] selectionArgs,
-						String sortOrder) 
+						String[] projection)
 	{
 	   // Constructs a new query builder and sets its table name
 	   _qb.setTables(table);
@@ -119,17 +130,17 @@ public class RecipesDB
 	   // * Performs the query. If no problems occur trying to read the database, then a Cursor
 	   // * object is returned; otherwise, the cursor variable contains null. If no records were
 	   // * selected, then the Cursor object is empty, and Cursor.getCount() returns 0.
-	   // 
-	   Cursor c = _qb.query(
-	       db,            // The database to query
-	       projection,    // The columns to return from the query
-	       selection,     // The columns for the where clause
-	       selectionArgs, // The values for the where clause
-	       null, // don't group the rows
-	       null,  // don't filter by row groups
-	       sortOrder);    // The sort order
-	   
-	   return c;
+	   //
+
+        String[] selectionArgs = {};
+		return _qb.query(
+            db,            // The database to query
+            projection,    // The columns to return from the query
+            "",     // The columns for the where clause
+            selectionArgs, // The values for the where clause
+            null, // don't group the rows
+            null,  // don't filter by row groups
+			RecipesDB.NAME);
 	}
 
 
@@ -137,23 +148,20 @@ public class RecipesDB
 	{
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();
-	    values.put(Category.COLUMN_CATEGORY_NAME_TITLE, category.get_name());
+	    values.put(NAME, category.get_name());
 		
 	    // Opens the database object in "write" mode.
 	    SQLiteDatabase db = _mOpenHelper.getWritableDatabase();
 	
 	    // Performs the insert and returns the ID of the new recipe.
-	    long rowId = db.insert(
-	        Category.TABLE_NAME,        // The table to insert into.
-	        Category.COLUMN_CATEGORY_NAME_TITLE,  // A hack, SQLite sets this column value to null
-	                                         // if values is empty.
-	        values                           // A map of column names, and the values to insert
-	                                         // into the columns.
-	    );
-	
+	    long rowId = db.insert(	Category.TABLE_NAME,        // The table to insert into.
+								NAME,  						// A hack, SQLite sets this column value to null if values is empty.
+								values);                    // A map of column names, and the values to insert into the columns.
+
 	    // If the insert succeeded, the row ID exists.
 	    if (rowId > 0)
 	    {
+	        category.set_id(rowId);
 	    	_categories.put(category.get_name(), rowId);
 	    	return rowId;
 	    }
@@ -166,22 +174,21 @@ public class RecipesDB
 	{
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();
-	    values.put(Recipe.COLUMN_NAME_TITLE, recipe.get_name());
+	    values.put(NAME, recipe.get_name());
 	    values.put(Recipe.COLUMN_GUESTS_TITLE,recipe.get_guests());
 	    values.put(Recipe.COLUMN_PREPARATION_TITLE, recipe.get_preparation());
+        values.put(Recipe.COLUMN_DIFFICULTY_TITLE, recipe.get_difficulty());
+        values.put(Recipe.COLUMN_COST_TITLE, recipe.get_cost());
+        values.put(Recipe.COLUMN_TIME_TITLE, recipe.get_time());
 		
 	    // Opens the database object in "write" mode.
 	    SQLiteDatabase db = _mOpenHelper.getWritableDatabase();
 	
 	    // Performs the insert and returns the ID of the new recipe.
-	    long rowId = db.insert(
-	        Recipe.TABLE_NAME,        // The table to insert into.
-	        Recipe.COLUMN_NAME_TITLE,  // A hack, SQLite sets this column value to null
-	                                         // if values is empty.
-	        values                           // A map of column names, and the values to insert
-	                                         // into the columns.
-	    );
-	
+	    long rowId = db.insert(	Recipe.TABLE_NAME,	// The table to insert into.
+	        					NAME,  				// A hack, SQLite sets this column value to null if values is empty.
+	        					values  );			// A map of column names, and the values to insert into the columns.
+
 	    // If the insert succeeded, the row ID exists.
 	    if (rowId > 0)
 	    {
@@ -189,8 +196,8 @@ public class RecipesDB
 	    	{
 	    		RecipeComponent component = recipe.getComponent(i);
 
-	    		Cursor c = db.rawQuery(	"SELECT "+ID+" FROM "+Ingredient.TABLE_NAME+
-	    								" WHERE "+Ingredient.COLUMN_NAME_TITLE+"='"+component.get_name()+"'",
+	    		Cursor c = db.rawQuery(	"SELECT " + ID + " FROM " + Ingredient.TABLE_NAME+
+	    								" WHERE " + NAME +"='"+component.get_name()+"'",
 	    								null);
 	    		c.moveToFirst();
 	    		int ingredientId = -1;
@@ -208,20 +215,13 @@ public class RecipesDB
 		    	    cmp_values.put(RecipeComponent.COLUMN_UNIT_TITLE, component.get_unit());
 		    	
 		    	    // Performs the insert and returns the ID of the new recipe.
-		    	    db.insert(
-		    	        RecipeComponent.TABLE_NAME,// The table to insert into.
-		    	        RecipeComponent.COLUMN_RECIPE_TITLE,  // A hack, SQLite sets this column value to null if values is empty.
-		    	        cmp_values                 // A map of column names, and the values to insert into the columns.
+		    	    db.insert(	RecipeComponent.TABLE_NAME,// The table to insert into.
+		    	        		RecipeComponent.COLUMN_RECIPE_TITLE,  // A hack, SQLite sets this column value to null if values is empty.
+		    	        		cmp_values                 // A map of column names, and the values to insert into the columns.
 		    	    );
 	    		}
 	    		else
-	    		{
-	    			String message = _context.getResources().getString(R.string.invalid_recipe);
-	    			message += ": ";
-	    			message += recipe.get_name();
-	    			Toast toast = Toast.makeText(_context, message, Toast.LENGTH_LONG);
-	    			toast.show();
-	    		}
+                    throw new SQLException(_context.getResources().getString(R.string.invalid_recipe) + ": " + recipe.get_name());
 	    	}
 	    	
 	        // Notifies observers registered against this provider that the data changed.
@@ -238,7 +238,7 @@ public class RecipesDB
 		Long idCategory = _categories.get(ingredient.get_name());
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();
-	    values.put(Ingredient.COLUMN_NAME_TITLE, ingredient.get_name());
+	    values.put(NAME, ingredient.get_name());
 	    values.put(Ingredient.COLUMN_STOCK_TITLE, ingredient.get_quantity());
 	    values.put(Ingredient.COLUMN_UNIT_TITLE, ingredient.get_unit());
 	    values.put(Ingredient.COLUMN_TYPE_TITLE, idCategory);
@@ -247,14 +247,10 @@ public class RecipesDB
 	    SQLiteDatabase db = _mOpenHelper.getWritableDatabase();
 	
 	    // Performs the insert and returns the ID of the new note.
-	    long rowId = db.insert(
-	        Ingredient.TABLE_NAME,        // The table to insert into.
-	        Ingredient.COLUMN_NAME_TITLE,  // A hack, SQLite sets this column value to null
-	                                         // if values is empty.
-	        values                           // A map of column names, and the values to insert
-	                                         // into the columns.
-	    );
-	
+	    long rowId = db.insert(	Ingredient.TABLE_NAME,  // The table to insert into.
+	        					NAME,  					// A hack, SQLite sets this column value to null if values is empty.
+	        					values );				// A map of column names, and the values to insert into the columns.
+
 	    // If the insert succeeded, the row ID exists.
 	    if (rowId > 0)
 	    {
@@ -272,10 +268,8 @@ public class RecipesDB
 		// Opens the database object in "read" mode, since no writes need to be done.
 		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
 		
-		Cursor c = db.rawQuery(	"SELECT *"+
-								" FROM "+Recipe.TABLE_NAME+
-								" WHERE "+Recipe.COLUMN_NAME_TITLE+"='"+name+"'",
-								null);
+		Cursor c = db.rawQuery(	"SELECT *" + " FROM " + Recipe.TABLE_NAME +
+								" WHERE " + NAME + "='" + name + "'",null);
 		c.moveToFirst();
 		int recipeId = c.getInt(c.getColumnIndex(ID));
 		Recipe recipe = new Recipe(name);
@@ -288,20 +282,18 @@ public class RecipesDB
 						" WHERE "+ RecipeComponent.COLUMN_RECIPE_TITLE+"="+recipeId,
 						null);
 		c.moveToFirst();
-		while (c.isAfterLast() == false)
+		while (!c.isAfterLast())
 		{
 			int ingredientId = c.getInt(c.getColumnIndex(RecipeComponent.COLUMN_INGREDIENT_TITLE));
 			double quantity = c.getDouble(c.getColumnIndex(RecipeComponent.COLUMN_AMOUNT_TITLE));
 			String unit = c.getString(c.getColumnIndex(RecipeComponent.COLUMN_UNIT_TITLE));
 			
-			Cursor c2 = db.rawQuery("SELECT "+Ingredient.COLUMN_NAME_TITLE+
-									" FROM "+Ingredient.TABLE_NAME+
-									" WHERE "+ID+"="+ingredientId,
-									null);
+			Cursor c2 = db.rawQuery("SELECT " + NAME + " FROM " + Ingredient.TABLE_NAME +
+									" WHERE " + ID + "=" + ingredientId, null);
 			
 			RecipeComponent component = new RecipeComponent();
 			c2.moveToFirst();
-			component.set_name(c2.getString(c2.getColumnIndex(Ingredient.COLUMN_NAME_TITLE)));
+			component.set_name(c2.getString(c2.getColumnIndex(NAME)));
 			component.set_quantity(quantity);
 			component.set_unit(unit);
 			recipe.addComponent(component);
@@ -335,12 +327,10 @@ public class RecipesDB
 			int recipeId = c.getInt(c.getColumnIndex(RecipeComponent.COLUMN_RECIPE_TITLE));
 			c.close();
 			
-			Cursor c2 = db.rawQuery("SELECT "+Recipe.COLUMN_NAME_TITLE+
-					" FROM "+Recipe.TABLE_NAME+
-					" WHERE "+ID+"="+recipeId,
-					null);
+			Cursor c2 = db.rawQuery("SELECT " + NAME + " FROM " + Recipe.TABLE_NAME +
+									" WHERE " + ID + "=" + recipeId, null);
 			c2.moveToFirst();
-			String name = c2.getString(c2.getColumnIndex(Recipe.COLUMN_NAME_TITLE));
+			String name = c2.getString(c2.getColumnIndex(NAME));
 			c2.close();
 		
 			return getRecipe(name);
@@ -358,8 +348,7 @@ public class RecipesDB
 		
 	    String [] whereArgs = { name };
 
-	    int res = db.update(Ingredient.TABLE_NAME, values, 
-	    					Ingredient.COLUMN_NAME_TITLE+"=?", whereArgs);
+	    int res = db.update(Ingredient.TABLE_NAME, values, NAME + "=?", whereArgs);
 	    
 	    return (res == 1);
 	}
@@ -379,34 +368,43 @@ public class RecipesDB
 	    */
 	   @Override
 	   public void onCreate(SQLiteDatabase db) 
-	   {   
-	       db.execSQL("CREATE TABLE " + Recipe.TABLE_NAME + " ("
-	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-	               + Recipe.COLUMN_NAME_TITLE + " VARCHAR(32) NOT NULL,"
-	               + Recipe.COLUMN_GUESTS_TITLE + " INTEGER,"
-	               + Recipe.COLUMN_PREPARATION_TITLE + " TEXT"
-	               + ");");
-	       
-	       db.execSQL("CREATE TABLE " + RecipeComponent.TABLE_NAME + " ("
-	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-	               + RecipeComponent.COLUMN_RECIPE_TITLE + " INTEGER,"
-	               + RecipeComponent.COLUMN_INGREDIENT_TITLE + " INTEGER,"
-	               + RecipeComponent.COLUMN_AMOUNT_TITLE + " REAL,"
-	               + RecipeComponent.COLUMN_UNIT_TITLE + " VARCHAR(4)"
-	               + ");");
-	       
-	       db.execSQL("CREATE TABLE " + Ingredient.TABLE_NAME + " ("
-	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-	               + Ingredient.COLUMN_NAME_TITLE + " VARCHAR(32) NOT NULL,"
-	               + Ingredient.COLUMN_STOCK_TITLE + " REAL,"
-	               + Ingredient.COLUMN_UNIT_TITLE + " VARCHAR(4),"
-	               + Ingredient.COLUMN_TYPE_TITLE + " INTEGER"
-	               + ");");
-	       
-	       db.execSQL("CREATE TABLE " + Category.TABLE_NAME + " ("
-	               + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-	               + Category.COLUMN_CATEGORY_NAME_TITLE + " VARCHAR(32) NOT NULL"
-	               + ");");
+	   {
+	       String query = "CREATE TABLE " + Recipe.TABLE_NAME + " ("
+                   + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   + NAME + " VARCHAR(32) NOT NULL,"
+                   + Recipe.COLUMN_GUESTS_TITLE + " INTEGER,"
+                   + Recipe.COLUMN_PREPARATION_TITLE + " TEXT,"
+                   + Recipe.COLUMN_DIFFICULTY_TITLE + " INTEGER,"
+                   + Recipe.COLUMN_COST_TITLE + " INTEGER,"
+                   + Recipe.COLUMN_TIME_TITLE + " INTEGER"
+                   + ");";
+	       db.execSQL(query);
+
+	       query = "CREATE TABLE " + RecipeComponent.TABLE_NAME + " ("
+                   + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   + RecipeComponent.COLUMN_RECIPE_TITLE + " INTEGER,"
+                   + RecipeComponent.COLUMN_INGREDIENT_TITLE + " INTEGER,"
+                   + RecipeComponent.COLUMN_AMOUNT_TITLE + " REAL,"
+                   + RecipeComponent.COLUMN_UNIT_TITLE + " VARCHAR(4)"
+                   + ");";
+	       db.execSQL(query);
+
+	       query = "CREATE TABLE " + Ingredient.TABLE_NAME + " ("
+                   + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   + NAME + " VARCHAR(32) NOT NULL,"
+                   + Ingredient.COLUMN_STOCK_TITLE + " REAL,"
+                   + Ingredient.COLUMN_UNIT_TITLE + " VARCHAR(4),"
+                   + Ingredient.COLUMN_TYPE_TITLE + " INTEGER,"
+                   + Ingredient.COLUMN_IMAGE_ID + " INTEGER"
+                   + ");";
+	       db.execSQL(query);
+
+	       query = "CREATE TABLE " + Category.TABLE_NAME + " ("
+                   + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   + NAME + " VARCHAR(32) NOT NULL,"
+                   + Category.COLUMN_IMAGE_ID + " INTEGER"
+                   + ");";
+	       db.execSQL(query);
 	   }
 
 	   /**
@@ -419,13 +417,35 @@ public class RecipesDB
 	   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
 	   {
 	       // Kills the table and existing data
-		   db.execSQL("DROP TABLE IF EXISTS " + Category.TABLE_NAME);
-	       db.execSQL("DROP TABLE IF EXISTS " + Recipe.TABLE_NAME);
-	       db.execSQL("DROP TABLE IF EXISTS " + Ingredient.TABLE_NAME);
-	       db.execSQL("DROP TABLE IF EXISTS " + RecipeComponent.TABLE_NAME);
+           clearDatabase(db);
 
 	       // Recreates the database with a new version
 	       onCreate(db);
 	   }
+
+        @Override
+        public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion)
+        {
+            // Kills the table and existing data
+            clearDatabase(db);
+
+            // Recreates the database with a new version
+            onCreate(db);
+        }
+
+        private void clearDatabase(SQLiteDatabase db)
+        {
+            String query = "DROP TABLE IF EXISTS " + Category.TABLE_NAME;
+            db.execSQL(query);
+
+            query = "DROP TABLE IF EXISTS " + Recipe.TABLE_NAME;
+            db.execSQL(query);
+
+            query = "DROP TABLE IF EXISTS " + Ingredient.TABLE_NAME;
+            db.execSQL(query);
+
+            query = "DROP TABLE IF EXISTS " + RecipeComponent.TABLE_NAME;
+            db.execSQL(query);
+        }
 	}
 }

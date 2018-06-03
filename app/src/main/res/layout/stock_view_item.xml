@@ -6,19 +6,21 @@
 
     <TextView
         android:id="@+id/stock_item_name"
-        android:layout_width="wrap_content"
+        android:layout_width="268dp"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_gravity="start"
+        android:text="@string/ingredient_id" />
 
     <TextView
         android:id="@+id/stock_item_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/ingredient_amount" />
 
     <TextView
         android:id="@+id/stock_item_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_gravity="end"
+        android:text="@string/ingredient_unit" />
 </TableRow>

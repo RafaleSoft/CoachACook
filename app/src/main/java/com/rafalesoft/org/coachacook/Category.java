@@ -6,33 +6,44 @@ import org.xml.sax.Attributes;
 public class Category
 {
 	public static final String TABLE_NAME = "categories";
-	public static final String COLUMN_CATEGORY_NAME_TITLE = "name";
-	
-	private String 	_name;
+    public static final String COLUMN_IMAGE_ID = "image";
 
+	private String 	_name = "";
+    private long 	_id = 0;
+    private int 	_image = 0;
 
-    /**
-     * @param name: the name of the category
-     */
-	Category(String name)
-	{		
-		_name = name;
-	}
+    public Category() { }
 	
 	public String get_name()
 	{
 		return _name;
 	}
-
-	public void set_name(String name)
+	private void set_name(String name)
 	{
 		_name = name;
 	}
+    public int get_image()
+    {
+        return _image;
+    }
+    private void set_image(int image)
+    {
+        _image = image;
+    }
+    public long get_id()
+    {
+        return _id;
+    }
+    public void set_id(long id)
+    {
+        _id = id;
+    }
 
-	public static boolean load_categories(RecipesDB db, String xmlSource)
+
+	public static boolean load_categories(CoachACook cook)
 	{
-		CategoryLoader loader = new CategoryLoader(db);
-		return loader.load_data(xmlSource);
+		CategoryLoader loader = new CategoryLoader(cook.getRecipesDB());
+		return loader.load_data(cook, cook.getString(R.string.category_file));
 	}
 	
 	private static class CategoryLoader extends DataLoader
@@ -50,15 +61,15 @@ public class Category
         {
             if (_parsingCategory)
             {
-                Category newCategory = new Category("");
+                Category newCategory = new Category();
                 int nbAttrs = attrs.getLength();
                 for (int i = 0; i < nbAttrs; i++)
                 {
                     String name = attrs.getLocalName(i);
-                    if (name.compareTo("name") == 0)
-                    {
+                    if (name.compareTo(RecipesDB.NAME) == 0)
                         newCategory.set_name(attrs.getValue(i));
-                    }
+                    else if (name.compareTo(Category.COLUMN_IMAGE_ID) == 0)
+                        newCategory.set_image(Integer.parseInt(attrs.getValue(i)));
                 }
                 _db.insert(newCategory);
             }

@@ -222,8 +222,9 @@ public class SettingsManager extends AppCompatPreferenceActivity
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.number_recipes_key)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.number_guests_key)));
+            bindPreferenceSummaryToValue(findPreference(getString(R.string.language_key)));
         }
     }
 

@@ -18,9 +18,13 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
+                                      <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
                                       <entry key="backgroundImage" value="E:\Android\Android Projects\CoachACook\app\src\main\res\drawable\ic_launcher_background.xml" />
-                                      <entry key="foregroundImage" value="E:\Android\Android Projects\CoachACook\app\src\main\res\cook.png" />
-                                      <entry key="outputName" value="ic_cook" />
+                                      <entry key="backgroundLayerName" value="ic_category_background" />
+                                      <entry key="foregroundImage" value="C:\Users\OpenGL\Pictures\Boucherie.png" />
+                                      <entry key="outputName" value="ic_boucherie" />
+                                      <entry key="previewDensity" value="HIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>

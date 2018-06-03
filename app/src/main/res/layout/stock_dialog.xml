@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/stock_dialog"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/stock_dialog_item_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/ingredient_id"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+    <EditText
+        android:id="@+id/stock_dialog_item_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/stock_dialog_item_name"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_toLeftOf="@+id/stock_dialog_item_unit"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:labelFor="@+id/stock_dialog">
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/stock_dialog_item_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/stock_dialog_item_quantity"
+        android:layout_alignBottom="@+id/stock_dialog_item_quantity"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:gravity="center"
+        android:text="@string/ingredient_unit"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse" />
+
+</RelativeLayout>

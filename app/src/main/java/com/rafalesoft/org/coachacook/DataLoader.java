@@ -1,5 +1,8 @@
 package com.rafalesoft.org.coachacook;
 
+import android.content.Context;
+import android.database.SQLException;
+import android.os.Environment;
 import android.util.Xml;
 
 import org.xml.sax.Attributes;
@@ -7,25 +10,27 @@ import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public abstract class DataLoader implements ContentHandler
+abstract class DataLoader implements ContentHandler
 {
-    public boolean load_data(String xmlSource)
+    public boolean load_data(Context ctx, String filename)
     {
         try
         {
-            InputStream input = new FileInputStream(xmlSource);
-            Xml.parse(input, Xml.Encoding.ISO_8859_1, this);
+            String xmlSource = findFilePath(ctx, filename);
+            if (!xmlSource.isEmpty())
+            {
+                InputStream input = new FileInputStream(xmlSource);
+                Xml.parse(input, Xml.Encoding.ISO_8859_1, this);
+            }
+            else
+                return false;
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-            return false;
-        }
-        catch (SAXException e)
+        catch (IOException | SAXException | SQLException e)
         {
             e.printStackTrace();
             return false;
@@ -33,7 +38,30 @@ public abstract class DataLoader implements ContentHandler
         return true;
     }
 
-    public abstract void onElementLoaded(String localName, Attributes attrs);
+    private String findFilePath(Context ctx, String filename)
+    {
+        String xmlPath = File.separator + filename;
+
+        File dataDir = new File(ctx.getDataDir().getPath() + xmlPath);
+        if (!dataDir.exists())
+        {
+            dataDir = new File(ctx.getExternalFilesDir(null) + xmlPath);
+            if (!dataDir.exists())
+            {
+                dataDir = new File(Environment.getDataDirectory() + xmlPath);
+                if (!dataDir.exists())
+                {
+                    dataDir = new File(ctx.getFilesDir() + xmlPath);
+                    if (!dataDir.exists())
+                        return "";
+                }
+            }
+        }
+
+        return dataDir.getPath();
+    }
+
+    protected abstract void onElementLoaded(String localName, Attributes attrs);
 
     @Override
     public void characters(char[] ch, int start, int length)

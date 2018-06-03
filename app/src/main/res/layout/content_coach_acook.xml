@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".CoachACook"
-    tools:showIn="@layout/activity_coach_acook">
+    tools:context=".CoachACook">
 
     <ImageView
         android:id="@+id/imageView"
@@ -24,7 +23,7 @@
         app:srcCompat="@drawable/cook" />
 
     <Button
-        android:id="@+id/category_scroll_view"
+        android:id="@+id/cook_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -39,14 +38,14 @@
         android:id="@+id/manage_stock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/category_scroll_view"
-        android:layout_alignRight="@+id/category_scroll_view"
-        android:layout_below="@+id/category_scroll_view"
+        android:layout_alignLeft="@+id/cook_book"
+        android:layout_alignRight="@+id/cook_book"
+        android:layout_below="@+id/cook_book"
         android:layout_marginBottom="80dp"
         android:layout_marginStart="8dp"
         android:text="@string/ManageStock"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/category_scroll_view" />
+        app:layout_constraintStart_toEndOf="@+id/cook_book" />
 
     <Button
         android:id="@+id/build_recipe"

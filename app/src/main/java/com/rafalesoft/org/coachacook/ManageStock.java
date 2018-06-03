@@ -8,46 +8,39 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItemClickListener 
+class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
-	public ManageStock(CoachACook owner,View v) 
+	public ManageStock(CoachACook owner)
 	{
 		super(owner);
-		v.setOnClickListener(this);
 	}
 	
 	@Override
 	public void onClick(View v)
 	{
-		LinearLayout layout = (LinearLayout)_cook.switchToView(R.id.stock_view);
-		ListView lvl = layout.findViewById(R.id.stock_list_view);
+		View view = _cook.switchToView(R.id.stock_view);
+		ListView lvl = view.findViewById(R.id.stock_list_view);
 		
 		String[] projection = { RecipesDB.ID,
-								Ingredient.COLUMN_NAME_TITLE, 
+                                RecipesDB.NAME,
 								Ingredient.COLUMN_STOCK_TITLE,
 								Ingredient.COLUMN_UNIT_TITLE };
-		String[] selectionArgs = { };
+		updateCursor(Ingredient.TABLE_NAME, projection);
 		
-		_cursor = _cook.getRecipesDB().query(	Ingredient.TABLE_NAME,
-												projection,
-												"", selectionArgs,
-												Ingredient.COLUMN_NAME_TITLE);
-		
-		String[] fromColumns = {Ingredient.COLUMN_NAME_TITLE,
+		String[] fromColumns = {RecipesDB.NAME,
 								Ingredient.COLUMN_STOCK_TITLE,
 								Ingredient.COLUMN_UNIT_TITLE};
 		int[] toViews = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
 	
 		SimpleCursorAdapter recipesDBAdapter = 
 				new SimpleCursorAdapter(_cook,R.layout.stock_view_item,
-										_cursor,fromColumns,toViews,0);
+										getCursor(),fromColumns,toViews,0);
 
 		lvl.setAdapter(recipesDBAdapter);
 		lvl.setOnItemClickListener(this);
@@ -56,16 +49,16 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 	{
-		/*
+
 	    LayoutInflater inflater = _cook.getLayoutInflater();
-	    View dialogView = inflater.inflate(R.layout.stock_dialog, null);
+	    View dialogView = inflater.inflate(R.layout.stock_dialog, parent);
 	    
-	    TextView ingredient_name_tv = (TextView)view.findViewById(R.id.stock_item_name);
+	    TextView ingredient_name_tv = view.findViewById(R.id.stock_item_name);
 	    final String ingredient_name = ingredient_name_tv.getText().toString();
-	    TextView ingredient_quantity = (TextView)view.findViewById(R.id.stock_item_quantity);
-		TextView ingredient_unit = (TextView)view.findViewById(R.id.stock_item_unit);
+	    TextView ingredient_quantity = view.findViewById(R.id.stock_item_quantity);
+		TextView ingredient_unit = view.findViewById(R.id.stock_item_unit);
 		
-		final EditText quantity = (EditText)dialogView.findViewById(R.id.stock_dialog_item_quantity);
+		final EditText quantity = dialogView.findViewById(R.id.stock_dialog_item_quantity);
 		((TextView)dialogView.findViewById(R.id.stock_dialog_item_name)).setText(ingredient_name);
 		quantity.setText(ingredient_quantity.getText());
 		((TextView)dialogView.findViewById(R.id.stock_dialog_item_unit)).setText(ingredient_unit.getText());
@@ -93,11 +86,5 @@ public class ManageStock extends RecipesCursorHolder implements OnClickListener,
 		}); 
 		AlertDialog dialog = builder.create();
 		dialog.show();
-		*/
-	}
-
-	public void search(String query)
-	{
-		// TODO Auto-generated method stub
 	}
 }

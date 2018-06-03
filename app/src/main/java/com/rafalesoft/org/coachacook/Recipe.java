@@ -6,13 +6,20 @@ import org.xml.sax.Attributes;
 public class Recipe 
 {
 	public static final String TABLE_NAME = "recipes";
-	public static final String COLUMN_NAME_TITLE = "name";
 	public static final String COLUMN_GUESTS_TITLE = "guests";
 	public static final String COLUMN_PREPARATION_TITLE = "preparation";
+	public static final String COLUMN_DIFFICULTY_TITLE = "difficulty";
+    public static final String COLUMN_COST_TITLE = "cost";
+    public static final String COLUMN_TIME_TITLE = "time";
 	
 	private String _name;
-	private ArrayList<RecipeComponent> _components = new ArrayList<RecipeComponent>();
+	private ArrayList<RecipeComponent> _components = new ArrayList<>();
 	private int _guests = 0;
+
+
+    private int _difficulty = 0;
+    private int _cost = 0;
+    private int _time = 0;
 	private String _preparation = null;
 
 
@@ -25,33 +32,52 @@ public class Recipe
     {
         return _name;
     }
-
-	public void set_name(String _name) 
+	private void set_name(String _name)
 	{
 		this._name = _name;
 	}
-	
-	public String get_preparation() 
+	public String get_preparation()
 	{
 		return _preparation;
 	}
-
-	public void set_preparation(String _preparation) 
+	public void set_preparation(String _preparation)
 	{
 		this._preparation = _preparation;
 	}
-
-	public int get_guests() 
+	public int get_guests()
 	{
 		return _guests;
 	}
-
-	public void set_guests(int _guests) 
+	public void set_guests(int _guests)
 	{
 		this._guests = _guests;
 	}
+    public int get_difficulty()
+    {
+        return _difficulty;
+    }
+	public void set_difficulty(int difficulty)
+    {
+        _difficulty = difficulty;
+    }
+    public void set_cost(int cost)
+    {
+        _cost = cost;
+    }
+    public int get_cost()
+    {
+        return _cost;
+    }
+    public void set_time(int time)
+    {
+        _time = time;
+    }
+    public int get_time()
+    {
+        return _time;
+    }
 
-	public int nbComponents()
+    public int nbComponents()
 	{
 		return _components.size();
 	}
@@ -68,10 +94,10 @@ public class Recipe
 			return null;
 	}
 	
-	public static boolean load_recipes(RecipesDB db,String xmlSource)
+	public static boolean load_recipes(CoachACook cook)
 	{
-		RecipeLoader loader = new RecipeLoader(db);
-		return loader.load_data(xmlSource);
+		RecipeLoader loader = new RecipeLoader(cook.getRecipesDB());
+		return loader.load_data(cook, cook.getString(R.string.recipe_file));
 	}
 	
 	private static class RecipeLoader extends DataLoader
@@ -81,7 +107,7 @@ public class Recipe
 		private Recipe _recipe = null;
 		private RecipesDB _db;
 		
-		public RecipeLoader(RecipesDB db)
+		RecipeLoader(RecipesDB db)
 		{
 			_db = db;
 		}
@@ -97,10 +123,16 @@ public class Recipe
 				for (int i=0;i<nbAttrs;i++)
 				{
 					String name = attrs.getLocalName(i);
-					if (name.compareTo("name") == 0)
+					if (name.compareTo(RecipesDB.NAME) == 0)
 						_recipe.set_name(attrs.getValue(i));
-					else if (name.compareTo("guests") == 0)
+					else if (name.compareTo(Recipe.COLUMN_GUESTS_TITLE) == 0)
 						_recipe.set_guests(Integer.parseInt(attrs.getValue(i)));
+                    else if (name.compareTo(Recipe.COLUMN_DIFFICULTY_TITLE) == 0)
+                        _recipe.set_difficulty(Integer.parseInt(attrs.getValue(i)));
+                    else if (name.compareTo(Recipe.COLUMN_COST_TITLE) == 0)
+                        _recipe.set_cost(Integer.parseInt(attrs.getValue(i)));
+                    else if (name.compareTo(Recipe.COLUMN_TIME_TITLE) == 0)
+                        _recipe.set_time(Integer.parseInt(attrs.getValue(i)));
 				}
 			}
 			else if ((localName.compareTo("Component") == 0) &&
