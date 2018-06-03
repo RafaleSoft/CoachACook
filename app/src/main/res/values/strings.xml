@@ -30,6 +30,9 @@
         <!-- Buttons -->
         <string name="NewRecipe">Cook Book</string>
         <string name="ManageStock">Manage Stock</string>
+        <string name="Légumes">Légumes</string>
+        <string name="Fruits">Fruits</string>
+        <string name="Boucherie">Boucherie</string>
         <string name="BuildRecipe">Build Menu</string>
 
         <!-- Main Menu -->
