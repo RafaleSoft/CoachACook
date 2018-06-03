@@ -137,13 +137,9 @@ public class CoachACook extends AppCompatActivity {
         protected Boolean doInBackground(Void... v)
         {
             if (_reset)
-            {
                 return _dbRecipes.reset();
-            }
             else
-            {
                 return _dbRecipes.updateData();
-            }
         }
         protected void onPreExecute()
         {

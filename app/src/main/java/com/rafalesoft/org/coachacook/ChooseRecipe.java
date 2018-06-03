@@ -1,11 +1,13 @@
 package com.rafalesoft.org.coachacook;
 
+import android.database.Cursor;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -79,10 +81,37 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                     _rs.Recognize(this);
                     break;
                 }
+                case R.string.speech_termine:
+                {
+                    _cook.onBackPressed();
+                    break;
+                }
             }
 
             if (!spk)
                 Log.d("STT","onRecognized failed");
+        }
+    }
+
+    private class VB implements SimpleCursorAdapter.ViewBinder
+    {
+        @Override
+        public boolean setViewValue(View view, Cursor cursor, int columnIndex)
+        {
+            if (view instanceof TextView)
+            {
+                String text = cursor.getString(columnIndex);
+                ((TextView) view).setText(text);
+                return true;
+            }
+            else if (view instanceof ProgressBar)
+            {
+                int progress = cursor.getInt(columnIndex);
+                ((ProgressBar) view).setProgress(progress);
+                return true;
+            }
+            else
+                return false;
         }
     }
 
@@ -98,15 +127,16 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         View stock = _cook.switchToView(R.id.recipe_stockview);
         ListView lvl = stock.findViewById(R.id.recipe_list);
 
-        String[] projection = {RecipesDB.ID, RecipesDB.NAME};
+        String[] projection = {RecipesDB.ID, RecipesDB.NAME, Recipe.COLUMN_DIFFICULTY_TITLE, Recipe.COLUMN_COST_TITLE};
         updateCursor( Recipe.TABLE_NAME, projection );
 
-        String[] fromColumns = { RecipesDB.NAME };
-        int[] toViews = { R.id.recipe_item_name };
+        String[] fromColumns = { RecipesDB.NAME, Recipe.COLUMN_DIFFICULTY_TITLE, Recipe.COLUMN_COST_TITLE };
+        int[] toViews = { R.id.recipe_item_name , R.id.recipe_difficulty_progress, R.id.recipe_cost_progress};
 
         SimpleCursorAdapter recipesDBAdapter =
                 new SimpleCursorAdapter(_cook, R.layout.recipe_stockview_item,
                                         getCursor(), fromColumns, toViews, 0);
+        recipesDBAdapter.setViewBinder(new VB());
 
         lvl.setAdapter(recipesDBAdapter);
         lvl.setOnItemClickListener(this);
@@ -148,13 +178,12 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
 
         parseDescription(r.get_preparation());
         if (null != _rs)
-        {
             _rs.Recognize(_rc);
-        }
     }
 
     private void parseDescription(String recipe_description)
     {
+        current_step = 0;
         String [] tmp = recipe_description.split("[.]");
         for (String s: tmp)
             recipe_steps.add(s);

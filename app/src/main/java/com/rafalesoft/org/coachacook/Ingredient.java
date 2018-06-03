@@ -17,54 +17,45 @@ public class Ingredient
 	private int 	_type = 0;
 	private int 	_image = 0;
 
-	private Ingredient() {
+	public Ingredient() {
 	}
 
 	public String get_name() 
 	{
 		return _name;
 	}
-
 	private void set_name(String _name)
 	{
 		this._name = _name;
 	}
-
-	public Double get_quantity() 
+	public Double get_quantity()
 	{
 		return _quantity;
 	}
-
 	private void set_quantity(Double _quantity)
 	{
 		this._quantity = _quantity;
 	}
-
 	public String get_unit()
 	{
 		return _unit;
 	}
-
 	private void set_unit(String _unit)
 	{
 		this._unit = _unit;
 	}
-
-	public int get_type() 
+	public int get_type()
 	{
 		return _type;
 	}
-
 	private void set_type(int type)
 	{
 		_type = type;
 	}
-
 	public int get_image()
 	{
 		return _image;
 	}
-
 	private void set_image(int image)
 	{
 		_image = image;
@@ -97,15 +88,15 @@ public class Ingredient
 				for (int i=0;i<nbAttrs;i++)
 				{
 					String name = attrs.getLocalName(i);
-					if (name.compareTo("name") == 0)
+					if (name.compareTo(RecipesDB.NAME) == 0)
 						newIngredient.set_name(attrs.getValue(i));
-					else if (name.compareTo("quantity") == 0)
+					else if (name.compareTo(Ingredient.COLUMN_STOCK_TITLE) == 0)
 						newIngredient.set_quantity(Double.parseDouble(attrs.getValue(i)));
-					else if (name.compareTo("unit") == 0)
+					else if (name.compareTo(Ingredient.COLUMN_UNIT_TITLE) == 0)
 						newIngredient.set_unit(attrs.getValue(i));
-					else if (name.compareTo("image") == 0)
+					else if (name.compareTo(Ingredient.COLUMN_IMAGE_ID) == 0)
 						newIngredient.set_image(Integer.parseInt(attrs.getValue(i)));
-					else if (name.compareTo("type") == 0)
+					else if (name.compareTo(Ingredient.COLUMN_TYPE_TITLE) == 0)
 						newIngredient.set_type(0); //Integer.parseInt(attrs.getValue(i)));
 				}
 				_db.insert(newIngredient);

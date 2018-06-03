@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Recipes>
-	<Recipe name="Soupe de légumes" guests="4">
+	<Recipe name="Soupe de légumes" guests="4" difficulty="10" cost="30" time="30">
 		<Component name="Oignons" quantity="1"/>
 		<Component name="Poireaux" quantity="4"/>
 		<Component name="Navets" quantity="4"/>
@@ -8,7 +8,7 @@
 		<Component name="Pommes de terre" quantity="250" unit="g"/>
 		<Preparation>Faire dorer l'oignon. Eplucher les légumes, les couper en morceaux. Quand l'oignon est doré, ajouter les légumes et recouvrir d'eau</Preparation>
 	</Recipe>
-	<Recipe name="Crêpes" guests="4">
+	<Recipe name="Crêpes" guests="4" difficulty="20" cost="20" time="90">
 		<Component name="Farine" quantity="250" unit="g"/>
 		<Component name="Oeufs" quantity="4"/>
 		<Component name="Lait" quantity="0.5" unit="l"/>

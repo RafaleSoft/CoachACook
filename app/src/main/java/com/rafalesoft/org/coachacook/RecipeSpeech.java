@@ -29,7 +29,8 @@ public class RecipeSpeech implements RecognitionListener
                                                 R.string.speech_apres,
                                                 R.string.speech_avant,
                                                 R.string.speech_repete,
-                                                R.string.speech_recommence};
+                                                R.string.speech_recommence,
+                                                R.string.speech_termine};
 
     public interface RecognitionCallback
     {

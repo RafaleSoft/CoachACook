@@ -15,6 +15,8 @@
     <string name="recipe_file">Recipes.xml</string>
 
     <!-- Speech -->
+    <string name="speech_quitte">quitte</string>
+    <string name="speech_termine">termine</string>
     <string name="speech_demarre">démarre</string>
     <string name="speech_apres">après</string>
     <string name="speech_avant">avant</string>
@@ -38,7 +40,10 @@
 
         <!-- Recipe View -->
         <string name="recipe_component">Component</string>
-
+        <string name="recipe_difficulty">Difficulty</string>
+        <string name="recipe_cost">Cost</string>
+        <string name="recipe_duration">Duration</string>
+        <string name="recipe_image">Image</string>
 
         <!-- General HMI -->
         <string name="app_background">Background</string>
