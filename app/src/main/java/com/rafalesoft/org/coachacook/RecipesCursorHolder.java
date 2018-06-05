@@ -5,15 +5,18 @@ import android.database.Cursor;
 class RecipesCursorHolder
 {
 	private Cursor _cursor = null;
-	CoachACook _cook;
+	static protected CoachACook _cook = null;
 	
-	RecipesCursorHolder(CoachACook owner)
+	RecipesCursorHolder()
 	{
-		_cook = owner;
         RecipesDB recipesDB = _cook.getRecipesDB();
         recipesDB.addCursorHolder(this);
 	}
 
+	public static void setCook(CoachACook owner)
+	{
+        _cook = owner;
+	}
 	Cursor getCursor()
 	{
 		return _cursor;
@@ -31,6 +34,10 @@ class RecipesCursorHolder
         // Remove from RecipesDB is done at destruction, by calling RecipesDB.close()
 
 		if (_cursor != null)
+		{
+			_cook.getRecipesDB().delCursorHolder(this);
 			_cursor.close();
+			_cursor = null;
+		}
 	}
 }

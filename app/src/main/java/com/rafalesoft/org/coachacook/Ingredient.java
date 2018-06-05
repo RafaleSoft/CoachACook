@@ -14,13 +14,13 @@ public class Ingredient
 	private String 	_name = "";
 	private Double	_quantity = 0.0;
 	private String 	_unit = null;
-	private int 	_type = 0;
+	private String 	_type = "";
 	private int 	_image = 0;
 
 	public Ingredient() {
 	}
 
-	public String get_name() 
+	public String get_name()
 	{
 		return _name;
 	}
@@ -44,11 +44,11 @@ public class Ingredient
 	{
 		this._unit = _unit;
 	}
-	public int get_type()
+	public String get_type()
 	{
 		return _type;
 	}
-	private void set_type(int type)
+	private void set_type(String type)
 	{
 		_type = type;
 	}
@@ -62,21 +62,17 @@ public class Ingredient
 	}
 
 
-	public static boolean load_ingredients(CoachACook cook)
+	public static boolean load_ingredients()
 	{
-		IngredientLoader loader = new IngredientLoader(cook.getRecipesDB());
-		return loader.load_data(cook, cook.getString(R.string.ingredient_file));
+		IngredientLoader loader = new IngredientLoader();
+		return loader.load_data(R.string.ingredient_file);
 	}
 		
 	private static class IngredientLoader extends DataLoader
 	{
 		private boolean _parsingStock = false;
-		private RecipesDB _db;
 
-		IngredientLoader(RecipesDB db)
-		{
-			_db = db;
-		}
+		IngredientLoader() { }
 
 		@Override
 		public void onElementLoaded(String localName, Attributes attrs)
@@ -97,7 +93,7 @@ public class Ingredient
 					else if (name.compareTo(Ingredient.COLUMN_IMAGE_ID) == 0)
 						newIngredient.set_image(Integer.parseInt(attrs.getValue(i)));
 					else if (name.compareTo(Ingredient.COLUMN_TYPE_TITLE) == 0)
-						newIngredient.set_type(0); //Integer.parseInt(attrs.getValue(i)));
+						newIngredient.set_type(attrs.getValue(i));
 				}
 				_db.insert(newIngredient);
 			}

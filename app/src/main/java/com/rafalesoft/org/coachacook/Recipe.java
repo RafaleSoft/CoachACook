@@ -94,10 +94,10 @@ public class Recipe
 			return null;
 	}
 	
-	public static boolean load_recipes(CoachACook cook)
+	public static boolean load_recipes()
 	{
-		RecipeLoader loader = new RecipeLoader(cook.getRecipesDB());
-		return loader.load_data(cook, cook.getString(R.string.recipe_file));
+		RecipeLoader loader = new RecipeLoader();
+		return loader.load_data(R.string.recipe_file);
 	}
 	
 	private static class RecipeLoader extends DataLoader
@@ -105,12 +105,8 @@ public class Recipe
 		private boolean _parsingRecipe = false;
 		private boolean _parsingPreparation = false;
 		private Recipe _recipe = null;
-		private RecipesDB _db;
-		
-		RecipeLoader(RecipesDB db)
-		{
-			_db = db;
-		}
+
+		RecipeLoader() {}
 
 		@Override
 		public void onElementLoaded(String localName, Attributes attrs)

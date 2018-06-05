@@ -9,6 +9,11 @@
     <string name="ingredient_amount">amount</string>
     <string name="ingredient_unit">unit</string>
 
+    <!-- Categories -->
+    <string name="category_legume">Légumes</string>
+    <string name="category_fruit">Fruit</string>
+    <string name="category_boucherie">Boucherie</string>
+
     <!-- Data files -->
     <string name="category_file">Categories.xml</string>
     <string name="ingredient_file">Ingredients.xml</string>

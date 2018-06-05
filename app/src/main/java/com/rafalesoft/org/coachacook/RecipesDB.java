@@ -21,7 +21,7 @@ public class RecipesDB
     public static final String NAME = "name";
 	private static final int DATABASE_VERSION = 6;
 	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
-	private final Map<String, Long> _categories = new HashMap<>();
+
 	
 	private DatabaseHelper _mOpenHelper;
 	private SQLiteQueryBuilder _qb = new SQLiteQueryBuilder();
@@ -32,7 +32,6 @@ public class RecipesDB
 	{
 		_context = ctx;
 		_mOpenHelper = new DatabaseHelper(ctx);
-		_categories.clear();
 		// TODO: do this in an AsyncTask
 		loadCategories();
 	}
@@ -75,13 +74,14 @@ public class RecipesDB
 		
 		// Recreate application tables
 		_mOpenHelper.onCreate(db);
-		_categories.clear();
-		
+
 		return true;
 	}
 
 	private boolean loadCategories()
 	{
+		Category.clearIds();
+
 		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
 		String query = "SELECT * FROM "+ Category.TABLE_NAME;
 		Cursor c = db.rawQuery(query,null);
@@ -92,7 +92,7 @@ public class RecipesDB
 		{
 			long categoryId = c.getLong(c.getColumnIndex(ID));
 			String category = c.getString(c.getColumnIndex(NAME));
-			_categories.put(category, categoryId);
+			Category.storeId(category, categoryId);
 
 			c.moveToNext();
 		}
@@ -102,9 +102,9 @@ public class RecipesDB
 
 	public boolean updateData()
 	{
-        boolean res = Category.load_categories(_context);
-        res = res && Ingredient.load_ingredients(_context);
-        res = res && Recipe.load_recipes(_context);
+        boolean res = Category.load_categories();
+        res = res && Ingredient.load_ingredients();
+        res = res && Recipe.load_recipes();
         //res = res && loadCategories();
         return res;
 	}
@@ -161,8 +161,7 @@ public class RecipesDB
 	    // If the insert succeeded, the row ID exists.
 	    if (rowId > 0)
 	    {
-	        category.set_id(rowId);
-	    	_categories.put(category.get_name(), rowId);
+	    	Category.storeId(category.get_name(), rowId);
 	    	return rowId;
 	    }
 
@@ -235,7 +234,10 @@ public class RecipesDB
 	
 	public long insert(Ingredient ingredient) 
 	{
-		Long idCategory = _categories.get(ingredient.get_name());
+		Long idCategory = Category.retrieveId(ingredient.get_type());
+		if (idCategory < 0)
+			return -1;
+
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();
 	    values.put(NAME, ingredient.get_name());

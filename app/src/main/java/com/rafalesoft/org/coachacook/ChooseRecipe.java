@@ -115,10 +115,9 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         }
     }
 
-    public ChooseRecipe(CoachACook owner)
+    public ChooseRecipe()
 	{
-		super(owner);
-		_rs = owner.getRecipeSpeech();
+		_rs = _cook.getRecipeSpeech();
 	}
 
 	@Override

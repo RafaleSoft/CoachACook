@@ -12,10 +12,7 @@ import android.widget.TextView;
 
 class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
-    public BuildRecipe(CoachACook owner)
-	{
-		super(owner);
-	}
+    public BuildRecipe() { }
 
     private static final int components[] = {   R.id.component1,
                                                 R.id.component2,

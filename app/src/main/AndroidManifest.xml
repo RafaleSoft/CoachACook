@@ -29,6 +29,9 @@
         <activity
             android:name=".SettingsManager"
             android:label="@string/title_activity_settings_manager"></activity>
+        <activity
+            android:name=".ManageStock"
+            android:label="@string/title_activity_settings_manager"></activity>
     </application>
 
 </manifest>

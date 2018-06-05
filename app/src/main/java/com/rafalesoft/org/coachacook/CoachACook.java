@@ -28,6 +28,7 @@ public class CoachACook extends AppCompatActivity {
     private int currentView = 0;
     private ViewFlipper _mainView = null;
     private ProgressBar _pg = null;
+    private RecipeSpeech _recipeSpeech = null;
 
     public RecipeSpeech getRecipeSpeech()
     {
@@ -38,18 +39,19 @@ public class CoachACook extends AppCompatActivity {
         return _dbRecipes;
     }
 
-    private RecipeSpeech _recipeSpeech;
-
     private static CoachACook theCoach = null;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         theCoach = this;
         _dbRecipes = new RecipesDB(this);
         _recipeSpeech = new RecipeSpeech(this);
+        RecipesCursorHolder.setCook(this);
+        DataLoader.setCook(this);
 
         setContentView(R.layout.activity_coach_acook);
         _mainView = findViewById(R.id.view_flipper);
@@ -69,15 +71,15 @@ public class CoachACook extends AppCompatActivity {
         currentView = R.id.coach_a_cook;
 
         Button chooseButton = startView.findViewById(R.id.cook_book);
-        ChooseRecipe _chooseRecipe = new ChooseRecipe(this);
+        ChooseRecipe _chooseRecipe = new ChooseRecipe();
         chooseButton.setOnClickListener(_chooseRecipe);
 
         Button manageButton = startView.findViewById(R.id.manage_stock);
-        ManageStock _manageStock = new ManageStock(this);
+        ManageStock _manageStock = new ManageStock();
         manageButton.setOnClickListener(_manageStock);
 
         Button buildButton = startView.findViewById(R.id.build_recipe);
-        BuildRecipe _buildRecipe = new BuildRecipe(this);
+        BuildRecipe _buildRecipe = new BuildRecipe();
         buildButton.setOnClickListener(_buildRecipe);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -101,17 +103,24 @@ public class CoachACook extends AppCompatActivity {
         {
             int layout = 0;
 
-            if (viewId == R.id.stock_view)
-                layout = R.layout.stock_view;
-            else if (viewId == R.id.recipe_stockview)
-                layout = R.layout.recipe_stockview;
-            else if (viewId == R.id.recipe_view)
-                layout = R.layout.recipe_view;
-            /*else if (viewId == R.id.recipe_buildview)
-                layout = R.layout.recipe_buildview;
-                */
-            else if (viewId == R.id.coach_a_cook)
-                layout = R.layout.activity_coach_acook;
+            switch (viewId)
+            {
+                case R.id.stock_pager:
+                    layout = R.layout.stock_pager;
+                    break;
+                case R.id.stock_view:
+                    layout = R.layout.stock_view;
+                    break;
+                case R.id.recipe_stockview:
+                    layout = R.layout.recipe_stockview;
+                    break;
+                case R.id.recipe_view:
+                    layout = R.layout.recipe_view;
+                    break;
+                case R.id.coach_a_cook:
+                    layout = R.layout.activity_coach_acook;
+                    break;
+            }
 
             view = getLayoutInflater().inflate(layout,null);
             _mainView.addView(view);
@@ -220,8 +229,8 @@ public class CoachACook extends AppCompatActivity {
     public void onBackPressed()
     {
         if ((currentView == R.id.stock_view) ||
-                (currentView == R.id.recipe_stockview))
-      //          || (currentView == R.id.recipe_buildview))
+            (currentView == R.id.recipe_stockview) ||
+            (currentView == R.id.stock_pager))
             switchToView(R.id.coach_a_cook);
         else if (currentView == R.id.recipe_view)
             switchToView(R.id.recipe_stockview);
@@ -252,7 +261,7 @@ public class CoachACook extends AppCompatActivity {
     @Override
     protected void onResume()
     {
-        super.onResume();        // The activity has become visible (it is now "resumed").
+        super.onResume();       // The activity has become visible (it is now "resumed").
     }
 
     @Override
@@ -275,3 +284,4 @@ public class CoachACook extends AppCompatActivity {
         super.onDestroy();        // The activity is about to be destroyed.
     }
 }
+

@@ -2,31 +2,116 @@ package com.rafalesoft.org.coachacook;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
-	public ManageStock(CoachACook owner)
-	{
-		super(owner);
+    private StockAdapter _stockAdapter = null;
+	public ManageStock() {
 	}
-	
+
+	private class StockAdapter extends PagerAdapter
+    {
+        private ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
+
+        StockAdapter()
+        {
+            for (int i=0; i<getCount(); i++)
+                _cursors.add(new RecipesCursorHolder());
+        }
+
+        @Override
+        public int getCount()
+        {
+            return 3; //Category.countIds();
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object)
+        {
+            return view == object;
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup collection, int position)
+        {
+			Category.Model modelObject = Category.Model.values()[position];
+            LayoutInflater inflater = LayoutInflater.from(_cook);
+            ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.stock_view, collection, false);
+
+            ImageView image = layout.findViewById(R.id.stock_image);
+            image.setImageResource(modelObject.getImageResId());
+            TextView category = layout.findViewById(R.id.stock_category);
+            category.setText(getPageTitle(position));
+
+            ListView lvl = layout.findViewById(R.id.stock_list_view);
+            String[] projection = { RecipesDB.ID,
+                                    RecipesDB.NAME,
+                                    Ingredient.COLUMN_STOCK_TITLE,
+                                    Ingredient.COLUMN_UNIT_TITLE };
+
+            RecipesCursorHolder c = _cursors.get(position);
+            c.updateCursor(Ingredient.TABLE_NAME, projection);
+
+            String[] fromColumns = {RecipesDB.NAME, Ingredient.COLUMN_STOCK_TITLE, Ingredient.COLUMN_UNIT_TITLE};
+            int[] toViews = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
+
+            SimpleCursorAdapter recipesDBAdapter =
+                    new SimpleCursorAdapter(_cook,R.layout.stock_view_item,
+                            c.getCursor(),fromColumns,toViews,0);
+
+            lvl.setAdapter(recipesDBAdapter);
+            //lvl.setOnItemClickListener(this);
+
+            collection.addView(layout);
+            return layout;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup collection, int position, Object view)
+        {
+            RecipesCursorHolder c = _cursors.get(position);
+            c.close();
+            collection.removeView((View) view);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position)
+		{
+			Category.Model model = Category.Model.values()[position];
+            return _cook.getString(model.getTitleResId());
+        }
+    }
+
 	@Override
 	public void onClick(View v)
 	{
-		View view = _cook.switchToView(R.id.stock_view);
+		//View view = _cook.switchToView(R.id.stock_view);
+		View view = _cook.switchToView(R.id.stock_pager);
+		if (null == _stockAdapter)
+        {
+            ViewPager vp = view.findViewById(R.id.view_pager);
+            vp.setAdapter(new StockAdapter());
+        }
+
+        /*
 		ListView lvl = view.findViewById(R.id.stock_list_view);
-		
 		String[] projection = { RecipesDB.ID,
                                 RecipesDB.NAME,
 								Ingredient.COLUMN_STOCK_TITLE,
@@ -44,6 +129,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 
 		lvl.setAdapter(recipesDBAdapter);
 		lvl.setOnItemClickListener(this);
+		*/
 	}
 
 	@Override
@@ -88,3 +174,4 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 		dialog.show();
 	}
 }
+
