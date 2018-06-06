@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 public class StockFragment extends Fragment
 {
     public static CoachACook _coach = null;
-    private StockManager _stock = null;
 
     public StockFragment() {}
 
@@ -21,7 +20,7 @@ public class StockFragment extends Fragment
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.stock_view, container, false);
 
-        _stock = new StockManager(rootView);
+        StockManager _stock = new StockManager(rootView);
 
         return rootView;
     }

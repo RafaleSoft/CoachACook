@@ -25,9 +25,24 @@ class RecipesCursorHolder
 	void updateCursor(String tableName, String[] projection)
 	{
 		close();
+		String[] selectionArgs = {};
 		_cursor = _cook.getRecipesDB().query(	tableName,
-												projection);
+												projection,
+                                                "",
+                                                selectionArgs);
 	}
+
+    void updateCursor(String tableName,
+                      String[] projection,
+                      String selection,
+                      String[] selectionArgs)
+    {
+        close();
+        _cursor = _cook.getRecipesDB().query(	tableName,
+                                                projection,
+                                                selection,
+                                                selectionArgs);
+    }
 
 	public void close()
 	{

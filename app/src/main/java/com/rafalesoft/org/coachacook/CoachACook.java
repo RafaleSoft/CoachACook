@@ -228,27 +228,38 @@ public class CoachACook extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        if ((currentView == R.id.stock_view) ||
-            (currentView == R.id.recipe_stockview) ||
-            (currentView == R.id.stock_pager))
-            switchToView(R.id.coach_a_cook);
-        else if (currentView == R.id.recipe_view)
-            switchToView(R.id.recipe_stockview);
-        else
+        switch (currentView)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.exit_message);
-            builder.setPositiveButton(R.string.exit_yes, new DialogInterface.OnClickListener()
-            { 	public void onClick(DialogInterface dialog, int id)
-                { finish(); }
-            });
+            case R.id.stock_view:
+            case R.id.recipe_stockview:
+            case R.id.stock_pager:
+                switchToView(R.id.coach_a_cook);
+                break;
+            case R.id.recipe_view:
+                switchToView(R.id.recipe_stockview);
+                break;
+            default:
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.exit_message);
+                builder.setPositiveButton(R.string.exit_yes, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        finish();
+                    }
+                });
 
-            builder.setNegativeButton(R.string.exit_no, new DialogInterface.OnClickListener()
-            {	public void onClick(DialogInterface dialog, int id)
-                { 	}
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+                builder.setNegativeButton(R.string.exit_no, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
+            }
         }
     }
 

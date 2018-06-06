@@ -1,9 +1,5 @@
 package com.rafalesoft.org.coachacook;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -11,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+
+import java.util.ArrayList;
 
 
 public class RecipesDB
@@ -118,7 +116,9 @@ public class RecipesDB
 	 * @throws IllegalArgumentException if the incoming URI pattern is invalid.
 	 */
 	public Cursor query(String table,
-						String[] projection)
+						String[] projection,
+						String selection,
+						String[] selectionArgs)
 	{
 	   // Constructs a new query builder and sets its table name
 	   _qb.setTables(table);
@@ -132,11 +132,10 @@ public class RecipesDB
 	   // * selected, then the Cursor object is empty, and Cursor.getCount() returns 0.
 	   //
 
-        String[] selectionArgs = {};
 		return _qb.query(
             db,            // The database to query
             projection,    // The columns to return from the query
-            "",     // The columns for the where clause
+            selection,     // The columns for the where clause
             selectionArgs, // The values for the where clause
             null, // don't group the rows
             null,  // don't filter by row groups

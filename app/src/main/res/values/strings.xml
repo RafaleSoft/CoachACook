@@ -10,9 +10,11 @@
     <string name="ingredient_unit">unit</string>
 
     <!-- Categories -->
+    <string name="category_image">Image de catégorie d\'ingrédient</string>
     <string name="category_legume">Légumes</string>
     <string name="category_fruit">Fruit</string>
     <string name="category_boucherie">Boucherie</string>
+    <string name="category_charcuterie">Charcuterie</string>
 
     <!-- Data files -->
     <string name="category_file">Categories.xml</string>

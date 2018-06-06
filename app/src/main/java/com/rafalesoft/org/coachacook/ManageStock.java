@@ -39,7 +39,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
         @Override
         public int getCount()
         {
-            return 3; //Category.countIds();
+            return 4; //Category.countIds();
         }
 
         @Override
@@ -66,8 +66,10 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
                                     Ingredient.COLUMN_STOCK_TITLE,
                                     Ingredient.COLUMN_UNIT_TITLE };
 
+            String selection = Ingredient.COLUMN_TYPE_TITLE + "=?";
+            String[] selectionArgs = { new Integer(1+modelObject.ordinal()).toString() };
             RecipesCursorHolder c = _cursors.get(position);
-            c.updateCursor(Ingredient.TABLE_NAME, projection);
+            c.updateCursor(Ingredient.TABLE_NAME, projection, selection, selectionArgs);
 
             String[] fromColumns = {RecipesDB.NAME, Ingredient.COLUMN_STOCK_TITLE, Ingredient.COLUMN_UNIT_TITLE};
             int[] toViews = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};

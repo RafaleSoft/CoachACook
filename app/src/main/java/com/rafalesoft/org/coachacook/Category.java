@@ -15,7 +15,6 @@ public class Category
 
     private static final Map<String, Long> _categories = new HashMap<>();
 	private String 	_name = "";
-    private int 	_image = 0;
 
     public Category() { }
 
@@ -44,23 +43,15 @@ public class Category
 	{
 		_name = name;
 	}
-    public int get_image()
-    {
-        return _image;
-    }
-    private void set_image(int image)
-    {
-        _image = image;
-    }
 
 
     public enum Model
     {
         LEGUME(R.string.category_legume, R.mipmap.ic_legumes),
         FRUIT(R.string.category_fruit, R.mipmap.ic_fruits),
-        BOUCHERIE(R.string.category_boucherie, R.mipmap.ic_boucherie);
-        /*CHARCUTERIE(2, 5);
-        POISSONERIE(2, 5);
+        BOUCHERIE(R.string.category_boucherie, R.mipmap.ic_boucherie),
+        CHARCUTERIE(R.string.category_charcuterie, R.mipmap.ic_charcuterie);
+        /*POISSONERIE(2, 5);
         LAIT_BEURRE_OEUF(2, 5);
         FROMAGES(2, 5);
         YAHOURTS(2, 5);
@@ -116,8 +107,6 @@ public class Category
                     String name = attrs.getLocalName(i);
                     if (name.compareTo(RecipesDB.NAME) == 0)
                         newCategory.set_name(attrs.getValue(i));
-                    else if (name.compareTo(Category.COLUMN_IMAGE_ID) == 0)
-                        newCategory.set_image(Integer.parseInt(attrs.getValue(i)));
                 }
                 _db.insert(newCategory);
             }
