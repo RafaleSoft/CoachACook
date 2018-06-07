@@ -39,7 +39,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
         @Override
         public int getCount()
         {
-            return 4; //Category.countIds();
+            return Category.Model.MODEL_SIZE.ordinal();
         }
 
         @Override
@@ -66,8 +66,8 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
                                     Ingredient.COLUMN_STOCK_TITLE,
                                     Ingredient.COLUMN_UNIT_TITLE };
 
-            String selection = Ingredient.COLUMN_TYPE_TITLE + "=?";
-            String[] selectionArgs = { new Integer(1+modelObject.ordinal()).toString() };
+            String selection = Ingredient.COLUMN_TYPE_TITLE + "=?" + " AND " + Ingredient.COLUMN_STOCK_TITLE + ">0";
+            String[] selectionArgs = { Integer.toString(1+modelObject.ordinal()) };
             RecipesCursorHolder c = _cursors.get(position);
             c.updateCursor(Ingredient.TABLE_NAME, projection, selection, selectionArgs);
 
@@ -104,34 +104,12 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 	@Override
 	public void onClick(View v)
 	{
-		//View view = _cook.switchToView(R.id.stock_view);
 		View view = _cook.switchToView(R.id.stock_pager);
 		if (null == _stockAdapter)
         {
             ViewPager vp = view.findViewById(R.id.view_pager);
             vp.setAdapter(new StockAdapter());
         }
-
-        /*
-		ListView lvl = view.findViewById(R.id.stock_list_view);
-		String[] projection = { RecipesDB.ID,
-                                RecipesDB.NAME,
-								Ingredient.COLUMN_STOCK_TITLE,
-								Ingredient.COLUMN_UNIT_TITLE };
-		updateCursor(Ingredient.TABLE_NAME, projection);
-		
-		String[] fromColumns = {RecipesDB.NAME,
-								Ingredient.COLUMN_STOCK_TITLE,
-								Ingredient.COLUMN_UNIT_TITLE};
-		int[] toViews = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
-	
-		SimpleCursorAdapter recipesDBAdapter = 
-				new SimpleCursorAdapter(_cook,R.layout.stock_view_item,
-										getCursor(),fromColumns,toViews,0);
-
-		lvl.setAdapter(recipesDBAdapter);
-		lvl.setOnItemClickListener(this);
-		*/
 	}
 
 	@Override

@@ -10,7 +10,8 @@ public class RecipeComponent
 	
 	private String _name = null;
 	private Double _quantity = 0.0;
-	private String _unit = null;
+	private String _unitStr = null;
+	private Unit _unit = Unit.GRAM;
 	
 	public void set_name(String value) 
 	{
@@ -30,10 +31,10 @@ public class RecipeComponent
 	}
 	public String get_unit()
 	{
-		return _unit;
+		return _unitStr;
 	}
 	public void set_unit(String unit) 
 	{
-		_unit = unit;
+		_unitStr = unit;
 	}
 }

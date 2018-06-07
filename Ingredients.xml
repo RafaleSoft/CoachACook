@@ -153,15 +153,30 @@
 	<Ingredient name="Rillettes" quantity="0" unit="kg" type="CHARCUTERIE" image="0"/>
 	<Ingredient name="Pâtés" quantity="0" unit="kg" type="CHARCUTERIE" image="0"/>
 	<Ingredient name="Végétarien" quantity="0" unit="kg" type="CHARCUTERIE" image="0"/>
-	<Ingredient name="Poissons Frais" quantity="0" unit="kg" type="POISSONERIE" image="0"/>
-	<Ingredient name="Poissons Fumés" quantity="0" unit="kg" type="POISSONERIE" image="0"/>
-	<Ingredient name="Poissons Panés" quantity="0" unit="kg" type="POISSONERIE" image="0"/>
-	<Ingredient name="FRUITs de mer" quantity="0" unit="kg" type="POISSONERIE" image="0"/>
-	<Ingredient name="Oeufs" quantity="12" type="Lait_beurre_oeufs" image="0"/>
-	<Ingredient name="Lait" quantity="6" unit="l" type="Lait_beurre_oeufs" image="0"/>
-	<Ingredient name="Yahourt" quantity="8" type="Yahourts" image="0"/>
-	<Ingredient name="Farine" quantity="1" unit="kg" type="Epicerie_sucrée" image="0"/>
-	<Ingredient name="Sucre" quantity="1" unit="kg" type="Epicerie_sucrée" image="0"/>
-	<Ingredient name="Sel" quantity="1" unit="kg" type="Epicerie_salée" image="0"/>
-	<Ingredient name="Beurre" quantity="250" unit="g" type="Lait_beurre_oeufs" image="0"/>
+	<Ingredient name="Filets de Colin" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Limande" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Merlan" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Merlu" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Saumon" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Cabillaud" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Lieu noir" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Bar" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Hareng" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Filets de Maqueraux" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Pavés de Truite" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Pavés de Saumon" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Poissons Fumés" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Poissons Panés" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Crevettes roses" quantity="0" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Poulpe" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Moules" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Saumon fumé" quantity="0" unit="kg" type="POISSONNERIE" image="0"/>
+	<Ingredient name="Pain de mie" quantity="0" type="BOULANGERIE" image="0"/>
+	<Ingredient name="Oeufs" quantity="12" type="LAITAGE" image="0"/>
+	<Ingredient name="Lait" quantity="6" unit="l" type="LAITAGE" image="0"/>
+	<Ingredient name="Yahourt" quantity="8" type="LAITAGE" image="0"/>
+	<Ingredient name="Farine" quantity="1" unit="kg" type="EPICERIE" image="0"/>
+	<Ingredient name="Sucre" quantity="1" unit="kg" type="EPICERIE" image="0"/>
+	<Ingredient name="Sel" quantity="1" unit="kg" type="EPICERIE" image="0"/>
+	<Ingredient name="Beurre" quantity="250" unit="g" type="LAITAGE" image="0"/>
 </Stock>

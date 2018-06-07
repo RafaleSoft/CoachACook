@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,6 @@ public class RecipesDB
 	{
 		_context = ctx;
 		_mOpenHelper = new DatabaseHelper(ctx);
-		// TODO: do this in an AsyncTask
-		loadCategories();
 	}
 
 	public void addCursorHolder(RecipesCursorHolder holder)
@@ -54,7 +53,7 @@ public class RecipesDB
 	public boolean reset()
 	{
 		SQLiteDatabase db = _mOpenHelper.getWritableDatabase(); 
-		
+		/*
 		// Erase all available tables except android specifics
 		Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
 		c.moveToFirst();
@@ -69,32 +68,14 @@ public class RecipesDB
 			c.moveToNext();
 		}
 		c.close();
-		
+		*/
+
+        // Erase all available tables except android specifics
+        _mOpenHelper.clearDatabase(db);
+
 		// Recreate application tables
 		_mOpenHelper.onCreate(db);
 
-		return true;
-	}
-
-	private boolean loadCategories()
-	{
-		Category.clearIds();
-
-		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
-		String query = "SELECT * FROM "+ Category.TABLE_NAME;
-		Cursor c = db.rawQuery(query,null);
-		if (!c.moveToFirst())
-		    return false;
-
-		while (!c.isAfterLast())
-		{
-			long categoryId = c.getLong(c.getColumnIndex(ID));
-			String category = c.getString(c.getColumnIndex(NAME));
-			Category.storeId(category, categoryId);
-
-			c.moveToNext();
-		}
-		c.close();
 		return true;
 	}
 
@@ -103,7 +84,6 @@ public class RecipesDB
         boolean res = Category.load_categories();
         res = res && Ingredient.load_ingredients();
         res = res && Recipe.load_recipes();
-        //res = res && loadCategories();
         return res;
 	}
 	
@@ -160,7 +140,8 @@ public class RecipesDB
 	    // If the insert succeeded, the row ID exists.
 	    if (rowId > 0)
 	    {
-	    	Category.storeId(category.get_name(), rowId);
+            // Notifies observers registered against this provider that the data changed.
+            //getContext().getContentResolver().notifyChange(noteUri, null);
 	    	return rowId;
 	    }
 
@@ -231,11 +212,19 @@ public class RecipesDB
 	    throw new SQLException("Failed to insert recipe:" + recipe.get_name());
 	}
 	
-	public long insert(Ingredient ingredient) 
+	public long insert(Ingredient ingredient)
 	{
-		Long idCategory = Category.retrieveId(ingredient.get_type());
-		if (idCategory < 0)
-			return -1;
+        long idCategory;
+	    try
+        {
+            // ordinal is 0 based
+            idCategory = 1 + Category.Model.valueOf(ingredient.get_type()).ordinal();
+        }
+		catch (IllegalArgumentException e)
+        {
+            Log.d("DB","Invalid Ingredient Category");
+            return -1;
+        }
 
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();

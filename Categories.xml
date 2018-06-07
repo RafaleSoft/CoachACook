@@ -4,14 +4,8 @@
 	<Category name="FRUIT" image="0"/>
 	<Category name="BOUCHERIE" image="0"/>
 	<Category name="CHARCUTERIE" image="0"/>
-	<Category name="POISSONERIE" image="0"/>
-	<Category name="Boulangerie" image="0"/>
-	<Category name="Lait_beurre_oeufs" image="0"/>
-	<Category name="Fromages" image="0"/>
-	<Category name="Yahourts" image="0"/>
-	<Category name="Desserts" image="0"/>
-	<Category name="Epicerie_salée" image="0"/>
-	<Category name="Epicerie_sucrée" image="0"/>
-	<Category name="Petit_déjeuner" image="0"/>
-	<Category name="Other" image="0"/>
+	<Category name="POISSONNERIE" image="0"/>
+	<Category name="BOULANGERIE" image="0"/>
+	<Category name="LAITAGE" image="0"/>
+	<Category name="EPICERIE" image="0"/>
 </Stock>

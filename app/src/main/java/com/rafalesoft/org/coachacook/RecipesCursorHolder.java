@@ -46,11 +46,9 @@ class RecipesCursorHolder
 
 	public void close()
 	{
-        // Remove from RecipesDB is done at destruction, by calling RecipesDB.close()
-
 		if (_cursor != null)
 		{
-			_cook.getRecipesDB().delCursorHolder(this);
+			// Remove from RecipesDB is done at destruction, by calling RecipesDB.close()
 			_cursor.close();
 			_cursor = null;
 		}

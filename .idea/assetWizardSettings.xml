@@ -22,8 +22,8 @@
                                       <entry key="backgroundColor" value="ffffff" />
                                       <entry key="backgroundImage" value="E:\Android\Android Projects\CoachACook\app\src\main\res\drawable\ic_launcher_background.xml" />
                                       <entry key="backgroundLayerName" value="ic_category_background" />
-                                      <entry key="foregroundImage" value="C:\Users\OpenGL\Pictures\Charcuterie.png" />
-                                      <entry key="outputName" value="ic_charcuterie" />
+                                      <entry key="foregroundImage" value="C:\Users\OpenGL\Pictures\epicerie.jpg" />
+                                      <entry key="outputName" value="ic_epicerie" />
                                       <entry key="previewDensity" value="HIGH" />
                                     </map>
                                   </option>

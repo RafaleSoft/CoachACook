@@ -19,6 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/category_image"
+            android:minHeight="@dimen/large_icon"
+            android:minWidth="@dimen/large_icon"
             app:srcCompat="@mipmap/ic_legumes" />
 
         <TextView

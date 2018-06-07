@@ -15,6 +15,17 @@
     <string name="category_fruit">Fruit</string>
     <string name="category_boucherie">Boucherie</string>
     <string name="category_charcuterie">Charcuterie</string>
+    <string name="category_poissonnerie">Poissonnerie</string>
+    <string name="category_laitage">Laitage</string>
+    <string name="category_epicerie">Epicerie</string>
+
+    <!-- Units -->
+    <string name="unit_gram">g</string>
+    <string name="unit_kilogram">kg</string>
+    <string name="unit_milliliter">ml</string>
+    <string name="unit_liter">l</string>
+    <string name="unit_teaspoon">tsp</string>
+    <string name="unit_tablespoon">sp</string>
 
     <!-- Data files -->
     <string name="category_file">Categories.xml</string>
