@@ -38,6 +38,7 @@
 	<Ingredient name="Endive" quantity="0" type="LEGUME" image="0"/>
 	<Ingredient name="Champignon blanc" quantity="0" type="LEGUME" image="0"/>
 	<Ingredient name="Pleurotes" quantity="0" type="LEGUME" image="0"/>
+	<Ingredient name="Tomate" quantity="0" type="LEGUME" image="0"/>
 	<Ingredient name="Tomate ronde" quantity="0" type="LEGUME" image="0"/>
 	<Ingredient name="Tomate cerise" quantity="0" type="LEGUME" image="0"/>
 	<Ingredient name="Tomate coeur de pigeon" quantity="0" type="LEGUME" image="0"/>
@@ -75,6 +76,7 @@
 	<Ingredient name="Citron vert" quantity="0" type="FRUIT" image="0"/>
 	<Ingredient name="Orange" quantity="0" type="FRUIT" image="0"/>
 	<Ingredient name="Orange" quantity="0" type="FRUIT" image="0"/>
+	<Ingredient name="Pomme" quantity="6" type="FRUIT" image="0"/>
 	<Ingredient name="Pomme Granny Smith" quantity="6" type="FRUIT" image="0"/>
 	<Ingredient name="Pomme Pink Lady" quantity="6" type="FRUIT" image="0"/>
 	<Ingredient name="Pomme Royal Gala" quantity="6" type="FRUIT" image="0"/>
@@ -93,7 +95,7 @@
 	<Ingredient name="Mûre" quantity="0" type="FRUIT" image="0"/>
 	<Ingredient name="Bananes" quantity="0" type="FRUIT" image="0"/>
 	<Ingredient name="Kiwi" quantity="0" type="FRUIT" image="0"/>
-	<Ingredient name="FRUIT de la passion" quantity="0" type="FRUIT" image="0"/>
+	<Ingredient name="Fruit de la passion" quantity="0" type="FRUIT" image="0"/>
 	<Ingredient name="Grenade" quantity="0" type="FRUIT" image="0"/>
 	<Ingredient name="Banane" quantity="0" type="FRUIT" image="0"/>
 	<Ingredient name="Ananas" quantity="0" type="FRUIT" image="0"/>
@@ -139,6 +141,7 @@
 	<Ingredient name="Dinde" quantity="0" unit="kg" type="BOUCHERIE" image="0"/>
 	<Ingredient name="Escalope de dinde" quantity="0" unit="kg" type="BOUCHERIE" image="0"/>
 	<Ingredient name="Magret de canard" quantity="0" unit="kg" type="BOUCHERIE" image="0"/>
+	<Ingredient name="Echine de porc" quantity="0" unit="kg" type="BOUCHERIE" image="0"/>
 	<Ingredient name="Porc" quantity="0" unit="kg" type="BOUCHERIE" image="0"/>
 	<Ingredient name="Veau" quantity="0" unit="kg" type="BOUCHERIE" image="0"/>
 	<Ingredient name="Agneau" quantity="0" unit="kg" type="BOUCHERIE" image="0"/>
@@ -175,8 +178,14 @@
 	<Ingredient name="Oeufs" quantity="12" type="LAITAGE" image="0"/>
 	<Ingredient name="Lait" quantity="6" unit="l" type="LAITAGE" image="0"/>
 	<Ingredient name="Yahourt" quantity="8" type="LAITAGE" image="0"/>
+	<Ingredient name="Crème fraiche" quantity="0.5" unit="l" type="LAITAGE" image="0"/>
 	<Ingredient name="Farine" quantity="1" unit="kg" type="EPICERIE" image="0"/>
 	<Ingredient name="Sucre" quantity="1" unit="kg" type="EPICERIE" image="0"/>
 	<Ingredient name="Sel" quantity="1" unit="kg" type="EPICERIE" image="0"/>
+	<Ingredient name="Curry" quantity="1" unit="kg" type="EPICERIE" image="0"/>
+	<Ingredient name="Poivre" quantity="1" unit="kg" type="EPICERIE" image="0"/>
+	<Ingredient name="Bouillon" quantity="1" unit="kg" type="EPICERIE" image="0"/>
+	<Ingredient name="Poivre de Cayenne" quantity="1" unit="kg" type="EPICERIE" image="0"/>
 	<Ingredient name="Beurre" quantity="250" unit="g" type="LAITAGE" image="0"/>
+	<Ingredient name="Vin Blanc" quantity="0.75" unit="l" type="EPICERIE" image="0"/>
 </Stock>

@@ -53,22 +53,6 @@ public class RecipesDB
 	public boolean reset()
 	{
 		SQLiteDatabase db = _mOpenHelper.getWritableDatabase(); 
-		/*
-		// Erase all available tables except android specifics
-		Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
-		c.moveToFirst();
-		while (!c.isAfterLast())
-		{
-			String s = c.getString(c.getColumnIndex("name"));
-			if ((s.compareTo("android_metadata") != 0) && (s.compareTo("sqlite_sequence") != 0))
-			{
-				db.execSQL("DROP TABLE IF EXISTS " + s);
-			}
-		       
-			c.moveToNext();
-		}
-		c.close();
-		*/
 
         // Erase all available tables except android specifics
         _mOpenHelper.clearDatabase(db);
@@ -81,8 +65,7 @@ public class RecipesDB
 
 	public boolean updateData()
 	{
-        boolean res = Category.load_categories();
-        res = res && Ingredient.load_ingredients();
+        boolean res = Ingredient.load_ingredients();
         res = res && Recipe.load_recipes();
         return res;
 	}
@@ -122,34 +105,7 @@ public class RecipesDB
 			RecipesDB.NAME);
 	}
 
-
-	public long insert(Category category)
-	{
-	    // A map to hold the new record's values.
-	    ContentValues values = new ContentValues();
-	    values.put(NAME, category.get_name());
-		
-	    // Opens the database object in "write" mode.
-	    SQLiteDatabase db = _mOpenHelper.getWritableDatabase();
-	
-	    // Performs the insert and returns the ID of the new recipe.
-	    long rowId = db.insert(	Category.TABLE_NAME,        // The table to insert into.
-								NAME,  						// A hack, SQLite sets this column value to null if values is empty.
-								values);                    // A map of column names, and the values to insert into the columns.
-
-	    // If the insert succeeded, the row ID exists.
-	    if (rowId > 0)
-	    {
-            // Notifies observers registered against this provider that the data changed.
-            //getContext().getContentResolver().notifyChange(noteUri, null);
-	    	return rowId;
-	    }
-
-        // If the insert didn't succeed, then the rowID is <= 0. Throws an exception.
-    	throw new SQLException("Failed to insert category:" + category.get_name());
-	}
-
-	public long insert(Recipe recipe) 
+	public long insert(Recipe recipe)
 	{
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();
@@ -200,7 +156,9 @@ public class RecipesDB
 		    	    );
 	    		}
 	    		else
-                    throw new SQLException(_context.getResources().getString(R.string.invalid_recipe) + ": " + recipe.get_name());
+                    throw new SQLException(_context.getResources().getString(R.string.invalid_recipe) +
+											": " + recipe.get_name() +
+											"(unknown ingredient " + component.get_name() + ")");
 	    	}
 	    	
 	        // Notifies observers registered against this provider that the data changed.
@@ -388,13 +346,6 @@ public class RecipesDB
                    + Ingredient.COLUMN_IMAGE_ID + " INTEGER"
                    + ");";
 	       db.execSQL(query);
-
-	       query = "CREATE TABLE " + Category.TABLE_NAME + " ("
-                   + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                   + NAME + " VARCHAR(32) NOT NULL,"
-                   + Category.COLUMN_IMAGE_ID + " INTEGER"
-                   + ");";
-	       db.execSQL(query);
 	   }
 
 	   /**
@@ -425,10 +376,7 @@ public class RecipesDB
 
         private void clearDatabase(SQLiteDatabase db)
         {
-            String query = "DROP TABLE IF EXISTS " + Category.TABLE_NAME;
-            db.execSQL(query);
-
-            query = "DROP TABLE IF EXISTS " + Recipe.TABLE_NAME;
+            String query = "DROP TABLE IF EXISTS " + Recipe.TABLE_NAME;
             db.execSQL(query);
 
             query = "DROP TABLE IF EXISTS " + Ingredient.TABLE_NAME;

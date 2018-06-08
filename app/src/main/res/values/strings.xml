@@ -28,7 +28,6 @@
     <string name="unit_tablespoon">sp</string>
 
     <!-- Data files -->
-    <string name="category_file">Categories.xml</string>
     <string name="ingredient_file">Ingredients.xml</string>
     <string name="recipe_file">Recipes.xml</string>
 
