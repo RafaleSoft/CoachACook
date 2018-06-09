@@ -18,6 +18,7 @@
     <string name="category_poissonnerie">Poissonnerie</string>
     <string name="category_laitage">Laitage</string>
     <string name="category_epicerie">Epicerie</string>
+    <string name="category_boissons">Boissons</string>
 
     <!-- Units -->
     <string name="unit_gram">g</string>

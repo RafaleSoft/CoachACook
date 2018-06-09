@@ -4,23 +4,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TableLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
     public BuildRecipe() { }
-
-    private static final int components[] = {   R.id.component1,
-                                                R.id.component2,
-                                                R.id.component3,
-                                                R.id.component4,
-                                                R.id.component5,
-                                                R.id.component6,
-                                                R.id.component7};
 
 	@Override
 	public void onClick(View v)
@@ -58,25 +53,21 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
         TextView tv_desc = recipeView.findViewById(R.id.recipe_description);
         tv_desc.setText(r.get_preparation());
 
-        TableLayout table = recipeView.findViewById(R.id.recipe_ingredients);
-
+        List<String> component_list = new ArrayList<>();
         for (int item=0;item<r.nbComponents();item++)
         {
             RecipeComponent c = r.getComponent(item);
-            View row = table.getChildAt(item);
-            TextView tvi = row.findViewById(components[item]);
-
             String ingredient = Integer.valueOf(c.get_quantity().intValue()).toString() +
                     " " + (null == c.get_unit() ? "":c.get_unit()) + " " + c.get_name();
-            tvi.setText(ingredient);
+            component_list.add(ingredient);
         }
 
-        for (int j=r.nbComponents();j<7;j++)
-        {
-            View row = table.getChildAt(j);
-            TextView tvi = row.findViewById(components[j]);
-            tvi.setText("");
-        }
+        // Create an ArrayAdapter from List
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
+                (_cook, android.R.layout.simple_list_item_1, component_list);
+
+        ListView table = recipeView.findViewById(R.id.recipe_ingredients);
+        table.setAdapter(arrayAdapter);
     }
 
     private Recipe genRecipe()

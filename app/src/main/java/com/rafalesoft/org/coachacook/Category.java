@@ -13,6 +13,7 @@ public class Category
         POISSONNERIE(R.string.category_poissonnerie, R.mipmap.ic_poissonnerie),
         LAITAGE(R.string.category_laitage, R.mipmap.ic_laitage),
         EPICERIE(R.string.category_epicerie, R.mipmap.ic_epicerie),
+        BOISSONS(R.string.category_boissons, R.mipmap.ic_boissons),
         MODEL_SIZE(0,0);
 
         final private int mStringResId;

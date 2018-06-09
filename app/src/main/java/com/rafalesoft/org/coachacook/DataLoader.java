@@ -17,8 +17,8 @@ import java.io.InputStream;
 
 abstract class DataLoader implements ContentHandler
 {
-    protected static RecipesDB _db = null;
-    protected static CoachACook _cook = null;
+    static RecipesDB _db = null;
+    private static CoachACook _cook = null;
     public static void setCook(CoachACook owner)
     {
         _cook = owner;

@@ -5,7 +5,7 @@ import android.database.Cursor;
 class RecipesCursorHolder
 {
 	private Cursor _cursor = null;
-	static protected CoachACook _cook = null;
+	static CoachACook _cook = null;
 	
 	RecipesCursorHolder()
 	{

@@ -17,8 +17,7 @@ public class Ingredient
 	private String 	_type = "";
 	private int 	_image = 0;
 
-	public Ingredient() {
-	}
+	private Ingredient() {	}
 
 	public String get_name()
 	{

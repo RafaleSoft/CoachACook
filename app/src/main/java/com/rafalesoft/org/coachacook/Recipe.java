@@ -56,11 +56,11 @@ public class Recipe
     {
         return _difficulty;
     }
-	public void set_difficulty(int difficulty)
+	private void set_difficulty(int difficulty)
     {
         _difficulty = difficulty;
     }
-    public void set_cost(int cost)
+    private void set_cost(int cost)
     {
         _cost = cost;
     }
@@ -68,7 +68,7 @@ public class Recipe
     {
         return _cost;
     }
-    public void set_time(int time)
+    private void set_time(int time)
     {
         _time = time;
     }

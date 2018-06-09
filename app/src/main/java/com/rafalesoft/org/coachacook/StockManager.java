@@ -11,7 +11,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StockManager extends RecipesCursorHolder implements AdapterView.OnItemClickListener
+class StockManager extends RecipesCursorHolder implements AdapterView.OnItemClickListener
 {
     StockManager(View view)
     {
