@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recipe_stockview_item"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -70,16 +71,48 @@
             app:layout_constraintStart_toEndOf="@+id/recipe_difficulty_progress"
             app:layout_constraintTop_toBottomOf="@+id/recipe_item_name" />
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/cook_duration"
+            app:layout_constraintStart_toStartOf="@+id/cook_duration"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_item_name"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/cook_duration"
+            app:layout_constraintStart_toStartOf="@+id/recipe_duration"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_item_name"
+            app:srcCompat="@android:drawable/ic_menu_sort_alphabetically" />
+
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/cook_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
+            android:contentDescription="@string/cook_duration"
             android:text="@string/recipe_duration"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recipe_item_name" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/recipe_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/cook_duration"
+            android:text="@string/recipe_duration"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cook_duration" />
 
     </android.support.constraint.ConstraintLayout>
 

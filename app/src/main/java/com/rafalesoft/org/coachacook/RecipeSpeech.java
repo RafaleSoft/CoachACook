@@ -22,7 +22,7 @@ public class RecipeSpeech implements RecognitionListener
 {
     private static TextToSpeech _tts = null;
     private static SpeechRecognizer _sr = null;
-    private Context _ctx;
+    private final Context _ctx;
     private RecognitionCallback _rc = null;
 
     private static final int _toRecognize[] = { R.string.speech_demarre,
@@ -32,8 +32,7 @@ public class RecipeSpeech implements RecognitionListener
                                                 R.string.speech_recommence,
                                                 R.string.speech_termine};
 
-    public interface RecognitionCallback
-    {
+    public interface RecognitionCallback {
         void onRecognized(int stringId);
     }
 

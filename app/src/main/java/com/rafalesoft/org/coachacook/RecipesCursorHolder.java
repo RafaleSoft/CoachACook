@@ -5,18 +5,13 @@ import android.database.Cursor;
 class RecipesCursorHolder
 {
 	private Cursor _cursor = null;
-	static CoachACook _cook = null;
-	
+
 	RecipesCursorHolder()
 	{
-        RecipesDB recipesDB = _cook.getRecipesDB();
+        RecipesDB recipesDB = CoachACook.getCoach().getRecipesDB();
         recipesDB.addCursorHolder(this);
 	}
 
-	public static void setCook(CoachACook owner)
-	{
-        _cook = owner;
-	}
 	Cursor getCursor()
 	{
 		return _cursor;
@@ -26,10 +21,10 @@ class RecipesCursorHolder
 	{
 		close();
 		String[] selectionArgs = {};
-		_cursor = _cook.getRecipesDB().query(	tableName,
-												projection,
-                                                "",
-                                                selectionArgs);
+		_cursor = CoachACook.getCoach().getRecipesDB().query(	tableName,
+																projection,
+																"",
+																selectionArgs);
 	}
 
     void updateCursor(String tableName,
@@ -38,10 +33,10 @@ class RecipesCursorHolder
                       String[] selectionArgs)
     {
         close();
-        _cursor = _cook.getRecipesDB().query(	tableName,
-                                                projection,
-                                                selection,
-                                                selectionArgs);
+        _cursor = CoachACook.getCoach().getRecipesDB().query(	tableName,
+																projection,
+																selection,
+																selectionArgs);
     }
 
 	public void close()

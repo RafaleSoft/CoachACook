@@ -68,4 +68,18 @@
         app:layout_constraintStart_toEndOf="@+id/recipe_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/stock_view_item" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_speak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/default_gap"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        app:backgroundTint="@color/ic_category_background"
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_image"
+        app:layout_constraintEnd_toEndOf="@+id/recipe_image"
+        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
 </android.support.constraint.ConstraintLayout>

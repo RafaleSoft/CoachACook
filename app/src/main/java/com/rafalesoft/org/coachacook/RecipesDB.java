@@ -211,12 +211,33 @@ public class RecipesDB
 	    throw new SQLException("Failed to insert recipe:" + ingredient.get_name());
 	}
 
+	public Ingredient getIngredient(String name)
+	{
+		// Opens the database object in "read" mode, since no writes need to be done.
+		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
+
+		Cursor c = db.rawQuery(	"SELECT * FROM " + Ingredient.TABLE_NAME+
+						" WHERE " + NAME + "='"+name+"'", null);
+		c.moveToFirst();
+
+		Ingredient ingredient = new Ingredient();
+		if (c.getCount() > 0)
+		{
+			ingredient.set_name(c.getString(c.getColumnIndex(NAME)));
+			ingredient.set_quantity(c.getDouble(c.getColumnIndex(Ingredient.COLUMN_STOCK_TITLE)));
+			ingredient.set_unit(c.getString(c.getColumnIndex(Ingredient.COLUMN_UNIT_TITLE)));
+		}
+		c.close();
+
+		return ingredient;
+	}
+
 	public Recipe getRecipe(String name)
 	{
 		// Opens the database object in "read" mode, since no writes need to be done.
 		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
 		
-		Cursor c = db.rawQuery(	"SELECT *" + " FROM " + Recipe.TABLE_NAME +
+		Cursor c = db.rawQuery(	"SELECT * FROM " + Recipe.TABLE_NAME +
 								" WHERE " + NAME + "='" + name + "'",null);
 		c.moveToFirst();
 		int recipeId = c.getInt(c.getColumnIndex(ID));

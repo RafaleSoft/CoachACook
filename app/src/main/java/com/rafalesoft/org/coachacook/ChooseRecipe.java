@@ -1,13 +1,13 @@
 package com.rafalesoft.org.coachacook;
 
 import android.database.Cursor;
+import android.graphics.Color;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
@@ -48,7 +48,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                     if (current_step < recipe_steps.size())
                         spk = _rs.speak(recipe_steps.get(current_step++));
                     else
-                        spk = _rs.speak(_cook.getString(R.string.speech_recipe_over));
+                        spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_recipe_over));
                     _rs.Recognize(this);
                     break;
                 }
@@ -57,7 +57,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                     if (current_step > 0)
                         spk = _rs.speak(recipe_steps.get(--current_step));
                     else
-                        spk = _rs.speak(_cook.getString(R.string.speech_recipe_start));
+                        spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_recipe_start));
                     _rs.Recognize(this);
                     break;
                 }
@@ -66,7 +66,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                     if (current_step < recipe_steps.size())
                         spk = _rs.speak(recipe_steps.get(current_step));
                     else
-                        spk = _rs.speak(_cook.getString(R.string.speech_recipe_over));
+                        spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_recipe_over));
                     _rs.Recognize(this);
                     break;
                 }
@@ -79,7 +79,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                 }
                 case R.string.speech_termine:
                 {
-                    _cook.onBackPressed();
+                    CoachACook.getCoach().onBackPressed();
                     break;
                 }
             }
@@ -117,28 +117,47 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         @Override
         public boolean setViewValue(View view, Object data, String textRepresentation)
         {
-            if (view instanceof TextView)
+            if (data instanceof RecipeComponent)
             {
-                TextView tv = (TextView)view;
-                tv.setText(textRepresentation);
+                RecipeComponent stock = (RecipeComponent)data;
+                TextView tv;
+                if (view instanceof TextView)
+                    tv = (TextView) view;
+                else
+                    return false;
+
                 tv.setTextSize(10);
+                if (stock.get_quantity() <= 0)
+                    tv.setTextColor(Color.RED);
+
+                if (view.getId() == R.id.stock_item_name)
+                    tv.setText(stock.get_name());
+                else if (view.getId() == R.id.stock_item_quantity)
+                    tv.setText(Double.toString(stock.get_quantity()));
+                else if (view.getId() == R.id.stock_item_unit)
+                    tv.setText(stock.get_unit());
+                else
+                    return false;
+
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
     }
 
 
     public ChooseRecipe()
 	{
-		_rs = _cook.getRecipeSpeech();
+		_rs = CoachACook.getCoach().getRecipeSpeech();
 	}
 
 	@Override
 	public void onClick(View v)
 	{
-        View stock = _cook.switchToView(R.id.recipe_stockview);
+        View stock = CoachACook.getCoach().switchToView(R.id.recipe_stockview);
         ListView lvl = stock.findViewById(R.id.recipe_list);
 
         String[] projection = {RecipesDB.ID, RecipesDB.NAME, Recipe.COLUMN_DIFFICULTY_TITLE, Recipe.COLUMN_COST_TITLE};
@@ -148,7 +167,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         int[] toViews = { R.id.recipe_item_name , R.id.recipe_difficulty_progress, R.id.recipe_cost_progress};
 
         SimpleCursorAdapter recipesDBAdapter =
-                new SimpleCursorAdapter(_cook, R.layout.recipe_stockview_item,
+                new SimpleCursorAdapter(CoachACook.getCoach(), R.layout.recipe_stockview_item,
                                         getCursor(), fromColumns, toViews, 0);
         recipesDBAdapter.setViewBinder(new VB());
 
@@ -159,9 +178,9 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
     {
-        View recipeView = _cook.switchToView(R.id.recipe_view);
+        View recipeView = CoachACook.getCoach().switchToView(R.id.recipe_view);
         TextView recipe_name = view.findViewById(R.id.recipe_item_name);
-        Recipe r = _cook.getRecipesDB().getRecipe(recipe_name.getText().toString());
+        Recipe r = CoachACook.getCoach().getRecipesDB().getRecipe(recipe_name.getText().toString());
 
         fillRecipe(recipeView, r);
 
@@ -178,14 +197,18 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         TextView tv_desc = recipeView.findViewById(R.id.recipe_description);
         tv_desc.setText(r.get_preparation());
 
-        List<Map<String,String>> data = new ArrayList<>();
+        List<Map<String,Object>> data = new ArrayList<>();
         for (int item=0;item<r.nbComponents();item++)
         {
             RecipeComponent c = r.getComponent(item);
-            Map<String,String> ingredient = new ArrayMap<>();
-            ingredient.put("I",c.get_name());
-            ingredient.put("V",Integer.valueOf(c.get_quantity().intValue()).toString());
-            ingredient.put("U",c.get_unit());
+            Ingredient stock = CoachACook.getCoach().getRecipesDB().getIngredient(c.get_name());
+            if (stock.get_quantity() < c.get_quantity())
+                c.set_quantity(-c.get_quantity());
+
+            Map<String,Object> ingredient = new ArrayMap<>();
+            ingredient.put("I",c);
+            ingredient.put("V",c);
+            ingredient.put("U",c);
 
             data.add(ingredient);
         }
@@ -193,7 +216,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         String[] from = { "I", "V", "U" };
         int[] to = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
 
-        SimpleAdapter adapter = new SimpleAdapter(_cook, data, R.layout.stock_view_item, from, to);
+        SimpleAdapter adapter = new SimpleAdapter(CoachACook.getCoach(), data, R.layout.stock_view_item, from, to);
         adapter.setViewBinder(new VB2());
 
         ListView table = recipeView.findViewById(R.id.recipe_ingredients);

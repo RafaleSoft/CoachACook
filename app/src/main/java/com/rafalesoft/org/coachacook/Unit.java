@@ -62,6 +62,11 @@ public enum Unit
         }
     }
 
+    public String toString()
+    {
+        return "";
+    }
+
     public int getStringResId()
     {
         return mStringResId;

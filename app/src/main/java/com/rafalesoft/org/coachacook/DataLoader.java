@@ -18,19 +18,15 @@ import java.io.InputStream;
 abstract class DataLoader implements ContentHandler
 {
     static RecipesDB _db = null;
-    private static CoachACook _cook = null;
-    public static void setCook(CoachACook owner)
-    {
-        _cook = owner;
-        _db = _cook.getRecipesDB();
-    }
+
+    public static void setCook() { _db = CoachACook.getCoach().getRecipesDB(); }
 
     public boolean load_data(int file_id)
     {
         try
         {
-            String filename = _cook.getString(file_id);
-            String xmlSource = findFilePath(_cook, filename);
+            String filename = CoachACook.getCoach().getString(file_id);
+            String xmlSource = findFilePath(CoachACook.getCoach(), filename);
             if (!xmlSource.isEmpty())
             {
                 InputStream input = new FileInputStream(xmlSource);

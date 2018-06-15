@@ -20,15 +20,15 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 
-class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
+class ManageStock implements OnClickListener, OnItemClickListener
 {
-    private StockAdapter _stockAdapter = null;
+    private final StockAdapter _stockAdapter = null;
 	public ManageStock() {
 	}
 
 	private class StockAdapter extends PagerAdapter
     {
-        private ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
+        private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
 
         StockAdapter()
         {
@@ -52,7 +52,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
         public Object instantiateItem(ViewGroup collection, int position)
         {
 			Category.Model modelObject = Category.Model.values()[position];
-            LayoutInflater inflater = LayoutInflater.from(_cook);
+            LayoutInflater inflater = LayoutInflater.from(CoachACook.getCoach());
             ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.stock_view, collection, false);
 
             ImageView image = layout.findViewById(R.id.stock_image);
@@ -75,7 +75,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
             int[] toViews = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
 
             SimpleCursorAdapter recipesDBAdapter =
-                    new SimpleCursorAdapter(_cook,R.layout.stock_view_item,
+                    new SimpleCursorAdapter(CoachACook.getCoach(),R.layout.stock_view_item,
                             c.getCursor(),fromColumns,toViews,0);
 
             lvl.setAdapter(recipesDBAdapter);
@@ -97,14 +97,14 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
         public CharSequence getPageTitle(int position)
 		{
 			Category.Model model = Category.Model.values()[position];
-            return _cook.getString(model.getTitleResId());
+            return CoachACook.getCoach().getString(model.getTitleResId());
         }
     }
 
 	@Override
 	public void onClick(View v)
 	{
-		View view = _cook.switchToView(R.id.stock_pager);
+		View view = CoachACook.getCoach().switchToView(R.id.stock_pager);
 		if (null == _stockAdapter)
         {
             ViewPager vp = view.findViewById(R.id.view_pager);
@@ -116,7 +116,7 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
 	{
 
-	    LayoutInflater inflater = _cook.getLayoutInflater();
+	    LayoutInflater inflater = CoachACook.getCoach().getLayoutInflater();
 	    View dialogView = inflater.inflate(R.layout.stock_dialog, parent);
 	    
 	    TextView ingredient_name_tv = view.findViewById(R.id.stock_item_name);
@@ -129,19 +129,19 @@ class ManageStock extends RecipesCursorHolder implements OnClickListener, OnItem
 		quantity.setText(ingredient_quantity.getText());
 		((TextView)dialogView.findViewById(R.id.stock_dialog_item_unit)).setText(ingredient_unit.getText());
 	
-		AlertDialog.Builder builder = new AlertDialog.Builder(_cook);
+		AlertDialog.Builder builder = new AlertDialog.Builder(CoachACook.getCoach());
 		builder.setView(dialogView);
 	    builder.setMessage(R.string.update_ingredient);
 		builder.setPositiveButton(R.string.update_yes, new DialogInterface.OnClickListener() 
 		{ 	public void onClick(DialogInterface dialog, int id)
 			{
 				Double amount = Double.valueOf(quantity.getText().toString());
-				if (!_cook.getRecipesDB().updateStock(ingredient_name,amount))
+				if (!CoachACook.getCoach().getRecipesDB().updateStock(ingredient_name,amount))
 				{
-	    			String message = _cook.getResources().getString(R.string.invalid_ingredient);
+	    			String message = CoachACook.getCoach().getResources().getString(R.string.invalid_ingredient);
 	    			message += ": ";
 	    			message += ingredient_name;
-	    			Toast toast = Toast.makeText(_cook, message, Toast.LENGTH_LONG);
+	    			Toast toast = Toast.makeText(CoachACook.getCoach(), message, Toast.LENGTH_LONG);
 	    			toast.show();
 				}
 			}

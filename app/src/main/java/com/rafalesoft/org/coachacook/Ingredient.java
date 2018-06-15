@@ -17,13 +17,13 @@ public class Ingredient
 	private String 	_type = "";
 	private int 	_image = 0;
 
-	private Ingredient() {	}
+	Ingredient() {	}
 
 	public String get_name()
 	{
 		return _name;
 	}
-	private void set_name(String _name)
+	void set_name(String _name)
 	{
 		this._name = _name;
 	}
@@ -31,7 +31,7 @@ public class Ingredient
 	{
 		return _quantity;
 	}
-	private void set_quantity(Double _quantity)
+	void set_quantity(Double _quantity)
 	{
 		this._quantity = _quantity;
 	}
@@ -39,7 +39,7 @@ public class Ingredient
 	{
 		return _unit;
 	}
-	private void set_unit(String _unit)
+	void set_unit(String _unit)
 	{
 		this._unit = _unit;
 	}

@@ -22,7 +22,7 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
 	{
         Recipe r = genRecipe();
 
-        View stock = _cook.switchToView(R.id.recipe_stockview);
+        View stock = CoachACook.getCoach().switchToView(R.id.recipe_stockview);
         ListView lvl = stock.findViewById(R.id.recipe_list);
 
         String[] projection = {RecipesDB.ID, RecipesDB.NAME};
@@ -32,7 +32,7 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
         int[] toViews = { R.id.recipe_item_name };
 
         SimpleCursorAdapter recipesDBAdapter =
-                new SimpleCursorAdapter(_cook, R.layout.recipe_stockview_item,
+                new SimpleCursorAdapter(CoachACook.getCoach(), R.layout.recipe_stockview_item,
                                         getCursor(), fromColumns, toViews, 0);
 
         lvl.setAdapter(recipesDBAdapter);
@@ -42,13 +42,13 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
     {
-        View recipeView = _cook.switchToView(R.id.recipe_view);
+        View recipeView = CoachACook.getCoach().switchToView(R.id.recipe_view);
 
         TextView recipe_name = view.findViewById(R.id.recipe_item_name);
         TextView tv_name = recipeView.findViewById(R.id.recipe_name);
         tv_name.setText(recipe_name.getText());
 
-        Recipe r = _cook.getRecipesDB().getRecipe(recipe_name.getText().toString());
+        Recipe r = CoachACook.getCoach().getRecipesDB().getRecipe(recipe_name.getText().toString());
 
         TextView tv_desc = recipeView.findViewById(R.id.recipe_description);
         tv_desc.setText(r.get_preparation());
@@ -64,7 +64,7 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
 
         // Create an ArrayAdapter from List
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
-                (_cook, android.R.layout.simple_list_item_1, component_list);
+                (CoachACook.getCoach(), android.R.layout.simple_list_item_1, component_list);
 
         ListView table = recipeView.findViewById(R.id.recipe_ingredients);
         table.setAdapter(arrayAdapter);
@@ -72,7 +72,7 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
 
     private Recipe genRecipe()
     {
-        Recipe r = _cook.getRecipesDB().selectRecipe();
+        Recipe r = CoachACook.getCoach().getRecipesDB().selectRecipe();
 
         return r;
     }

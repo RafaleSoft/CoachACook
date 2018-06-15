@@ -29,6 +29,7 @@ public class CoachACook extends AppCompatActivity {
     private ViewFlipper _mainView = null;
     private ProgressBar _pg = null;
     private RecipeSpeech _recipeSpeech = null;
+    private ShoppingListManager _shopManager = null;
 
     public RecipeSpeech getRecipeSpeech()
     {
@@ -40,6 +41,7 @@ public class CoachACook extends AppCompatActivity {
     }
 
     private static CoachACook theCoach = null;
+    public static CoachACook getCoach() { return theCoach; }
 
 
     @Override
@@ -50,8 +52,8 @@ public class CoachACook extends AppCompatActivity {
         theCoach = this;
         _dbRecipes = new RecipesDB(this);
         _recipeSpeech = new RecipeSpeech(this);
-        RecipesCursorHolder.setCook(this);
-        DataLoader.setCook(this);
+        _shopManager = new ShoppingListManager();
+        DataLoader.setCook();
 
         setContentView(R.layout.activity_coach_acook);
         _mainView = findViewById(R.id.view_flipper);
@@ -85,13 +87,13 @@ public class CoachACook extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab_cart);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                        .setAction("Action", _shopManager).show();
             }
         });
     }
