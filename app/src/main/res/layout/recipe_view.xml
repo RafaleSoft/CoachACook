@@ -41,6 +41,7 @@
                 android:id="@+id/recipe_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elegantTextHeight="true"
                 android:textSize="@dimen/big_text" />
 
             <TextView
@@ -48,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/fab_margin"
+                android:elegantTextHeight="true"
                 android:ems="10"
                 android:inputType="none"
                 tools:layout_editor_absoluteX="16dp"

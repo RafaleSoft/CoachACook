@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Recipes>
-	<Recipe name="Soupe de légumes" guests="4" difficulty="10" cost="30" time="30">
+	<Recipe name="Soupe de légumes" guests="4" difficulty="10" cost="30" prepare_time="20" cook_time="30">
 		<Component name="Oignons" quantity="1"/>
 		<Component name="Poireaux" quantity="4"/>
 		<Component name="Navets" quantity="4"/>
@@ -8,7 +8,7 @@
 		<Component name="Pommes de terre" quantity="250" unit="g"/>
 		<Preparation>Faire dorer l'oignon. Eplucher les légumes, les couper en morceaux. Quand l'oignon est doré, ajouter les légumes et recouvrir d'eau</Preparation>
 	</Recipe>
-	<Recipe name="Crêpes" guests="4" difficulty="20" cost="20" time="90">
+	<Recipe name="Crêpes" guests="4" difficulty="20" cost="20"  prepare_time="20" cook_time="90">
 		<Component name="Farine" quantity="250" unit="g"/>
 		<Component name="Oeufs" quantity="4"/>
 		<Component name="Lait" quantity="0.5" unit="l"/>
@@ -17,7 +17,7 @@
 		<Component name="Beurre" quantity="50" unit="g"/>
 		<Preparation>Mettre la farine dans un saladier avec le sel et le sucre. Faire un puits au milieu et y verser les oeufs légèrement battus à la fourchette. Commencer à incorporer doucement la farine avec une cuillère en bois. Quand le mélange devient épais, ajouter le lait froid petit à petit, on peut utiliser un fouet mais toujours doucement pour éviter les grumeaux. Quand tout le lait est mélangé, la pâte doit être assez fluide, si elle vous paraît trop épaisse, rajouter en peu de lait. Ajouter ensuite le beurre fondu, mélanger bien. Cuire les crêpes dans une poêle chaude (pas besoin de matière grasse, elle est déjà dans la pâte). Verser une petite louche de pâte dans la poêle, faire un mouvement de rotation pour répartir la pâte sur toute la surface, poser sur le feu et quand le tour de la crêpe se colore en roux clair, il est temps de la retourner. Laisser cuire environ une minute de ce côté et la crêpe est prête. Répéter jusqu'à épuisement de la pâte. </Preparation>
 	</Recipe>
-	<Recipe name="Sauté de porc au curry" guests="6" difficulty="75" cost="30" time="120">
+	<Recipe name="Sauté de porc au curry" guests="6" difficulty="75" cost="30"  prepare_time="40" cook_time="90">
 		<Component name="Echine de porc" quantity="1.25" unit="kg"/>
 		<Component name="Poivre" quantity="1"/>
 		<Component name="Sel" quantity="1"/>
@@ -33,6 +33,8 @@
 		<Component name="Oignons" quantity="5"/>
 		<Component name="Ail" quantity="3"/>
 		<Component name="Crème fraiche" quantity="0.2" unit="l"/>
-		<Preparation>Epluchez l'ail et les oignons. Ecrasez les gousses d'ail et émincez les oignons. Lavez le persil.</Preparation>
+		<Preparation>Epluchez l'ail et les oignons. Ecrasez les gousses d'ail et émincez les oignons. Lavez le persil.
+		
+		</Preparation>
 	</Recipe>
 </Recipes>

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 class ManageStock implements OnClickListener, OnItemClickListener
 {
-    private final StockAdapter _stockAdapter = null;
+    private StockAdapter _stockAdapter = null;
 	public ManageStock() {
 	}
 
@@ -107,8 +107,9 @@ class ManageStock implements OnClickListener, OnItemClickListener
 		View view = CoachACook.getCoach().switchToView(R.id.stock_pager);
 		if (null == _stockAdapter)
         {
+            _stockAdapter = new StockAdapter();
             ViewPager vp = view.findViewById(R.id.view_pager);
-            vp.setAdapter(new StockAdapter());
+            vp.setAdapter(_stockAdapter);
         }
 	}
 

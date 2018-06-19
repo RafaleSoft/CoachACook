@@ -92,8 +92,8 @@ public class CoachACook extends AppCompatActivity {
         {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", _shopManager).show();
+                Snackbar.make(view, "View your cart", Snackbar.LENGTH_LONG)
+                        .setAction("Show it!", _shopManager).show();
             }
         });
     }
@@ -104,23 +104,29 @@ public class CoachACook extends AppCompatActivity {
         if (view == null)
         {
             int layout = 0;
+            FloatingActionButton fab = findViewById(R.id.fab_cart);
 
             switch (viewId)
             {
                 case R.id.stock_pager:
                     layout = R.layout.stock_pager;
+                    fab.setVisibility(View.VISIBLE);
                     break;
                 case R.id.stock_view:
                     layout = R.layout.stock_view;
+                    fab.setVisibility(View.VISIBLE);
                     break;
                 case R.id.recipe_stockview:
                     layout = R.layout.recipe_stockview;
+                    fab.setVisibility(View.VISIBLE);
                     break;
                 case R.id.recipe_view:
                     layout = R.layout.recipe_view;
+                    fab.setVisibility(View.INVISIBLE);
                     break;
                 case R.id.coach_a_cook:
                     layout = R.layout.activity_coach_acook;
+                    fab.setVisibility(View.VISIBLE);
                     break;
             }
 
@@ -140,7 +146,7 @@ public class CoachACook extends AppCompatActivity {
 
     private class UpdateDataTask extends AsyncTask<Void, Void, Boolean>
     {
-        private boolean _reset;
+        private final boolean _reset;
         UpdateDataTask(boolean reset)
         {
             _reset = reset;

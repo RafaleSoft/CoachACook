@@ -10,16 +10,18 @@ public class Recipe
 	public static final String COLUMN_PREPARATION_TITLE = "preparation";
 	public static final String COLUMN_DIFFICULTY_TITLE = "difficulty";
     public static final String COLUMN_COST_TITLE = "cost";
-    public static final String COLUMN_TIME_TITLE = "time";
+	public static final String COLUMN_PREPARE_TITLE = "prepare_time";
+    public static final String COLUMN_TIME_TITLE = "cook_time";
 	
 	private String _name;
-	private ArrayList<RecipeComponent> _components = new ArrayList<>();
+	private final ArrayList<RecipeComponent> _components = new ArrayList<>();
 	private int _guests = 0;
 
 
     private int _difficulty = 0;
     private int _cost = 0;
-    private int _time = 0;
+    private int _cook_time = 0;
+    private int _prepare_time = 0;
 	private String _preparation = null;
 
 
@@ -68,13 +70,21 @@ public class Recipe
     {
         return _cost;
     }
-    private void set_time(int time)
+    private void set_prepare_time(int time)
     {
-        _time = time;
+        _prepare_time = time;
     }
-    public int get_time()
+    public int get_prepare_time()
     {
-        return _time;
+        return _prepare_time;
+    }
+    private void set_cook_time(int time)
+    {
+        _cook_time = time;
+    }
+    public int get_cook_time()
+    {
+        return _cook_time;
     }
 
     public int nbComponents()
@@ -127,8 +137,10 @@ public class Recipe
                         _recipe.set_difficulty(Integer.parseInt(attrs.getValue(i)));
                     else if (name.compareTo(Recipe.COLUMN_COST_TITLE) == 0)
                         _recipe.set_cost(Integer.parseInt(attrs.getValue(i)));
+                    else if (name.compareTo(Recipe.COLUMN_PREPARE_TITLE) == 0)
+                        _recipe.set_prepare_time(Integer.parseInt(attrs.getValue(i)));
                     else if (name.compareTo(Recipe.COLUMN_TIME_TITLE) == 0)
-                        _recipe.set_time(Integer.parseInt(attrs.getValue(i)));
+                        _recipe.set_cook_time(Integer.parseInt(attrs.getValue(i)));
 				}
 			}
 			else if ((localName.compareTo("Component") == 0) &&
@@ -161,7 +173,7 @@ public class Recipe
 		{
 			if (_parsingRecipe && _parsingPreparation)
 			{
-				_recipe.set_preparation(new String(ch));
+				_recipe.set_preparation(String.valueOf(ch, start, length));
 			}
 		}
 	

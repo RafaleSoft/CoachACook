@@ -1,5 +1,6 @@
 package com.rafalesoft.org.coachacook;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -97,21 +98,34 @@ public class RecipeSpeech implements RecognitionListener
 
             try
             {
+                Thread.sleep(200);
                 while (_tts.isSpeaking())
-                    Thread.sleep(100);
+                {
+                    Log.d("STT", "TTS Buzy ...");
+                    Thread.sleep(200);
+                }
             }
             catch (InterruptedException e)
             {
                 e.printStackTrace();
             }
 
-            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, RecipeSpeech.class.getPackage().getName());
-            intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
+            try
+            {
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                //intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, RecipeSpeech.class.getPackage().getName());
+                intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3);
 
-            _sr.startListening(intent);
-            Log.d("STT", "startListening()");
+                _sr.startListening(intent);
+                Log.d("STT", "startListening()");
+            }
+            catch (ActivityNotFoundException e)
+            {
+                e.printStackTrace();
+                Toast toast = Toast.makeText(_ctx, "There is no voice recognition installed or configured on this device", Toast.LENGTH_SHORT);
+                toast.show();
+            }
         }
     }
 
@@ -201,28 +215,36 @@ public class RecipeSpeech implements RecognitionListener
         final ArrayList<String> stringArrayList = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         final float[] floatArray = bundle.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES);
 
+        if ((null == stringArrayList) || (null == floatArray))
+            return;
+
         if (!stringArrayList.isEmpty())
         {
             if (floatArray[0] < 0.5f)
-                _tts.speak(_ctx.getString(R.string.speech_not_understood), QUEUE_ADD, null, "incompris");
+            {
+                Log.d("STT","... poor confidence score: " + floatArray[0] + " -> " + stringArrayList.get(0));
+                _rc.onRecognized(R.string.speech_not_understood);
+            }
             else
             {
                 boolean understood = false;
                 String msg = stringArrayList.get(0);
                 for (int id:_toRecognize)
                 {
+                    Log.d("STT"," try recognize: "+msg+" vs "+_ctx.getString(id));
                     if (msg.equals(_ctx.getString(id)))
                     {
                         understood = true;
                         if (null != _rc)
                             _rc.onRecognized(id);
+                        break;
                     }
                 }
 
                 if (!understood)
                 {
-                    _tts.speak(_ctx.getString(R.string.speech_not_understood), QUEUE_ADD, null, "incompris");
-                    Recognize(_rc);
+                    Log.d("STT"," nothing recognized");
+                    _rc.onRecognized(R.string.speech_not_understood);
                 }
             }
         }
@@ -234,6 +256,9 @@ public class RecipeSpeech implements RecognitionListener
         Log.d("STT","onPartialResults()");
         final ArrayList<String> stringArrayList = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
         final float[] floatArray = bundle.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES);
+
+        if ((null == stringArrayList) || (null == floatArray))
+            return;
 
         if (!stringArrayList.isEmpty())
         {

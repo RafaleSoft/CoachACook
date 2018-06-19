@@ -25,6 +25,7 @@
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_toLeftOf="@+id/stock_dialog_item_unit"
         android:ems="10"
+        android:hint="@string/ingredient_amount"
         android:inputType="numberDecimal"
         android:labelFor="@+id/stock_dialog">
 
