@@ -7,7 +7,8 @@ public enum Unit
     MILLILITER(R.string.unit_milliliter),
     LITER(R.string.unit_liter),
     TEASPOON(R.string.unit_teaspoon),
-    TABLESPOON(R.string.unit_tablespoon);
+    SPOON(R.string.unit_tablespoon),
+    CALORIE(R.string.unit_calorie);
 
     public enum SI
     {
@@ -19,7 +20,8 @@ public enum Unit
         MATER,
         LIGHT,
         AREA,   // Derived
-        VOLUME  // Derived
+        VOLUME, // Derived
+        HEAT    // Derived
     }
 
     final private int mStringResId;
@@ -55,11 +57,20 @@ public enum Unit
                 mSI = SI.MASS;
                 mSIFactor = 0.01f;
                 break;
+            case R.string.unit_calorie:
+                mSI = SI.HEAT;
+                mSIFactor = 1.0f / 4.184f;  // 1 Kcal = 4184 J
+                break;
             default:
                 mSI = SI.LENGTH;
                 mSIFactor = 1.0f;
                 break;
         }
+    }
+
+    public static Unit parse(String label)
+    {
+        return GRAM;
     }
 
     public String toString()

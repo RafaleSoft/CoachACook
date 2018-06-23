@@ -32,9 +32,20 @@
 		<Component name="Bouillon" quantity="0.5" unit="l"/>
 		<Component name="Oignons" quantity="5"/>
 		<Component name="Ail" quantity="3"/>
-		<Component name="Crème fraiche" quantity="0.2" unit="l"/>
+		<Component name="Crème fraiche" quantity="0.1" unit="l"/>
+		<Component name="Ricard" quantity="1" unit="sp"/>
 		<Preparation>Epluchez l'ail et les oignons. Ecrasez les gousses d'ail et émincez les oignons. Lavez le persil.
-		
+		Nettoyez la pomme et les tomates. Pelez-les. Râpez la pomme. Epépinnez et concassez les tomates. Hachez le persil.
+		Préparez le bouillon avec un cube prêt à l'emploi. Coupez la viande en morceaux carrés de 4 cm environ.
+		Assaizonnez de sel, de poinvre en grains et de poudre de gingembre.
+		Faites chauffer le saindoux dans une cocotte et jetez-y les morceaux de porc.
+		Faites-les bien revenir et remuez-les afin qu'ils rissollent sur toutes les faces.
+		Ajoutez les oignons. Laissez-les blondir et mouillez avec le bouillon puis le vin blanc.
+		Ajoutez l'ail, le curry, le thym, le laurier et le persil puis les tomates ainsi que la pomme.
+		Rectifiez l'assaisonnement qui doit être bien relevé. Ajoutez une pincée de Cayenne. Couvez et laissze cuire 1h 1/2 à petit feu.
+		En fin de cuisson, retirez les morceaux de porc, égouttez-les et tenez-les au chaud dans un plat creux. Passez la sauce au chinois.
+		Ajoutez le pastis, liez ave la crème et laissez épaissir en fouettant 3 minutes à feu vif.
+		Nappez la viande avec cette sauce. Servez un riz créole.
 		</Preparation>
 	</Recipe>
 </Recipes>
