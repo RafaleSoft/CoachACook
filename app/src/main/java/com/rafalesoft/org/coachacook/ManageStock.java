@@ -2,6 +2,7 @@ package com.rafalesoft.org.coachacook;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -26,6 +27,8 @@ class ManageStock implements OnClickListener, OnItemClickListener
 	public ManageStock() {
 	}
 
+
+
 	private class StockAdapter extends PagerAdapter
     {
         private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
@@ -34,6 +37,34 @@ class ManageStock implements OnClickListener, OnItemClickListener
         {
             for (int i=0; i<getCount(); i++)
                 _cursors.add(new RecipesCursorHolder());
+        }
+
+        private class StockCursorAdapter implements SimpleCursorAdapter.ViewBinder
+        {
+            @Override
+            public boolean setViewValue(View view, Cursor cursor, int columnIndex)
+            {
+                if (view.getId() == R.id.stock_item_name)
+                {
+                    String text = cursor.getString(columnIndex);
+                    ((TextView) view).setText(text);
+                    return true;
+                }
+                else if (view.getId() == R.id.stock_item_quantity)
+                {
+                    Double q = cursor.getDouble(columnIndex);
+                    ((TextView) view).setText(q.toString());
+                    return true;
+                }
+                else if (view.getId() == R.id.stock_item_unit)
+                {
+                    Unit u = Unit.values()[cursor.getInt(columnIndex)];
+                    ((TextView) view).setText(u.toString());
+                    return true;
+                }
+                else
+                    return false;
+            }
         }
 
         @Override
@@ -67,7 +98,7 @@ class ManageStock implements OnClickListener, OnItemClickListener
                                     Ingredient.COLUMN_UNIT_TITLE };
 
             String selection = Ingredient.COLUMN_TYPE_TITLE + "=?" + " AND " + Ingredient.COLUMN_STOCK_TITLE + ">0";
-            String[] selectionArgs = { Integer.toString(1+modelObject.ordinal()) };
+            String[] selectionArgs = { Integer.toString(modelObject.ordinal()) };
             RecipesCursorHolder c = _cursors.get(position);
             c.updateCursor(Ingredient.TABLE_NAME, projection, selection, selectionArgs);
 
@@ -78,6 +109,7 @@ class ManageStock implements OnClickListener, OnItemClickListener
                     new SimpleCursorAdapter(CoachACook.getCoach(),R.layout.stock_view_item,
                             c.getCursor(),fromColumns,toViews,0);
 
+            recipesDBAdapter.setViewBinder(new StockCursorAdapter());
             lvl.setAdapter(recipesDBAdapter);
             //lvl.setOnItemClickListener(this);
 

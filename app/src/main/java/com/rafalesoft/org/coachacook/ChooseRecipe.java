@@ -27,18 +27,24 @@ import java.util.Map;
 
 public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
-    private final RecipeSpeech _rs;
     private final ArrayList<String> recipe_steps = new ArrayList<>();
     private int current_step = 0;
-    private final RC _rc = new RC();
+    private final RecipeRecognitionCallback _recipeRecognitionCallback = new RecipeRecognitionCallback();
     private SpannableString _spText = null;
     private TextView _recipeDescription = null;
     private FloatingActionButton _floatingButton = null;
     private final ForegroundColorSpan _fgSpan = new ForegroundColorSpan(Color.BLUE);
 
-    private class RC implements RecipeSpeech.RecognitionCallback, View.OnClickListener
+
+    private class RecipeRecognitionCallback implements RecipeSpeech.RecognitionCallback, View.OnClickListener
     {
+        private final RecipeSpeech _rs;
         private boolean _active = false;
+
+        public RecipeRecognitionCallback()
+        {
+            _rs = CoachACook.getCoach().getRecipeSpeech();
+        }
 
         @Override
         public void onClick(View v)
@@ -47,7 +53,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
             if (_active)
             {
                 if (null != _rs)
-                    _rs.Recognize(_rc);
+                    _rs.Recognize(_recipeRecognitionCallback);
                 else
                     _active = false;
             }
@@ -142,7 +148,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         _recipeDescription.setText(_spText, TextView.BufferType.SPANNABLE);
     }
 
-    private class VB implements SimpleCursorAdapter.ViewBinder
+    private class RecipeCursorAdapter implements SimpleCursorAdapter.ViewBinder
     {
         @Override
         public boolean setViewValue(View view, Cursor cursor, int columnIndex)
@@ -157,6 +163,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
             {
                 int minutes = cursor.getInt(columnIndex);
                 int hours = minutes / 60;
+                minutes = minutes - 60 * hours;
                 ((TextView) view).setText(new StringBuilder().append(hours).append(':').append(minutes));
                 return true;
             }
@@ -171,7 +178,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         }
     }
 
-    private class VB2 implements SimpleAdapter.ViewBinder
+    private class RecipeComponentAdapter implements SimpleAdapter.ViewBinder
     {
         @Override
         public boolean setViewValue(View view, Object data, String textRepresentation)
@@ -198,7 +205,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                         tv.setText(Double.toString(stock.get_quantity()));
                         break;
                     case R.id.stock_item_unit:
-                        tv.setText(stock.get_unit());
+                        tv.setText(stock.get_unit().toString());
                         break;
                     default:
                         return false;
@@ -214,10 +221,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
     }
 
 
-    public ChooseRecipe()
-	{
-		_rs = CoachACook.getCoach().getRecipeSpeech();
-	}
+    public ChooseRecipe() { }
 
 	@Override
 	public void onClick(View v)
@@ -239,7 +243,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         SimpleCursorAdapter recipesDBAdapter =
                 new SimpleCursorAdapter(CoachACook.getCoach(), R.layout.recipe_stockview_item,
                                         getCursor(), fromColumns, toViews, 0);
-        recipesDBAdapter.setViewBinder(new VB());
+        recipesDBAdapter.setViewBinder(new RecipeCursorAdapter());
 
         lvl.setAdapter(recipesDBAdapter);
         lvl.setOnItemClickListener(this);
@@ -261,7 +265,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
                                    public void onClick(View view)
                                    {
                                        Snackbar.make(view, "Recipe speech", Snackbar.LENGTH_LONG)
-                                               .setAction("Start !", _rc).show();
+                                               .setAction("Start !", _recipeRecognitionCallback).show();
                                    }
                                });
 
@@ -300,7 +304,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         int[] to = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
 
         SimpleAdapter adapter = new SimpleAdapter(CoachACook.getCoach(), data, R.layout.stock_view_item, from, to);
-        adapter.setViewBinder(new VB2());
+        adapter.setViewBinder(new RecipeComponentAdapter());
 
         ListView table = recipeView.findViewById(R.id.recipe_ingredients);
         table.setAdapter(adapter);

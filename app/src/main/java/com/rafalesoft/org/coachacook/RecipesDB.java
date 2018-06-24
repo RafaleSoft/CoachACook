@@ -18,7 +18,7 @@ public class RecipesDB
 
     public static final String ID = "_id";
     public static final String NAME = "name";
-	private static final int DATABASE_VERSION = 6;
+	private static final int DATABASE_VERSION = 7;
 	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
 
 	
@@ -149,7 +149,7 @@ public class RecipesDB
 		    	    cmp_values.put(RecipeComponent.COLUMN_RECIPE_TITLE, rowId);
 		    	    cmp_values.put(RecipeComponent.COLUMN_INGREDIENT_TITLE, ingredientId);
 		    	    cmp_values.put(RecipeComponent.COLUMN_AMOUNT_TITLE, component.get_quantity());
-		    	    cmp_values.put(RecipeComponent.COLUMN_UNIT_TITLE, component.get_unit());
+		    	    cmp_values.put(RecipeComponent.COLUMN_UNIT_TITLE, component.get_unit().toString());
 		    	
 		    	    // Performs the insert and returns the ID of the new recipe.
 		    	    db.insert(	RecipeComponent.TABLE_NAME,// The table to insert into.
@@ -178,7 +178,7 @@ public class RecipesDB
 	    try
         {
             // ordinal is 0 based
-            idCategory = 1 + Category.Model.valueOf(ingredient.get_type()).ordinal();
+            idCategory = ingredient.get_type().ordinal();
         }
 		catch (IllegalArgumentException e)
         {
@@ -190,7 +190,7 @@ public class RecipesDB
 	    ContentValues values = new ContentValues();
 	    values.put(NAME, ingredient.get_name());
 	    values.put(Ingredient.COLUMN_STOCK_TITLE, ingredient.get_quantity());
-	    values.put(Ingredient.COLUMN_UNIT_TITLE, ingredient.get_unit());
+	    values.put(Ingredient.COLUMN_UNIT_TITLE, ingredient.get_unit().ordinal());
 	    values.put(Ingredient.COLUMN_TYPE_TITLE, idCategory);
 		
 	    // Opens the database object in "write" mode.
@@ -227,7 +227,8 @@ public class RecipesDB
 		{
 			ingredient.set_name(c.getString(c.getColumnIndex(NAME)));
 			ingredient.set_quantity(c.getDouble(c.getColumnIndex(Ingredient.COLUMN_STOCK_TITLE)));
-			ingredient.set_unit(c.getString(c.getColumnIndex(Ingredient.COLUMN_UNIT_TITLE)));
+			ingredient.set_unit(Unit.values()[c.getInt(c.getColumnIndex(Ingredient.COLUMN_UNIT_TITLE))]);
+			ingredient.set_type(Category.Model.values()[c.getInt(c.getColumnIndex(Ingredient.COLUMN_TYPE_TITLE))]);
 		}
 		c.close();
 
@@ -266,7 +267,7 @@ public class RecipesDB
 			c2.moveToFirst();
 			component.set_name(c2.getString(c2.getColumnIndex(NAME)));
 			component.set_quantity(quantity);
-			component.set_unit(unit);
+			component.set_unit(Unit.parse(unit));
 			recipe.addComponent(component);
 		    
 			c2.close();
@@ -324,7 +325,6 @@ public class RecipesDB
 	    return (res == 1);
 	}
 	
-	
 
 	static class DatabaseHelper extends SQLiteOpenHelper 
 	{
@@ -342,36 +342,10 @@ public class RecipesDB
 	   {
 		   try
            {
-                String query = "CREATE TABLE " + Recipe.TABLE_NAME + " ("
-                        + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                        + NAME + " VARCHAR(32) NOT NULL,"
-                        + Recipe.COLUMN_GUESTS_TITLE + " INTEGER,"
-                        + Recipe.COLUMN_PREPARATION_TITLE + " TEXT,"
-                        + Recipe.COLUMN_DIFFICULTY_TITLE + " INTEGER,"
-                        + Recipe.COLUMN_COST_TITLE + " INTEGER,"
-                        + Recipe.COLUMN_PREPARE_TITLE + " INTEGER,"
-                        + Recipe.COLUMN_TIME_TITLE + " INTEGER"
-                        + ");";
-                db.execSQL(query);
-
-                query = "CREATE TABLE " + RecipeComponent.TABLE_NAME + " ("
-                        + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                        + RecipeComponent.COLUMN_RECIPE_TITLE + " INTEGER,"
-                        + RecipeComponent.COLUMN_INGREDIENT_TITLE + " INTEGER,"
-                        + RecipeComponent.COLUMN_AMOUNT_TITLE + " REAL,"
-                        + RecipeComponent.COLUMN_UNIT_TITLE + " VARCHAR(4)"
-                        + ");";
-                db.execSQL(query);
-
-                query = "CREATE TABLE " + Ingredient.TABLE_NAME + " ("
-                        + ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                        + NAME + " VARCHAR(32) NOT NULL,"
-                        + Ingredient.COLUMN_STOCK_TITLE + " REAL,"
-                        + Ingredient.COLUMN_UNIT_TITLE + " VARCHAR(4),"
-                        + Ingredient.COLUMN_TYPE_TITLE + " INTEGER,"
-                        + Ingredient.COLUMN_IMAGE_ID + " INTEGER"
-                        + ");";
-                db.execSQL(query);
+                db.execSQL(Recipe.getTableQuery());
+                db.execSQL(RecipeComponent.getTableQuery());
+                db.execSQL(Ingredient.getTableQuery());
+    		    db.execSQL(Nutriments.getTableQuery());
            }
 	       catch (SQLException e)
 		   {
@@ -417,6 +391,9 @@ public class RecipesDB
 
 				query = "DROP TABLE IF EXISTS " + RecipeComponent.TABLE_NAME;
 				db.execSQL(query);
+
+                query = "DROP TABLE IF EXISTS " + Nutriments.TABLE_NAME;
+                db.execSQL(query);
 			}
 			catch (SQLException e)
 			{

@@ -49,6 +49,24 @@ class Nutriments
     public static final String COLUMN_P2 = "Phenoliques";       // Acides phénoliques
 
 
+    /**
+     * Elaborates the SQL query to create ingredient table
+     * @return the sql query string
+     */
+    public static String getTableQuery()
+    {
+        return "CREATE TABLE " + Nutriments.TABLE_NAME + " ("
+                + RecipesDB.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + RecipeComponent.COLUMN_INGREDIENT_TITLE + " INTEGER,"
+                + Nutriments.COLUMN_E1 + " REAL,"
+                + Nutriments.COLUMN_C1 + " REAL,"
+                + Nutriments.COLUMN_C2 + " REAL,"
+                + Nutriments.COLUMN_C3 + " REAL"
+                + ");";
+    }
+
+
+
     private float _calories = 0.0f;
     private float _eau = 0.0f;
     private float _proteins = 0.0f;

@@ -30,67 +30,161 @@ public class Recipe
         _name = name;
     }
 
-    public String get_name()
+	/**
+	 * Elaborates the SQL query to create ingredient table
+	 * @return the sql query string
+	 */
+	public static String getTableQuery()
+	{
+		return "CREATE TABLE " + Recipe.TABLE_NAME + " ("
+				+ RecipesDB.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ RecipesDB.NAME + " VARCHAR(32) NOT NULL,"
+				+ Recipe.COLUMN_GUESTS_TITLE + " INTEGER,"
+				+ Recipe.COLUMN_PREPARATION_TITLE + " TEXT,"
+				+ Recipe.COLUMN_DIFFICULTY_TITLE + " INTEGER,"
+				+ Recipe.COLUMN_COST_TITLE + " INTEGER,"
+				+ Recipe.COLUMN_PREPARE_TITLE + " INTEGER,"
+				+ Recipe.COLUMN_TIME_TITLE + " INTEGER"
+				+ ");";
+	}
+
+    /**
+     * Name getter.
+     * @return recipe name.
+     */
+	public String get_name()
     {
         return _name;
     }
+
+    /**
+     * Name setter.
+     * @param _name : the new recipe name.
+     */
 	private void set_name(String _name)
 	{
 		this._name = _name;
 	}
+
+    /**
+     * Preparation getter.
+     * @return the preparation of the recipe.
+     */
 	public String get_preparation()
 	{
 		return _preparation;
 	}
-	public void set_preparation(String _preparation)
+
+    /**
+     * Preparation setter.
+     * @param preparation : the new recipe preparation.
+     */
+	public void set_preparation(String preparation)
 	{
-		this._preparation = _preparation;
+		_preparation = preparation;
 	}
+
+
+    /**
+     * Guest getter.
+     * @return the number of guest for the recipe in database.
+     */
 	public int get_guests()
 	{
 		return _guests;
 	}
-	public void set_guests(int _guests)
+
+    /** Guests setter.
+     * Define the new number of guests for this recipe.
+     * @param guests
+     */
+	public void set_guests(int guests)
 	{
-		this._guests = _guests;
+		_guests = guests;
 	}
+
+    /**
+     * Difficulty getter.
+     * @return recipe difficulty.
+     */
     public int get_difficulty()
     {
         return _difficulty;
     }
+
+    /**
+     * Difficulty setter.
+     * @param difficulty : recipe difficulty, 0 to 100 scale.
+     */
 	private void set_difficulty(int difficulty)
     {
         _difficulty = difficulty;
     }
+
+    /**
+     * Cost setter.
+     * @param cost : recipe cost, 0 to 100 scale.
+     */
     private void set_cost(int cost)
     {
         _cost = cost;
     }
+
+    /**
+     * Cost getter.
+     * @return the recipe relative cost.
+     */
     public int get_cost()
     {
         return _cost;
     }
+
+    /**
+     * Recipe preparation setter.
+     * @param time : the recipe preparation time in minutes.
+     */
     private void set_prepare_time(int time)
     {
         _prepare_time = time;
     }
+
+    /**
+     * Recipe preparation getter.
+     * @return the preparation time.
+     */
     public int get_prepare_time()
     {
         return _prepare_time;
     }
+
+    /**
+     * Cooking time setter.
+     * @param time : the recipe cooking time in minutes.
+     */
     private void set_cook_time(int time)
     {
         _cook_time = time;
     }
+
+    /**
+     * Cooking time getter.
+     * @return the cooking time.
+     */
     public int get_cook_time()
     {
         return _cook_time;
     }
 
+    /**
+     * Getter for the number of recipe ingredients.
+     * @return the number of ingredients.
+     */
     public int nbComponents()
 	{
 		return _components.size();
 	}
+
+
 	public void addComponent(RecipeComponent component) 
 	{
 		_components.add(component);
@@ -156,7 +250,7 @@ public class Recipe
 					else if (name.compareTo("quantity") == 0)
 						component.set_quantity(Double.parseDouble(attrs.getValue(i)));
 					else if (name.compareTo("unit") == 0)
-						component.set_unit(attrs.getValue(i));
+						component.set_unit(Unit.parse(attrs.getValue(i)));
 				}
 				_recipe.addComponent(component);
 			}
@@ -173,7 +267,8 @@ public class Recipe
 		{
 			if (_parsingRecipe && _parsingPreparation)
 			{
-				_recipe.set_preparation(String.valueOf(ch, start, length));
+				String prep = _recipe.get_preparation() + String.valueOf(ch, start, length);
+				_recipe.set_preparation(prep);
 			}
 		}
 	

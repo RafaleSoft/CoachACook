@@ -8,8 +8,12 @@ public enum Unit
     LITER(R.string.unit_liter),
     TEASPOON(R.string.unit_teaspoon),
     SPOON(R.string.unit_tablespoon),
-    CALORIE(R.string.unit_calorie);
+    CALORIE(R.string.unit_calorie),
+    COUNT(R.string.unit_count);
 
+    /**
+     * International System units, to enable units comparison.
+     */
     public enum SI
     {
         LENGTH,
@@ -17,11 +21,11 @@ public enum Unit
         TIME,
         CURRENT,
         TEMPERATURE,
-        MATER,
+        MOLE,
         LIGHT,
         AREA,   // Derived
         VOLUME, // Derived
-        HEAT    // Derived
+        ENERGY    // Derived
     }
 
     final private int mStringResId;
@@ -58,24 +62,58 @@ public enum Unit
                 mSIFactor = 0.01f;
                 break;
             case R.string.unit_calorie:
-                mSI = SI.HEAT;
+                mSI = SI.ENERGY;
                 mSIFactor = 1.0f / 4.184f;  // 1 Kcal = 4184 J
                 break;
-            default:
-                mSI = SI.LENGTH;
+            case R.string.unit_count:
+                mSI = SI.MOLE;
                 mSIFactor = 1.0f;
+                break;
+            default:
+                mSI = SI.MASS;
+                mSIFactor = 0.001f;
                 break;
         }
     }
 
     public static Unit parse(String label)
     {
-        return GRAM;
+        Unit unit;
+
+        switch (label.toLowerCase())
+        {
+            case "g":
+                unit = GRAM;
+                break;
+            case "kg":
+                unit = KILOGRAM;
+                break;
+            case "ml":
+                unit = MILLILITER;
+                break;
+            case "l":
+                unit = LITER;
+                break;
+            case "tsp":
+                unit = TEASPOON;
+                break;
+            case "sp":
+                unit = SPOON;
+                break;
+            case "cal":
+                unit = CALORIE;
+                break;
+            default:
+                unit = GRAM;
+                break;
+        }
+
+        return unit;
     }
 
     public String toString()
     {
-        return "";
+        return CoachACook.getCoach().getString(mStringResId);
     }
 
     public int getStringResId()
