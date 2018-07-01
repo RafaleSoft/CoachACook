@@ -18,7 +18,7 @@ public class RecipesDB
 
     public static final String ID = "_id";
     public static final String NAME = "name";
-	private static final int DATABASE_VERSION = 7;
+	private static final int DATABASE_VERSION = 8;
 	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
 
 	

@@ -11,8 +11,8 @@
 
     <!-- Categories -->
     <string name="category_image">Image de catégorie d\'ingrédient</string>
-    <string name="category_title">Category</string>
-    <string name="category_legume">Vegetable</string>
+    <string name="category_title">Catégorie</string>
+    <string name="category_legume">Légumes</string>
     <string name="category_fruit">Fruit</string>
     <string name="category_boucherie">Boucherie</string>
     <string name="category_charcuterie">Charcuterie</string>
@@ -30,9 +30,6 @@
     <string name="unit_tablespoon">sp</string>
     <string name="unit_calorie">cal</string>
     <string name="unit_count"> </string>
-
-    <!-- Data files -->
-
 
     <!-- Speech -->
     <string name="speech_quitte">quitte</string>
@@ -53,10 +50,10 @@
         <string name="BuildRecipe">Build Menu</string>
 
         <!-- Main Menu -->
-        <string name="action_settings">Settings</string>
-        <string name="action_reset">Reset all data</string>
-        <string name="action_update_stock">Update stock</string>
-        <string name="action_search">Search</string>
+        <string name="action_settings">Réglages</string>
+        <string name="action_reset">Réinitialiser</string>
+        <string name="action_update_stock">Mise à jour stock</string>
+        <string name="action_search">Rechercher</string>
 
         <!-- Recipe View -->
         <string name="recipe_component">Component</string>
@@ -82,16 +79,16 @@
 
 
     <!-- Dialogs -->
-    <string name="exit_message">Are you sure you want to exit ?</string>
-    <string name="exit_yes">Yes</string>
-    <string name="exit_no">No</string>
-    <string name="dismiss">Dismiss</string>
+    <string name="exit_message">Etes-vous sûr de vouloir quitter ?</string>
+    <string name="exit_yes">Oui</string>
+    <string name="exit_no">Non</string>
+    <string name="dismiss">Annuler</string>
     <string name="no_recipe">Impossible to find a recipe matching stock status</string>
     <string name="update_ingredient">Update stock ingredient</string>
     <string name="update_yes">Commit</string>
     <string name="update_no">Abort</string>
     <string name="invalid_ingredient">Error found while updating ingredient stock</string>
-    <string name="title_activity_settings_manager">Settings</string>
+    <string name="title_activity_settings_manager">Réglages</string>
 
     <!-- Strings related to Settings -->
         <!-- General settings -->

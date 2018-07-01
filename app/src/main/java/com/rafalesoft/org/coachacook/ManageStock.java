@@ -44,26 +44,23 @@ class ManageStock implements OnClickListener, OnItemClickListener
             @Override
             public boolean setViewValue(View view, Cursor cursor, int columnIndex)
             {
-                if (view.getId() == R.id.stock_item_name)
+                switch (view.getId())
                 {
-                    String text = cursor.getString(columnIndex);
-                    ((TextView) view).setText(text);
-                    return true;
+                    case R.id.stock_item_name:
+                        String text = cursor.getString(columnIndex);
+                        ((TextView) view).setText(text);
+                        return true;
+                    case R.id.stock_item_quantity:
+                        Double q = cursor.getDouble(columnIndex);
+                        ((TextView) view).setText(q.toString());
+                        return true;
+                    case R.id.stock_item_unit:
+                        Unit u = Unit.values()[cursor.getInt(columnIndex)];
+                        ((TextView) view).setText(u.toString());
+                        return true;
+                    default:
+                        return false;
                 }
-                else if (view.getId() == R.id.stock_item_quantity)
-                {
-                    Double q = cursor.getDouble(columnIndex);
-                    ((TextView) view).setText(q.toString());
-                    return true;
-                }
-                else if (view.getId() == R.id.stock_item_unit)
-                {
-                    Unit u = Unit.values()[cursor.getInt(columnIndex)];
-                    ((TextView) view).setText(u.toString());
-                    return true;
-                }
-                else
-                    return false;
             }
         }
 

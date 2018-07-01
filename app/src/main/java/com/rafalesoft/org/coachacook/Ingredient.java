@@ -1,6 +1,7 @@
 package com.rafalesoft.org.coachacook;
 
 import org.xml.sax.Attributes;
+
 import static com.rafalesoft.org.coachacook.Category.Model.MODEL_SIZE;
 
 public class Ingredient 
@@ -10,7 +11,8 @@ public class Ingredient
 	public static final String COLUMN_UNIT_TITLE = "unit";
 	public static final String COLUMN_TYPE_TITLE = "type";
 	public static final String COLUMN_IMAGE_ID = "image";
-	
+
+
 	private String 	_name = "";
 	private Double	_quantity = 0.0;
 	private Unit 	_unit = Unit.COUNT;
@@ -91,7 +93,7 @@ public class Ingredient
 	}
 
     /**
-     * Ingredient type getter.
+     * Ingredient _type getter.
      * @return the Category of this ingredient.
      */
 	public Category.Model get_type()
@@ -100,7 +102,7 @@ public class Ingredient
 	}
 
     /**
-     * Ingredient type setter.
+     * Ingredient _type setter.
      * @param type : the new Category.
      */
 	void set_type(Category.Model type)
@@ -130,14 +132,26 @@ public class Ingredient
 	public static boolean load_ingredients()
 	{
 		IngredientLoader loader = new IngredientLoader();
-		return loader.load_data(R.string.ingredient_file);
+
+		boolean load = true;
+		for (Category.Model model: Category.Model.values())
+		    load = load & loader.load_data(model.getCategoryFile());
+
+		return load;
 	}
 		
 	private static class IngredientLoader extends DataLoader
 	{
 		private boolean _parsingStock = false;
+		private Category.Model _type;
 
 		IngredientLoader() { }
+
+        @Override
+        public void startDocument()
+        {
+            _type = Category.Model.MODEL_SIZE;
+        }
 
 		@Override
 		public void onElementLoaded(String localName, Attributes attrs)
@@ -145,6 +159,8 @@ public class Ingredient
 			if (_parsingStock)
 			{
 				Ingredient newIngredient = new Ingredient();
+				newIngredient.set_type(_type);
+
 				int nbAttrs = attrs.getLength();
 				for (int i=0;i<nbAttrs;i++)
 				{
@@ -163,7 +179,16 @@ public class Ingredient
 				_db.insert(newIngredient);
 			}
 			else if (localName.compareTo("Stock") == 0)
-				_parsingStock = true;
+            {
+                _parsingStock = true;
+                int nbAttrs = attrs.getLength();
+                for (int i=0;i<nbAttrs;i++)
+                {
+                    String name = attrs.getLocalName(i);
+                    if (name.compareTo(Ingredient.COLUMN_TYPE_TITLE) == 0)
+                        _type = Category.Model.valueOf(attrs.getValue(i));
+                }
+            }
 		}
 
 		@Override

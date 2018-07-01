@@ -12,7 +12,9 @@ public class Recipe
     public static final String COLUMN_COST_TITLE = "cost";
 	public static final String COLUMN_PREPARE_TITLE = "prepare_time";
     public static final String COLUMN_TIME_TITLE = "cook_time";
-	
+
+    private static final String recipe_file = "Recipes.xml";
+
 	private String _name;
 	private final ArrayList<RecipeComponent> _components = new ArrayList<>();
 	private int _guests = 0;
@@ -95,8 +97,7 @@ public class Recipe
 	}
 
     /** Guests setter.
-     * Define the new number of guests for this recipe.
-     * @param guests
+     * @param guests : define the new number of guests for this recipe.
      */
 	public void set_guests(int guests)
 	{
@@ -201,7 +202,7 @@ public class Recipe
 	public static boolean load_recipes()
 	{
 		RecipeLoader loader = new RecipeLoader();
-		return loader.load_data(R.string.recipe_file);
+		return loader.load_data(recipe_file);
 	}
 	
 	private static class RecipeLoader extends DataLoader

@@ -48,4 +48,24 @@
 		Nappez la viande avec cette sauce. Servez un riz créole.
 		</Preparation>
 	</Recipe>
+	<Recipe name="Légumes d été au four" guests="6" difficulty="10" cost="20"  prepare_time="20" cook_time="90">
+		<Component name="Pommes de terre" quantity="2" unit="kg"/>
+		<Component name="Courgette" quantity="3"/>
+		<Component name="Aubergine" quantity="2"/>
+		<Component name="Tomate" quantity="4"/>
+		<Component name="Oignons" quantity="3"/>
+		<Component name="Poivron jaune" quantity="1"/>
+		<Component name="Poivron rouge" quantity="1"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Huile" quantity="0.1" unit="l"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Component name="Persil plat" quantity="0.5"/>
+		<Component name="Menthe" quantity="2" unit="tsp"/>
+		<Preparation>
+		Après avoir épluché et nettoyé les pommes de terre, les aubergines, les courgettes, les poivrons et les oignons, les couper en tranches moyennes.
+		Les disposer dans un plat à four ou un pyrex, puis additionner les tomates, le persil, la menthe, l'huile, le sel le poivre et bien mélanger.
+		Ajouter un peu d'eau chaude et faire cuire à four moyen pendant 90 minutes.
+		Les servir chauds, comme premier plat et accompagnés de fromage féta.
+		</Preparation>
+	</Recipe>
 </Recipes>

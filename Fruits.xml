@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Stock type="FRUIT">
+	<Ingredient name="Pomelos rose" quantity="0" image="0"/>
+	<Ingredient name="Pomelos blanc" quantity="0" image="0"/>
+	<Ingredient name="Citron" quantity="0" image="0"/>
+	<Ingredient name="Citron vert" quantity="0" image="0"/>
+	<Ingredient name="Orange" quantity="0" image="0"/>
+	<Ingredient name="Orange" quantity="0" image="0"/>
+	<Ingredient name="Pomme" quantity="6" image="0"/>
+	<Ingredient name="Pomme Granny Smith" quantity="6" image="0"/>
+	<Ingredient name="Pomme Pink Lady" quantity="6" image="0"/>
+	<Ingredient name="Pomme Royal Gala" quantity="6" image="0"/>
+	<Ingredient name="Pomme Golden" quantity="6" image="0"/>
+	<Ingredient name="Poire Williams" quantity="6" image="0"/>
+	<Ingredient name="Poire Conference" quantity="6" image="0"/>
+	<Ingredient name="Raisin blanc" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Raisin muscat" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Fraise" quantity="0" image="0"/>
+	<Ingredient name="Fraise Gariguette" quantity="0" image="0"/>
+	<Ingredient name="Framboise" quantity="0" image="0"/>
+	<Ingredient name="Cerise" quantity="0" image="0"/>
+	<Ingredient name="Myrtille" quantity="0" image="0"/>
+	<Ingredient name="Groseille" quantity="0" image="0"/>
+	<Ingredient name="Rhubarbe" quantity="0" image="0"/>
+	<Ingredient name="Mûre" quantity="0" image="0"/>
+	<Ingredient name="Bananes" quantity="0" image="0"/>
+	<Ingredient name="Kiwi" quantity="0" image="0"/>
+	<Ingredient name="Fruit de la passion" quantity="0" image="0"/>
+	<Ingredient name="Grenade" quantity="0" image="0"/>
+	<Ingredient name="Banane" quantity="0" image="0"/>
+	<Ingredient name="Ananas" quantity="0" image="0"/>
+	<Ingredient name="Mangue" quantity="0" image="0"/>
+	<Ingredient name="Noix de coco" quantity="0" image="0"/>
+	<Ingredient name="Gingembre" quantity="0" image="0"/>
+	<Ingredient name="Papaye" quantity="0" image="0"/>
+	<Ingredient name="Physalis" quantity="0" image="0"/>
+	<Ingredient name="Melon" quantity="0" image="0"/>
+	<Ingredient name="Melon jaune" quantity="0" image="0"/>
+	<Ingredient name="Pastèque" quantity="0" image="0"/>
+	<Ingredient name="Pêche" quantity="0" image="0"/>
+	<Ingredient name="Abricot" quantity="0" image="0"/>
+	<Ingredient name="Nectarine" quantity="0" image="0"/>
+	<Ingredient name="Prune" quantity="0" image="0"/>
+	<Ingredient name="Noix" quantity="0" image="0"/>
+	<Ingredient name="Noix de cajou" quantity="0" image="0"/>
+	<Ingredient name="Noix de pécan" quantity="0" image="0"/>
+	<Ingredient name="Amandes" quantity="0" image="0"/>
+	<Ingredient name="Pignon de pin" quantity="0" image="0"/>
+	<Ingredient name="Pistaches" quantity="0" image="0"/>
+	<Ingredient name="Noisettes" quantity="0" image="0"/>
+	<Ingredient name="Cacahuettes" quantity="0" image="0"/>
+	<Ingredient name="Datte" quantity="0" image="0"/>
+	<Ingredient name="Figue" quantity="0" image="0"/>
+	<Ingredient name="Raisin sec" quantity="0" image="0"/>
+	<Ingredient name="Prunes" quantity="0" image="0"/>
+	<Ingredient name="Pruneaux" quantity="0" image="0"/>
+</Stock>

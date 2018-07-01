@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Stock type="LEGUME">
+	<Ingredient name="Carottes" quantity="10" image="0"/>
+	<Ingredient name="Navets" quantity="0" image="0"/>
+	<Ingredient name="Poireaux" quantity="0" image="0"/>
+	<Ingredient name="Betteraves" quantity="0" image="0"/>
+	<Ingredient name="Courges" quantity="0" image="0"/>
+	<Ingredient name="Topinambours" quantity="0" image="0"/>
+	<Ingredient name="Panais" quantity="0" image="0"/>
+	<Ingredient name="Haricots verts" quantity="0" image="0"/>
+	<Ingredient name="Haricots plats" quantity="0" image="0"/>
+	<Ingredient name="Asperges" quantity="0" image="0"/>
+	<Ingredient name="Artichauts" quantity="0" image="0"/>
+	<Ingredient name="Fenouils" quantity="0" image="0"/>
+	<Ingredient name="Radis Blanc" quantity="0" image="0"/>
+	<Ingredient name="Radis Rouge" quantity="0" image="0"/>
+	<Ingredient name="Radis Noir" quantity="0" image="0"/>
+	<Ingredient name="Chou fleur" quantity="0" image="0"/>
+	<Ingredient name="Chou blanc" quantity="0" image="0"/>
+	<Ingredient name="Chou rouge" quantity="0" image="0"/>
+	<Ingredient name="Chou vert" quantity="0" image="0"/>
+	<Ingredient name="Choux de Bruxelles" quantity="0" image="0"/>
+	<Ingredient name="Brocoli" quantity="0" image="0"/>
+	<Ingredient name="Côte de blette" quantity="0" image="0"/>
+	<Ingredient name="Céleri branche" quantity="0" image="0"/>
+	<Ingredient name="Céleri rave" quantity="0" image="0"/>
+	<Ingredient name="Blettes" quantity="0" image="0"/>
+	<Ingredient name="Pommes de terre" quantity="2" unit="kg" image="0"/>
+	<Ingredient name="Pommes de terre rouge" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Pommes de terre ratte" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Pommes de terre purée" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Salade Batavia" quantity="0" image="0"/>
+	<Ingredient name="Salade Laitue" quantity="0" image="0"/>
+	<Ingredient name="Salade feuille de chêne" quantity="0" image="0"/>
+	<Ingredient name="Salade frisée" quantity="0" image="0"/>
+	<Ingredient name="Salade mâche" quantity="0" image="0"/>
+	<Ingredient name="Salade scarole" quantity="0" image="0"/>
+	<Ingredient name="Endive" quantity="0" image="0"/>
+	<Ingredient name="Champignon blanc" quantity="0" image="0"/>
+	<Ingredient name="Pleurotes" quantity="0" image="0"/>
+	<Ingredient name="Tomate" quantity="0" image="0"/>
+	<Ingredient name="Tomate ronde" quantity="0" image="0"/>
+	<Ingredient name="Tomate cerise" quantity="0" image="0"/>
+	<Ingredient name="Tomate coeur de pigeon" quantity="0" image="0"/>
+	<Ingredient name="Tomate coeur de boeuf" quantity="0" image="0"/>
+	<Ingredient name="Courgette" quantity="0" image="0"/>
+	<Ingredient name="Courgette ronde" quantity="0" image="0"/>
+	<Ingredient name="Aubergine" quantity="0" image="0"/>
+	<Ingredient name="Poivron vert" quantity="0" image="0"/>
+	<Ingredient name="Poivron jaune" quantity="0" image="0"/>
+	<Ingredient name="Poivron rouge" quantity="0" image="0"/>
+	<Ingredient name="Concombre" quantity="0" image="0"/>
+	<Ingredient name="Avocat" quantity="0" image="0"/>
+	<Ingredient name="Ail" quantity="0" image="0"/>
+	<Ingredient name="Oignons" quantity="10" image="0"/>
+	<Ingredient name="Oignons Jaune" quantity="0" image="0"/>
+	<Ingredient name="Oignons Rouge" quantity="0" image="0"/>
+	<Ingredient name="Oignons Botte" quantity="0" image="0"/>
+	<Ingredient name="Echalotte" quantity="0" image="0"/>
+	<Ingredient name="Ciboulette" quantity="0" image="0"/>
+	<Ingredient name="Persil plat" quantity="0" image="0"/>
+	<Ingredient name="Persil frisé" quantity="0" image="0"/>
+	<Ingredient name="Coriandre" quantity="0" image="0"/>
+	<Ingredient name="Menthe" quantity="0" image="0"/>
+	<Ingredient name="Aneth" quantity="0" image="0"/>
+	<Ingredient name="Thym" quantity="0" image="0"/>
+	<Ingredient name="Laurier" quantity="0" image="0"/>
+	<Ingredient name="Lentilles vertes" quantity="0" image="0"/>
+	<Ingredient name="Lentilles corail" quantity="0" image="0"/>
+	<Ingredient name="Lentilles" quantity="0" image="0"/>
+	<Ingredient name="Pois cassés" quantity="0" image="0"/>
+	<Ingredient name="Pois chiches" quantity="0" image="0"/>
+</Stock>
