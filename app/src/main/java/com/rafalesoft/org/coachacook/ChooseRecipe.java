@@ -41,7 +41,7 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
         private final RecipeSpeech _rs;
         private boolean _active = false;
 
-        public RecipeRecognitionCallback()
+        RecipeRecognitionCallback()
         {
             _rs = CoachACook.getCoach().getRecipeSpeech();
         }
@@ -140,10 +140,19 @@ public class ChooseRecipe extends RecipesCursorHolder implements OnClickListener
 
     private void updateSpan()
     {
-        int text_length = 0;
-        for (int i=0; i<current_step;i++)
-            text_length += recipe_steps.get(i).length() + 1;    // split removed dot !
         _spText.removeSpan(_fgSpan);
+        int text_length = 0;
+
+        if (current_step < recipe_steps.size())
+        {
+            for (int i = 0; i < current_step; i++)
+                text_length += recipe_steps.get(i).length() + 1;    // split removed dot !
+            if (text_length > _spText.length())
+                text_length = _spText.length();
+        }
+        else
+            text_length = _spText.length();
+
         _spText.setSpan(_fgSpan,0,text_length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         _recipeDescription.setText(_spText, TextView.BufferType.SPANNABLE);
     }

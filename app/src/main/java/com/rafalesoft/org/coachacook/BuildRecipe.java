@@ -1,21 +1,60 @@
 package com.rafalesoft.org.coachacook;
 
+import android.graphics.Color;
+import android.util.ArrayMap;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
     public BuildRecipe() { }
+
+    private class RecipeAdapter implements SimpleAdapter.ViewBinder
+    {
+        @Override
+        public boolean setViewValue(View view, Object data, String textRepresentation)
+        {
+            if (data instanceof Recipe)
+            {
+                Recipe recipe = (Recipe)data;
+                TextView tv;
+                if (view instanceof TextView)
+                    tv = (TextView) view;
+                else
+                    return false;
+
+                tv.setTextSize(10);
+
+                switch (view.getId())
+                {
+                    case R.id.recipe_item_name:
+                        tv.setText(recipe.get_name());
+                        break;
+                    case R.id.stock_item_quantity:
+                        tv.setText(Double.toString(recipe.get_guests()));
+                        break;
+                    default:
+                        return false;
+                }
+
+                return true;
+            }
+            else
+                return false;
+        }
+    }
 
 	@Override
 	public void onClick(View v)
@@ -25,17 +64,34 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
         View stock = CoachACook.getCoach().switchToView(R.id.recipe_stockview);
         ListView lvl = stock.findViewById(R.id.recipe_list);
 
-        String[] projection = {RecipesDB.ID, RecipesDB.NAME};
-        updateCursor(Recipe.TABLE_NAME, projection);
+        //String[] projection = {RecipesDB.ID, RecipesDB.NAME};
+        //updateCursor(Recipe.TABLE_NAME, projection);
 
-        String[] fromColumns = { RecipesDB.NAME };
-        int[] toViews = { R.id.recipe_item_name };
+        //String[] fromColumns = { RecipesDB.NAME };
+        //int[] toViews = { R.id.recipe_item_name };
 
-        SimpleCursorAdapter recipesDBAdapter =
-                new SimpleCursorAdapter(CoachACook.getCoach(), R.layout.recipe_stockview_item,
-                                        getCursor(), fromColumns, toViews, 0);
+        List<Map<String,Object>> data = new ArrayList<>();
+        for (int item=0;item<1;item++)
+        {
+            Map<String,Object> recipe = new ArrayMap<>();
+            recipe.put("I",r);
+            recipe.put("V",r);
+            recipe.put("U",r);
 
-        lvl.setAdapter(recipesDBAdapter);
+            data.add(recipe);
+        }
+
+        String[] from = { "I", "V", "U" };
+        int[] to = { R.id.recipe_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
+
+        SimpleAdapter adapter = new SimpleAdapter(CoachACook.getCoach(), data, R.layout.recipe_stockview_item, from, to);
+        adapter.setViewBinder(new BuildRecipe.RecipeAdapter());
+
+        //SimpleCursorAdapter recipesDBAdapter =
+        //        new SimpleCursorAdapter(CoachACook.getCoach(), R.layout.recipe_stockview_item,
+        //                                getCursor(), fromColumns, toViews, 0);
+
+        lvl.setAdapter(adapter);
         lvl.setOnItemClickListener(this);
 	}
 

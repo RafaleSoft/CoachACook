@@ -2,8 +2,6 @@ package com.rafalesoft.org.coachacook;
 
 public class Category
 {
-    public Category() { }
-
     public enum Model
     {
         LEGUME(R.string.category_legume, R.mipmap.ic_legumes, "Legumes.xml"),

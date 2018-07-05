@@ -37,10 +37,7 @@ public class RecipesDB
 	{
 		_cursors.add(holder);
 	}
-	public void delCursorHolder(RecipesCursorHolder holder)
-	{
-		_cursors.remove(holder);
-	}
+	// public void delCursorHolder(RecipesCursorHolder holder) { _cursors.remove(holder); }
 
 	public void close()
 	{
@@ -106,7 +103,7 @@ public class RecipesDB
 			RecipesDB.NAME);
 	}
 
-	public long insert(Recipe recipe)
+	public void insert(Recipe recipe)
 	{
 	    // A map to hold the new record's values.
 	    ContentValues values = new ContentValues();
@@ -165,14 +162,13 @@ public class RecipesDB
 	    	
 	        // Notifies observers registered against this provider that the data changed.
 	        //getContext().getContentResolver().notifyChange(noteUri, null);
-	        return rowId;
 	    }
 	
 	    // If the insert didn't succeed, then the rowID is <= 0. Throws an exception.
 	    throw new SQLException("Failed to insert recipe:" + recipe.get_name());
 	}
 	
-	public long insert(Ingredient ingredient)
+	public void insert(Ingredient ingredient)
 	{
         long idCategory;
 	    try
@@ -183,7 +179,7 @@ public class RecipesDB
 		catch (IllegalArgumentException e)
         {
             Log.d("DB","Invalid Ingredient Category");
-            return -1;
+            return;
         }
 
 	    // A map to hold the new record's values.
@@ -206,7 +202,7 @@ public class RecipesDB
 	    {
 	        // Notifies observers registered against this provider that the data changed.
 	        //getContext().getContentResolver().notifyChange(noteUri, null);
-	        return rowId;
+            Log.d("DB","Ingredient added: " + ingredient.get_name());
 	    }
 	
 	    // If the insert didn't succeed, then the rowID is <= 0. Throws an exception.

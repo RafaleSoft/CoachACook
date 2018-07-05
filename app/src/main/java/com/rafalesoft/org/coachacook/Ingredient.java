@@ -10,7 +10,7 @@ public class Ingredient
 	public static final String COLUMN_STOCK_TITLE = "quantity";
 	public static final String COLUMN_UNIT_TITLE = "unit";
 	public static final String COLUMN_TYPE_TITLE = "type";
-	public static final String COLUMN_IMAGE_ID = "image";
+	private static final String COLUMN_IMAGE_ID = "image";
 
 
 	private String 	_name = "";
