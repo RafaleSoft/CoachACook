@@ -1,82 +1,41 @@
 package com.rafalesoft.org.coachacook;
 
-import org.xml.sax.Attributes;
-
-
 public class Category
 {
-	public static final String TABLE_NAME = "categories";
-    public static final String COLUMN_IMAGE_ID = "image";
-
-	private String 	_name = "";
-    private long 	_id = 0;
-    private int 	_image = 0;
-
-    public Category() { }
-	
-	public String get_name()
-	{
-		return _name;
-	}
-	private void set_name(String name)
-	{
-		_name = name;
-	}
-    public int get_image()
+    public enum Model
     {
-        return _image;
-    }
-    private void set_image(int image)
-    {
-        _image = image;
-    }
-    public long get_id()
-    {
-        return _id;
-    }
-    public void set_id(long id)
-    {
-        _id = id;
-    }
+        LEGUME(R.string.category_legume, R.mipmap.ic_legumes, "Legumes.xml"),
+        FRUIT(R.string.category_fruit, R.mipmap.ic_fruits, "Fruits.xml"),
+        BOUCHERIE(R.string.category_boucherie, R.mipmap.ic_boucherie, "Boucherie.xml"),
+        CHARCUTERIE(R.string.category_charcuterie, R.mipmap.ic_charcuterie, "Charcuterie.xml"),
+        POISSONNERIE(R.string.category_poissonnerie, R.mipmap.ic_poissonnerie, "Poissonnerie.xml"),
+        LAITAGE(R.string.category_laitage, R.mipmap.ic_laitage, "Laitage.xml"),
+        EPICERIE(R.string.category_epicerie, R.mipmap.ic_epicerie, "Epicerie.xml"),
+        BOISSONS(R.string.category_boissons, R.mipmap.ic_boissons, "Boissons.xml"),
+        MODEL_SIZE(0,0, "");
 
+        final private int mStringResId;
+        final private int mImageResId;
+        final private String mCategoryFile;
 
-	public static boolean load_categories(CoachACook cook)
-	{
-		CategoryLoader loader = new CategoryLoader(cook.getRecipesDB());
-		return loader.load_data(cook, cook.getString(R.string.category_file));
-	}
-	
-	private static class CategoryLoader extends DataLoader
-    {
-        private boolean _parsingCategory = false;
-        private RecipesDB _db;
-
-        CategoryLoader(RecipesDB db)
+        Model(int titleResId, int layoutResId, String file)
         {
-            _db = db;
+            mStringResId = titleResId;
+            mImageResId = layoutResId;
+            mCategoryFile = file;
         }
 
-        @Override
-        public void onElementLoaded(String localName, Attributes attrs)
+        public int getTitleResId()
         {
-            if (_parsingCategory)
-            {
-                Category newCategory = new Category();
-                int nbAttrs = attrs.getLength();
-                for (int i = 0; i < nbAttrs; i++)
-                {
-                    String name = attrs.getLocalName(i);
-                    if (name.compareTo(RecipesDB.NAME) == 0)
-                        newCategory.set_name(attrs.getValue(i));
-                    else if (name.compareTo(Category.COLUMN_IMAGE_ID) == 0)
-                        newCategory.set_image(Integer.parseInt(attrs.getValue(i)));
-                }
-                _db.insert(newCategory);
-            }
-            else if (localName.compareTo("Stock") == 0)
-            {
-                _parsingCategory = true;
-            }
+            return mStringResId;
+        }
+        public int getImageResId()
+        {
+            return mImageResId;
+        }
+        public String getCategoryFile()
+        {
+            return mCategoryFile;
         }
     }
 }

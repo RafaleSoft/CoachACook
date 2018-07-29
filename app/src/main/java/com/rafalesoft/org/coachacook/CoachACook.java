@@ -28,6 +28,8 @@ public class CoachACook extends AppCompatActivity {
     private int currentView = 0;
     private ViewFlipper _mainView = null;
     private ProgressBar _pg = null;
+    private RecipeSpeech _recipeSpeech = null;
+    private ShoppingListManager _shopManager = null;
 
     public RecipeSpeech getRecipeSpeech()
     {
@@ -38,18 +40,20 @@ public class CoachACook extends AppCompatActivity {
         return _dbRecipes;
     }
 
-    private RecipeSpeech _recipeSpeech;
-
     private static CoachACook theCoach = null;
+    public static CoachACook getCoach() { return theCoach; }
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
         theCoach = this;
         _dbRecipes = new RecipesDB(this);
         _recipeSpeech = new RecipeSpeech(this);
+        _shopManager = new ShoppingListManager();
+        DataLoader.setCook();
 
         setContentView(R.layout.activity_coach_acook);
         _mainView = findViewById(R.id.view_flipper);
@@ -69,27 +73,27 @@ public class CoachACook extends AppCompatActivity {
         currentView = R.id.coach_a_cook;
 
         Button chooseButton = startView.findViewById(R.id.cook_book);
-        ChooseRecipe _chooseRecipe = new ChooseRecipe(this);
+        ChooseRecipe _chooseRecipe = new ChooseRecipe();
         chooseButton.setOnClickListener(_chooseRecipe);
 
         Button manageButton = startView.findViewById(R.id.manage_stock);
-        ManageStock _manageStock = new ManageStock(this);
+        ManageStock _manageStock = new ManageStock();
         manageButton.setOnClickListener(_manageStock);
 
         Button buildButton = startView.findViewById(R.id.build_recipe);
-        BuildRecipe _buildRecipe = new BuildRecipe(this);
+        BuildRecipe _buildRecipe = new BuildRecipe();
         buildButton.setOnClickListener(_buildRecipe);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab_cart);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "View your cart", Snackbar.LENGTH_LONG)
+                        .setAction("Show it!", _shopManager).show();
             }
         });
     }
@@ -100,18 +104,31 @@ public class CoachACook extends AppCompatActivity {
         if (view == null)
         {
             int layout = 0;
+            FloatingActionButton fab = findViewById(R.id.fab_cart);
 
-            if (viewId == R.id.stock_view)
-                layout = R.layout.stock_view;
-            else if (viewId == R.id.recipe_stockview)
-                layout = R.layout.recipe_stockview;
-            else if (viewId == R.id.recipe_view)
-                layout = R.layout.recipe_view;
-            /*else if (viewId == R.id.recipe_buildview)
-                layout = R.layout.recipe_buildview;
-                */
-            else if (viewId == R.id.coach_a_cook)
-                layout = R.layout.activity_coach_acook;
+            switch (viewId)
+            {
+                case R.id.stock_pager:
+                    layout = R.layout.stock_pager;
+                    fab.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.stock_view:
+                    layout = R.layout.stock_view;
+                    fab.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.recipe_stockview:
+                    layout = R.layout.recipe_stockview;
+                    fab.setVisibility(View.VISIBLE);
+                    break;
+                case R.id.recipe_view:
+                    layout = R.layout.recipe_view;
+                    fab.setVisibility(View.INVISIBLE);
+                    break;
+                case R.id.coach_a_cook:
+                    layout = R.layout.activity_coach_acook;
+                    fab.setVisibility(View.VISIBLE);
+                    break;
+            }
 
             view = getLayoutInflater().inflate(layout,null);
             _mainView.addView(view);
@@ -129,7 +146,7 @@ public class CoachACook extends AppCompatActivity {
 
     private class UpdateDataTask extends AsyncTask<Void, Void, Boolean>
     {
-        private boolean _reset;
+        private final boolean _reset;
         UpdateDataTask(boolean reset)
         {
             _reset = reset;
@@ -219,52 +236,39 @@ public class CoachACook extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        if ((currentView == R.id.stock_view) ||
-                (currentView == R.id.recipe_stockview))
-      //          || (currentView == R.id.recipe_buildview))
-            switchToView(R.id.coach_a_cook);
-        else if (currentView == R.id.recipe_view)
-            switchToView(R.id.recipe_stockview);
-        else
+        switch (currentView)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage(R.string.exit_message);
-            builder.setPositiveButton(R.string.exit_yes, new DialogInterface.OnClickListener()
-            { 	public void onClick(DialogInterface dialog, int id)
-                { finish(); }
-            });
+            case R.id.stock_view:
+            case R.id.recipe_stockview:
+            case R.id.stock_pager:
+                switchToView(R.id.coach_a_cook);
+                break;
+            case R.id.recipe_view:
+                switchToView(R.id.recipe_stockview);
+                break;
+            default:
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage(R.string.exit_message);
+                builder.setPositiveButton(R.string.exit_yes, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        finish();
+                    }
+                });
 
-            builder.setNegativeButton(R.string.exit_no, new DialogInterface.OnClickListener()
-            {	public void onClick(DialogInterface dialog, int id)
-                { 	}
-            });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+                builder.setNegativeButton(R.string.exit_no, new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
+            }
         }
-    }
-
-    @Override
-    protected void onStart()
-    {
-        super.onStart();        // The activity is about to become visible.
-    }
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();        // The activity has become visible (it is now "resumed").
-    }
-
-    @Override
-    protected void onPause()
-    {
-        super.onPause();        // Another activity is taking focus (this activity is about to be "paused").
-    }
-
-    @Override
-    protected void onStop()
-    {
-        super.onStop();        // The activity is no longer visible (it is now "stopped")
     }
 
     @Override
@@ -275,3 +279,4 @@ public class CoachACook extends AppCompatActivity {
         super.onDestroy();        // The activity is about to be destroyed.
     }
 }
+

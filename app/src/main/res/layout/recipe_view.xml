@@ -12,87 +12,10 @@
         android:layout_height="192dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:contentDescription="recipe_image"
+        android:contentDescription="@string/recipe_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_cook" />
-
-    <TableLayout
-        android:id="@+id/recipe_ingredients"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recipe_image"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/component1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/recipe_component" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/component2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/recipe_component" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/component3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/recipe_component" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/component4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/recipe_component" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/component5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/recipe_component" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/component6"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/recipe_component" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/component7"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/recipe_component" />
-        </TableRow>
-    </TableLayout>
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -118,6 +41,7 @@
                 android:id="@+id/recipe_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elegantTextHeight="true"
                 android:textSize="@dimen/big_text" />
 
             <TextView
@@ -125,11 +49,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/fab_margin"
+                android:elegantTextHeight="true"
                 android:ems="10"
                 android:inputType="none"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="208dp" />
         </LinearLayout>
     </ScrollView>
+
+    <ListView
+        android:id="@+id/recipe_ingredients"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/recipe_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/stock_view_item" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_speak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/default_gap"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        app:backgroundTint="@color/ic_category_background"
+        app:layout_constraintBottom_toBottomOf="@+id/recipe_image"
+        app:layout_constraintEnd_toEndOf="@+id/recipe_image"
+        app:srcCompat="@android:drawable/ic_btn_speak_now" />
 
 </android.support.constraint.ConstraintLayout>

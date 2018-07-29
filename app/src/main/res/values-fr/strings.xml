@@ -1,0 +1,264 @@
+<resources>
+    <string name="app_name">CoachACook</string>
+
+    <!-- Database -->
+    <string name="recipe_table_name">recipe_parts</string>
+    <string name="recipe_table_id">_id</string>
+    <string name="recipe_id">recipeId</string>
+    <string name="ingredient_id">ingredientId</string>
+    <string name="ingredient_amount">amount</string>
+    <string name="ingredient_unit">unit</string>
+
+    <!-- Categories -->
+    <string name="category_image">Image de catégorie d\'ingrédient</string>
+    <string name="category_title">Catégorie</string>
+    <string name="category_legume">Légumes</string>
+    <string name="category_fruit">Fruit</string>
+    <string name="category_boucherie">Boucherie</string>
+    <string name="category_charcuterie">Charcuterie</string>
+    <string name="category_poissonnerie">Poissonnerie</string>
+    <string name="category_laitage">Laitage</string>
+    <string name="category_epicerie">Epicerie</string>
+    <string name="category_boissons">Boissons</string>
+
+    <!-- Units -->
+    <string name="unit_gram">g</string>
+    <string name="unit_kilogram">kg</string>
+    <string name="unit_milliliter">ml</string>
+    <string name="unit_liter">L</string>
+    <string name="unit_teaspoon">tsp</string>
+    <string name="unit_tablespoon">sp</string>
+    <string name="unit_calorie">cal</string>
+    <string name="unit_count"> </string>
+
+    <!-- Speech -->
+    <string name="speech_quitte">quitte</string>
+    <string name="speech_termine">termine</string>
+    <string name="speech_demarre">démarre</string>
+    <string name="speech_apres">après</string>
+    <string name="speech_avant">avant</string>
+    <string name="speech_repete">répète</string>
+    <string name="speech_recommence">recommence</string>
+    <string name="speech_not_understood">Je n\'ai pas compris, veuillez répéter</string>
+    <string name="speech_recipe_start">C\'est le début dela recette</string>
+    <string name="speech_recipe_over">La recette est terminée</string>
+
+    <!-- GUI -->
+        <!-- Buttons -->
+        <string name="NewRecipe">Cook Book</string>
+        <string name="ManageStock">Manage Stock</string>
+        <string name="BuildRecipe">Build Menu</string>
+
+        <!-- Main Menu -->
+        <string name="action_settings">Réglages</string>
+        <string name="action_reset">Réinitialiser</string>
+        <string name="action_update_stock">Mise à jour stock</string>
+        <string name="action_search">Rechercher</string>
+
+        <!-- Recipe View -->
+        <string name="recipe_component">Component</string>
+        <string name="recipe_difficulty">Difficulty</string>
+        <string name="recipe_cost">Cost</string>
+        <string name="recipe_duration">Duration</string>
+        <string name="recipe_image">Image</string>
+        <string name="cook_duration">Cook Duration</string>
+
+        <!-- General HMI -->
+        <string name="app_background">Background</string>
+        <string name="Available">Available Recipes:</string>
+        <string name="on_choose">onChoseRecipe</string>
+        <string name="recipe_proposal">Recipes</string>
+        <string name="recipe_generation">Recipe generation</string>
+        <string name="number_recipes">Recipes generated</string>
+        <string name="number_recipes_summary">Number of recipes generated at each query</string>
+        <string name="invalid_recipe">Invalid recipe found in downloaded data</string>
+        <string name="data_updated">Recipe and ingredients database updated!</string>
+        <string name="data_not_updated">Failed to update recipe and ingredients database!</string>
+        <string name="data_erased">Recipe and ingredients database empty!</string>
+        <string name="data_not_erased">Failed to erase recipe and ingredients database!</string>
+
+
+    <!-- Dialogs -->
+    <string name="exit_message">Etes-vous sûr de vouloir quitter ?</string>
+    <string name="exit_yes">Oui</string>
+    <string name="exit_no">Non</string>
+    <string name="dismiss">Annuler</string>
+    <string name="no_recipe">Impossible to find a recipe matching stock status</string>
+    <string name="update_ingredient">Update stock ingredient</string>
+    <string name="update_yes">Commit</string>
+    <string name="update_no">Abort</string>
+    <string name="invalid_ingredient">Error found while updating ingredient stock</string>
+    <string name="title_activity_settings_manager">Réglages</string>
+
+    <!-- Strings related to Settings -->
+        <!-- General settings -->
+        <string name="pref_header_general">General</string>
+        <string name="pref_title_number_recipes">Number of Recipes</string>
+        <string name="pref_summary_number_recipes">Number of recipes generated at each query</string>
+        <string name="number_recipes_key">number_recipes_key</string>
+
+        <string name="pref_title_number_guests">Number of guests</string>
+        <string name="pref_summary_number_guests">Number of persons for recipe preparation</string>
+        <string name="number_guests_key">number_guests_key</string>
+        <string-array name="pref_guests_list_titles">
+            <item>Single</item>
+            <item>Couple</item>
+            <item>Couple and Child</item>
+            <item>Couple and two Children</item>
+        </string-array>
+        <string-array name="pref_guests_list_values">
+            <item>1</item>
+            <item>2</item>
+            <item>3</item>
+            <item>4</item>
+        </string-array>
+
+        <string name="pref_title_language">Language</string>
+        <string name="pref_summary_language">Select the language for recipe speech</string>
+        <string name="language_key">language_key</string>
+        <string-array name="pref_language_list_titles">
+            <item>Bengali</item>
+            <item>Chinese</item>
+            <item>Czech</item>
+            <item>Danish</item>
+            <item>Dutch</item>
+            <item>English</item>
+            <item>Estonian</item>
+            <item>Finnish</item>
+            <item>French</item>
+            <item>German</item>
+            <item>Greek</item>
+            <item>Hindi</item>
+            <item>Hungarian</item>
+            <item>Indonesian</item>
+            <item>Italian</item>
+            <item>Japanese</item>
+            <item>Korean</item>
+            <item>Nepali</item>
+            <item>Norwegian</item>
+            <item>Polish</item>
+            <item>Portuguese</item>
+            <item>Romanian</item>
+            <item>Sinhala</item>
+            <item>Slovak</item>
+            <item>Spanish</item>
+            <item>Swedish</item>
+            <item>Thai</item>
+            <item>Turkish</item>
+            <item>Ukrainian</item>
+            <item>Vietnamese</item>
+        </string-array>
+        <string-array name="pref_language_list_values">
+            <item>bn_BD</item>
+            <item>zh_CN</item>
+            <item>cs_CZ</item>
+            <item>da_DK</item>
+            <item>nl_NL</item>
+            <item>en_GB</item>
+            <item>et_EE</item>
+            <item>fi_FI</item>
+            <item>fr_FR</item>
+            <item>de_DE</item>
+            <item>el_GR</item>
+            <item>hi_IN</item>
+            <item>hu_HU</item>
+            <item>in_ID</item>
+            <item>it_IT</item>
+            <item>ja_JP</item>
+            <item>ko_KR</item>
+            <item>ne_NP</item>
+            <item>nb_NO</item>
+            <item>pl_PL</item>
+            <item>pt_PT</item>
+            <item>ro_RO</item>
+            <item>ru_RU</item>
+            <item>si_LK</item>
+            <item>sk_SK</item>
+            <item>es_ES</item>
+            <item>sv_SE</item>
+            <item>th_TH</item>
+            <item>tr_TR</item>
+            <item>uk_UA</item>
+            <item>vi_VN</item>
+        </string-array>
+    <!--
+    bn_BD, Bengali ( BANGLADESH )
+    zh_CN, Chinese ( CHINA )
+    cs_CZ, Czech ( CZECHIA )
+    da_DK, Danish ( DENMARK)
+    nl_NL, Dutch ( NETHERLANDS )
+    en_GB, English ( UNITED KINGDOM )
+    et_EE, Estonian ( ESTONIA )
+    fi_FI, Finnish ( FINLAND )
+    fr_FR, French ( FRANCE )
+    de_DE, German ( GERMANY)
+    el_GR, Greek ( GREECE )
+    hi_IN, Hindi ( INDIA )
+    hu_HU, Hungarian ( HUNGARY )
+    in_ID, Indonesian ( INDONESIA )
+    it_IT, Italian ( ITALY )
+    ja_JP, Japanese ( JAPAN )
+    ko_KR, Korean  ( KOREA, REPUBLIC OF )
+    ne_NP, Nepali ( NEPAL )
+    nb_NO, Norwegian ( NORWAY )
+    pl_PL, Polish  ( POLAND )
+    pt_PT, Portuguese ( PORTUGAL )
+    ro_RO, Romanian ( ROMANIA )
+    ru_RU, Russian ( RUSSIAN FEDERATION )
+    si_LK, Sinhala ( SRI LANKA )
+    sk_SK, Slovak ( SLOVAKIA )
+    es_ES, Spanish ( SPAIN)
+    sv_SE, Swedish ( SWEDEN )
+    th_TH, Thai ( THAILAND )
+    tr_TR, Turkish ( TURKEY )
+    uk_UA, Ukrainian ( UKRAINE )
+    vi_VN, Vietnamese ( VIET NAM )
+    -->
+
+        <!-- Example settings for Recipe Generation -->
+        <string name="pref_header_recipe_gen">Recipe generation</string>
+
+        <string name="pref_title_sync_frequency">Sync frequency</string>
+        <string name="sync_frequency_key">sync_frequency_key</string>
+        <string-array name="pref_sync_frequency_titles">
+            <item>15 minutes</item>
+            <item>30 minutes</item>
+            <item>1 hour</item>
+            <item>3 hours</item>
+            <item>6 hours</item>
+            <item>Never</item>
+        </string-array>
+        <string-array name="pref_sync_frequency_values">
+            <item>15</item>
+            <item>30</item>
+            <item>60</item>
+            <item>180</item>
+            <item>360</item>
+            <item>-1</item>
+        </string-array>
+
+        <string name="pref_title_menu_starter">Menu starter</string>
+        <string name="pref_summary_menu_starter">Recipe will be suggested for a menu starter</string>
+        <string name="switch_menu_starter">menu_starter_key</string>
+
+        <string name="pref_title_menu_main">Menu main course</string>
+        <string name="pref_summary_menu_main">Recipe will be suggested for a menu main course</string>
+        <string name="switch_menu_main">menu_main_key</string>
+
+        <string name="pref_title_menu_dessert">Menu dessert</string>
+        <string name="pref_summary_menu_dessert">Recipe will be suggested for a menu main course</string>
+        <string name="switch_menu_dessert">menu_dessert_key</string>
+
+        <string name="pref_title_system_sync_settings">System sync settings</string>
+
+
+        <!-- Example settings for Notifications -->
+        <string name="pref_header_notifications">Notifications</string>
+
+        <string name="pref_title_new_message_notifications">New message notifications</string>
+
+        <string name="pref_title_ringtone">Ringtone</string>
+        <string name="pref_ringtone_silent">Silent</string>
+
+        <string name="pref_title_vibrate">Vibrate</string>
+</resources>

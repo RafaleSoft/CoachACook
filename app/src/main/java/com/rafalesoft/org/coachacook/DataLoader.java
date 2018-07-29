@@ -3,6 +3,7 @@ package com.rafalesoft.org.coachacook;
 import android.content.Context;
 import android.database.SQLException;
 import android.os.Environment;
+import android.util.Log;
 import android.util.Xml;
 
 import org.xml.sax.Attributes;
@@ -17,13 +18,21 @@ import java.io.InputStream;
 
 abstract class DataLoader implements ContentHandler
 {
-    public boolean load_data(Context ctx, String filename)
+    static RecipesDB _db = null;
+
+    public static void setCook() { _db = CoachACook.getCoach().getRecipesDB(); }
+
+    public boolean load_data(String filename)
     {
+        if (filename.isEmpty())
+            return true;
+
         try
         {
-            String xmlSource = findFilePath(ctx, filename);
+            String xmlSource = findFilePath(CoachACook.getCoach(), filename);
             if (!xmlSource.isEmpty())
             {
+                Log.d("DataLoader", "parsing " + xmlSource);
                 InputStream input = new FileInputStream(xmlSource);
                 Xml.parse(input, Xml.Encoding.ISO_8859_1, this);
             }
@@ -66,55 +75,55 @@ abstract class DataLoader implements ContentHandler
     @Override
     public void characters(char[] ch, int start, int length)
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub");
     }
 
     @Override
     public void endDocument()
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub endDocument");
     }
 
     @Override
     public void endElement(String uri, String localName, String qName)
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub endElement");
     }
 
     @Override
     public void endPrefixMapping(String prefix)
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub");
     }
 
     @Override
     public void ignorableWhitespace(char[] ch, int start, int length)
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub");
     }
 
     @Override
     public void processingInstruction(String target, String data)
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub");
     }
 
     @Override
-    public void setDocumentLocator(Locator locator) {
-        // TODO Auto-generated method stub
-
+    public void setDocumentLocator(Locator locator)
+    {
+        Log.d("DataLoader", "void stub");
     }
 
     @Override
     public void skippedEntity(String name)
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub");
     }
 
     @Override
     public void startDocument()
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub startDocument");
     }
 
     @Override
@@ -126,6 +135,6 @@ abstract class DataLoader implements ContentHandler
     @Override
     public void startPrefixMapping(String prefix, String uri)
     {
-        // TODO Auto-generated method stub
+        Log.d("DataLoader", "void stub");
     }
 }

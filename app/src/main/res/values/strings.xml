@@ -9,10 +9,30 @@
     <string name="ingredient_amount">amount</string>
     <string name="ingredient_unit">unit</string>
 
+    <!-- Categories -->
+    <string name="category_image">Image de catégorie d\'ingrédient</string>
+    <string name="category_title">Category</string>
+    <string name="category_legume">Vegetable</string>
+    <string name="category_fruit">Fruit</string>
+    <string name="category_boucherie">Boucherie</string>
+    <string name="category_charcuterie">Charcuterie</string>
+    <string name="category_poissonnerie">Poissonnerie</string>
+    <string name="category_laitage">Laitage</string>
+    <string name="category_epicerie">Epicerie</string>
+    <string name="category_boissons">Boissons</string>
+
+    <!-- Units -->
+    <string name="unit_gram">g</string>
+    <string name="unit_kilogram">kg</string>
+    <string name="unit_milliliter">ml</string>
+    <string name="unit_liter">L</string>
+    <string name="unit_teaspoon">tsp</string>
+    <string name="unit_tablespoon">sp</string>
+    <string name="unit_calorie">cal</string>
+    <string name="unit_count"> </string>
+
     <!-- Data files -->
-    <string name="category_file">Categories.xml</string>
-    <string name="ingredient_file">Ingredients.xml</string>
-    <string name="recipe_file">Recipes.xml</string>
+
 
     <!-- Speech -->
     <string name="speech_quitte">quitte</string>
@@ -30,9 +50,6 @@
         <!-- Buttons -->
         <string name="NewRecipe">Cook Book</string>
         <string name="ManageStock">Manage Stock</string>
-        <string name="Légumes">Légumes</string>
-        <string name="Fruits">Fruits</string>
-        <string name="Boucherie">Boucherie</string>
         <string name="BuildRecipe">Build Menu</string>
 
         <!-- Main Menu -->
@@ -47,6 +64,7 @@
         <string name="recipe_cost">Cost</string>
         <string name="recipe_duration">Duration</string>
         <string name="recipe_image">Image</string>
+        <string name="cook_duration">Cook Duration</string>
 
         <!-- General HMI -->
         <string name="app_background">Background</string>

@@ -1,20 +1,107 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Recipes>
-	<Recipe name="Soupe de légumes" guests="4" difficulty="10" cost="30" time="30">
+	<Recipe name="Soupe de légumes" guests="4" difficulty="10" cost="30" prepare_time="20" cook_time="30">
 		<Component name="Oignons" quantity="1"/>
 		<Component name="Poireaux" quantity="4"/>
 		<Component name="Navets" quantity="4"/>
 		<Component name="Carottes" quantity="4"/>
 		<Component name="Pommes de terre" quantity="250" unit="g"/>
-		<Preparation>Faire dorer l'oignon. Eplucher les légumes, les couper en morceaux. Quand l'oignon est doré, ajouter les légumes et recouvrir d'eau</Preparation>
+		<Preparation>
+		Faire dorer l'oignon.
+		Eplucher les légumes, les couper en morceaux. 
+		Quand l'oignon est doré, ajouter les légumes et recouvrir d'eau</Preparation>
 	</Recipe>
-	<Recipe name="Crêpes" guests="4" difficulty="20" cost="20" time="90">
+	<Recipe name="Crêpes" guests="4" difficulty="20" cost="20"  prepare_time="20" cook_time="90">
 		<Component name="Farine" quantity="250" unit="g"/>
 		<Component name="Oeufs" quantity="4"/>
 		<Component name="Lait" quantity="0.5" unit="l"/>
 		<Component name="Sel" quantity="0.5" unit="tsp"/>
 		<Component name="Sucre" quantity="2" unit="sp"/>
 		<Component name="Beurre" quantity="50" unit="g"/>
-		<Preparation>Mettre la farine dans un saladier avec le sel et le sucre. Faire un puits au milieu et y verser les oeufs légèrement battus à la fourchette. Commencer à incorporer doucement la farine avec une cuillère en bois. Quand le mélange devient épais, ajouter le lait froid petit à petit, on peut utiliser un fouet mais toujours doucement pour éviter les grumeaux. Quand tout le lait est mélangé, la pâte doit être assez fluide, si elle vous paraît trop épaisse, rajouter en peu de lait. Ajouter ensuite le beurre fondu, mélanger bien. Cuire les crêpes dans une poêle chaude (pas besoin de matière grasse, elle est déjà dans la pâte). Verser une petite louche de pâte dans la poêle, faire un mouvement de rotation pour répartir la pâte sur toute la surface, poser sur le feu et quand le tour de la crêpe se colore en roux clair, il est temps de la retourner. Laisser cuire environ une minute de ce côté et la crêpe est prête. Répéter jusqu'à épuisement de la pâte. </Preparation>
+		<Preparation>
+		Mettre la farine dans un saladier avec le sel et le sucre. 
+		Faire un puits au milieu et y verser les oeufs légèrement battus à la fourchette. 
+		Commencer à incorporer doucement la farine avec une cuillère en bois. 
+		Quand le mélange devient épais, ajouter le lait froid petit à petit, on peut utiliser un fouet mais toujours doucement pour éviter les grumeaux. 
+		Quand tout le lait est mélangé, la pâte doit être assez fluide, si elle vous paraît trop épaisse, rajouter en peu de lait. 
+		Ajouter ensuite le beurre fondu, mélanger bien. 
+		Cuire les crêpes dans une poêle chaude (pas besoin de matière grasse, elle est déjà dans la pâte). 
+		Verser une petite louche de pâte dans la poêle, faire un mouvement de rotation pour répartir la pâte sur toute la surface, poser sur le feu et quand le tour de la crêpe se colore en roux clair, il est temps de la retourner. 
+		Laisser cuire environ une minute de ce côté et la crêpe est prête. 
+		Répéter jusqu'à épuisement de la pâte. </Preparation>
+	</Recipe>
+	<Recipe name="Sauté de porc au curry" guests="6" difficulty="75" cost="30"  prepare_time="40" cook_time="90">
+		<Component name="Echine de porc" quantity="1.25" unit="kg"/>
+		<Component name="Poivre" quantity="1"/>
+		<Component name="Sel" quantity="1"/>
+		<Component name="Persil plat" quantity="1"/>
+		<Component name="Gingembre" quantity="1" unit="sp"/>
+		<Component name="Thym" quantity="1"/>
+		<Component name="Laurier" quantity="1"/>
+		<Component name="Vin Blanc" quantity="0.2" unit="l"/>
+		<Component name="Pomme" quantity="1"/>
+		<Component name="Curry" quantity="1" unit="tsp"/>
+		<Component name="Tomate" quantity="5"/>
+		<Component name="Bouillon" quantity="0.5" unit="l"/>
+		<Component name="Oignons" quantity="5"/>
+		<Component name="Ail" quantity="3"/>
+		<Component name="Crème fraiche" quantity="0.1" unit="l"/>
+		<Component name="Ricard" quantity="1" unit="sp"/>
+		<Preparation>
+		Epluchez l'ail et les oignons. Ecrasez les gousses d'ail et émincez les oignons. Lavez le persil.
+		Nettoyez la pomme et les tomates. Pelez-les. Râpez la pomme. Epépinnez et concassez les tomates. Hachez le persil.
+		Préparez le bouillon avec un cube prêt à l'emploi. Coupez la viande en morceaux carrés de 4 cm environ.
+		Assaizonnez de sel, de poinvre en grains et de poudre de gingembre.
+		Faites chauffer le saindoux dans une cocotte et jetez-y les morceaux de porc.
+		Faites-les bien revenir et remuez-les afin qu'ils rissollent sur toutes les faces.
+		Ajoutez les oignons. Laissez-les blondir et mouillez avec le bouillon puis le vin blanc.
+		Ajoutez l'ail, le curry, le thym, le laurier et le persil puis les tomates ainsi que la pomme.
+		Rectifiez l'assaisonnement qui doit être bien relevé. Ajoutez une pincée de Cayenne. Couvez et laissze cuire 1h 1/2 à petit feu.
+		En fin de cuisson, retirez les morceaux de porc, égouttez-les et tenez-les au chaud dans un plat creux. Passez la sauce au chinois.
+		Ajoutez le pastis, liez ave la crème et laissez épaissir en fouettant 3 minutes à feu vif.
+		Nappez la viande avec cette sauce. Servez un riz créole.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Légumes d été au four" guests="6" difficulty="10" cost="20"  prepare_time="20" cook_time="90">
+		<Component name="Pommes de terre" quantity="2" unit="kg"/>
+		<Component name="Courgette" quantity="3"/>
+		<Component name="Aubergine" quantity="2"/>
+		<Component name="Tomate" quantity="4"/>
+		<Component name="Oignons" quantity="3"/>
+		<Component name="Poivron jaune" quantity="1"/>
+		<Component name="Poivron rouge" quantity="1"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Huile" quantity="0.1" unit="l"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Component name="Persil plat" quantity="0.5"/>
+		<Component name="Menthe" quantity="2" unit="tsp"/>
+		<Preparation>
+		Après avoir épluché et nettoyé les pommes de terre, les aubergines, les courgettes, les poivrons et les oignons, les couper en tranches moyennes.
+		Les disposer dans un plat à four ou un pyrex, puis additionner les tomates, le persil, la menthe, l'huile, le sel le poivre et bien mélanger.
+		Ajouter un peu d'eau chaude et faire cuire à four moyen pendant 90 minutes.
+		Les servir chauds, comme premier plat et accompagnés de fromage féta.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Longanisse aux pois chiches" guests="6" difficulty="10" cost="20"  prepare_time="15" cook_time="60">
+		<Component name="Pommes de terre" quantity="1" unit="kg"/>
+		<Component name="Pois chiches" quantity="300" unit="g"/>
+		<Component name="Oignons" quantity="1"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Huile d olive" quantity="1" unit="sp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Component name="Ail" quantity="3"/>
+		<Component name="Longanisse" quantity="1" unit="kg"/>
+		<Component name="Safran" quantity="1" unit="g"/>
+		<Preparation>
+		La veille, faites tremper les pois chiches dans de l'eau froide et changez-la régulièrement.
+		Le lendemain, versez-les dans une marmite, couvrez-les bien d'eau, salez légèrement et mettez-les à cuire pendant 15 à 20 minutes.
+		Quand ils sont cuits, égouttez et réservez.
+		Dans une sauteuse, versez une cuillère à soupe d'huile d'olive et faites revenir rapidement la longanisse coupée en morceaux.
+		Ajoutez l'oignon et l'ail, continuez avec les pommes de terre coupées en gros cubes.
+		Ajoutez quelques filaments de safran délayé dans un peu d'eau.
+		Poivrez, versez un verre d'eau et couvrez la sauteuse.
+		Faites cuire à feu doux le temps que la lame d'un couteau passe facilement à travers les pommes de terre.
+		Avant de servir, ajoutez les pois chiches, remuez, faites-les réchauffer un peu et servir aussitôt.
+		</Preparation>
 	</Recipe>
 </Recipes>

@@ -1,2 +1,2 @@
 # CoachACook
-Android application for repices management
+Android application for recipes management

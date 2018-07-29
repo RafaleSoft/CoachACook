@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Stock type="LAITAGE">
+	<Ingredient name="Oeufs" quantity="12" image="0"/>
+	<Ingredient name="Lait" quantity="6" unit="l" image="0"/>
+	<Ingredient name="Yahourt" quantity="8" image="0"/>
+	<Ingredient name="Crème fraiche" quantity="0.5" unit="l" image="0"/>
+	<Ingredient name="Beurre" quantity="250" unit="g" image="0"/>
+</Stock>

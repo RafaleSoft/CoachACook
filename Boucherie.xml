@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Stock type="BOUCHERIE" >
+	<Ingredient name="Steak haché" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Chipolatas" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Merguez" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Saucisse de Toulouse" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Steak de boeuf" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Bavette" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Hampe" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Entrecôte" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Faux filet" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Rumsteak" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Tournedos" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Tournedos" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Poulet" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Escalope de poulet" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Dinde" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Escalope de dinde" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Magret de canard" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Echine de porc" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Porc" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Veau" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Agneau" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Lapin" quantity="0" unit="kg" image="0"/>
+</Stock>
