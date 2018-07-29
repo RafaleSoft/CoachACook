@@ -1,6 +1,6 @@
 package com.rafalesoft.org.coachacook;
 
-import android.graphics.Color;
+import android.database.Cursor;
 import android.util.ArrayMap;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -8,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,22 +29,40 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
             if (data instanceof Recipe)
             {
                 Recipe recipe = (Recipe)data;
-                TextView tv;
-                if (view instanceof TextView)
-                    tv = (TextView) view;
-                else
-                    return false;
-
-                tv.setTextSize(10);
 
                 switch (view.getId())
                 {
                     case R.id.recipe_item_name:
-                        tv.setText(recipe.get_name());
+                    {
+                        ((TextView) view).setText(recipe.get_name());
                         break;
-                    case R.id.stock_item_quantity:
-                        tv.setText(Double.toString(recipe.get_guests()));
+                    }
+                    case R.id.recipe_difficulty_progress:
+                    {
+                        ((ProgressBar) view).setProgress(recipe.get_difficulty());
                         break;
+                    }
+                    case R.id.recipe_cost_progress:
+                    {
+                        ((ProgressBar) view).setProgress(recipe.get_cost());
+                        break;
+                    }
+                    case R.id.prepare_duration:
+                    {
+                        int minutes = recipe.get_prepare_time();
+                        int hours = minutes / 60;
+                        minutes = minutes - 60 * hours;
+                        ((TextView) view).setText(new StringBuilder().append(hours).append(':').append(minutes));
+                        break;
+                    }
+                    case R.id.cook_duration:
+                    {
+                        int minutes = recipe.get_cook_time();
+                        int hours = minutes / 60;
+                        minutes = minutes - 60 * hours;
+                        ((TextView) view).setText(new StringBuilder().append(hours).append(':').append(minutes));
+                        break;
+                    }
                     default:
                         return false;
                 }
@@ -59,37 +77,29 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
 	@Override
 	public void onClick(View v)
 	{
-        Recipe r = genRecipe();
+        ArrayList<Recipe> recipes = genRecipes();
 
         View stock = CoachACook.getCoach().switchToView(R.id.recipe_stockview);
         ListView lvl = stock.findViewById(R.id.recipe_list);
 
-        //String[] projection = {RecipesDB.ID, RecipesDB.NAME};
-        //updateCursor(Recipe.TABLE_NAME, projection);
-
-        //String[] fromColumns = { RecipesDB.NAME };
-        //int[] toViews = { R.id.recipe_item_name };
-
         List<Map<String,Object>> data = new ArrayList<>();
-        for (int item=0;item<1;item++)
+        for (Recipe r:recipes)
         {
             Map<String,Object> recipe = new ArrayMap<>();
-            recipe.put("I",r);
-            recipe.put("V",r);
-            recipe.put("U",r);
+            recipe.put("N",r);
+            recipe.put("D",r);
+            recipe.put("C",r);
+            recipe.put("P",r);
+            recipe.put("T",r);
 
             data.add(recipe);
         }
 
-        String[] from = { "I", "V", "U" };
-        int[] to = { R.id.recipe_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
+        String[] fromColumns = { "N", "D", "C", "P", "T" };
+        int[] toViews = { R.id.recipe_item_name , R.id.recipe_difficulty_progress, R.id.recipe_cost_progress, R.id.prepare_duration, R.id.cook_duration};
 
-        SimpleAdapter adapter = new SimpleAdapter(CoachACook.getCoach(), data, R.layout.recipe_stockview_item, from, to);
+        SimpleAdapter adapter = new SimpleAdapter(CoachACook.getCoach(), data, R.layout.recipe_stockview_item, fromColumns, toViews);
         adapter.setViewBinder(new BuildRecipe.RecipeAdapter());
-
-        //SimpleCursorAdapter recipesDBAdapter =
-        //        new SimpleCursorAdapter(CoachACook.getCoach(), R.layout.recipe_stockview_item,
-        //                                getCursor(), fromColumns, toViews, 0);
 
         lvl.setAdapter(adapter);
         lvl.setOnItemClickListener(this);
@@ -126,10 +136,45 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
         table.setAdapter(arrayAdapter);
     }
 
-    private Recipe genRecipe()
+    private ArrayList<Recipe> genRecipes()
     {
-        Recipe r = CoachACook.getCoach().getRecipesDB().selectRecipe();
+        String projection [] = {RecipesDB.NAME,
+                                Ingredient.COLUMN_TYPE_TITLE,
+                                Ingredient.COLUMN_STOCK_TITLE,
+                                Ingredient.COLUMN_UNIT_TITLE};
+        String selectionArgs [] = {};
+        updateCursor(Ingredient.TABLE_NAME,projection,"Ingredient.COLUMN_STOCK_TITLE > 0",selectionArgs);
+        Cursor cursor = getCursor();
 
-        return r;
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast())
+        {
+            Ingredient i = new Ingredient();
+            i.set_name(cursor.getString(0));
+            i.set_type(Category.Model.values()[cursor.getInt(1)]);
+            i.set_quantity(cursor.getDouble(2));
+            i.set_unit(Unit.values()[cursor.getInt(3)]);
+            cursor.moveToNext();
+        }
+
+        String projection2 [] = {   RecipesDB.NAME,
+                                    RecipesDB.ID,
+                                    Recipe.COLUMN_DIFFICULTY_TITLE,
+                                    Recipe.COLUMN_COST_TITLE,
+                                    Recipe.COLUMN_PREPARE_TITLE,
+                                    Recipe.COLUMN_TIME_TITLE,
+                                    Recipe.COLUMN_GUESTS_TITLE};
+        updateCursor(Recipe.TABLE_NAME,projection2);
+        cursor = getCursor();
+
+        ArrayList<Recipe> recipes = new ArrayList<>();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast())
+        {
+
+        }
+
+        return recipes;
     }
 }

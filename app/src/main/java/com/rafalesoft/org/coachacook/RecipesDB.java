@@ -18,7 +18,7 @@ public class RecipesDB
 
     public static final String ID = "_id";
     public static final String NAME = "name";
-	private static final int DATABASE_VERSION = 8;
+	private static final int DATABASE_VERSION = 9;
 	private final ArrayList<RecipesCursorHolder> _cursors = new ArrayList<>();
 
 	
@@ -162,6 +162,7 @@ public class RecipesDB
 	    	
 	        // Notifies observers registered against this provider that the data changed.
 	        //getContext().getContentResolver().notifyChange(noteUri, null);
+			return;
 	    }
 	
 	    // If the insert didn't succeed, then the rowID is <= 0. Throws an exception.
@@ -203,10 +204,11 @@ public class RecipesDB
 	        // Notifies observers registered against this provider that the data changed.
 	        //getContext().getContentResolver().notifyChange(noteUri, null);
             Log.d("DB","Ingredient added: " + ingredient.get_name());
+            return;
 	    }
-	
-	    // If the insert didn't succeed, then the rowID is <= 0. Throws an exception.
-	    throw new SQLException("Failed to insert recipe:" + ingredient.get_name());
+
+    	// If the insert didn't succeed, then the rowID is <= 0. Throws an exception.
+    	throw new SQLException("Failed to insert Ingredient:" + ingredient.get_name());
 	}
 
 	public Ingredient getIngredient(String name)
@@ -272,37 +274,6 @@ public class RecipesDB
 		c.close();
 
 		return recipe;
-	}
-
-	public Recipe selectRecipe() 
-	{
-		// Opens the database object in "read" mode, since no writes need to be done.
-		SQLiteDatabase db = _mOpenHelper.getReadableDatabase();
-		
-		String query = "SELECT DISTINCT " + RecipeComponent.COLUMN_RECIPE_TITLE +
-				" FROM "+RecipeComponent.TABLE_NAME+", "+Ingredient.TABLE_NAME+" AS i"+
-				" WHERE "+RecipeComponent.COLUMN_INGREDIENT_TITLE+ " = i."+ID+
-				" AND "+RecipeComponent.COLUMN_AMOUNT_TITLE+" <= i."+Ingredient.COLUMN_STOCK_TITLE;
-		Cursor c = db.rawQuery(	query, null);
-		if (c.getCount() < 1)
-		{
-			c.close();
-			return null;
-		}
-		else
-		{
-			c.moveToFirst();
-			int recipeId = c.getInt(c.getColumnIndex(RecipeComponent.COLUMN_RECIPE_TITLE));
-			c.close();
-			
-			Cursor c2 = db.rawQuery("SELECT " + NAME + " FROM " + Recipe.TABLE_NAME +
-									" WHERE " + ID + "=" + recipeId, null);
-			c2.moveToFirst();
-			String name = c2.getString(c2.getColumnIndex(NAME));
-			c2.close();
-		
-			return getRecipe(name);
-		}
 	}
 
 	public boolean updateStock(String name, Double amount)
