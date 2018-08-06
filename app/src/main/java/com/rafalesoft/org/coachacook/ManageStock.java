@@ -3,6 +3,7 @@ package com.rafalesoft.org.coachacook;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -24,8 +25,7 @@ import java.util.ArrayList;
 class ManageStock implements OnClickListener, OnItemClickListener
 {
     private StockAdapter _stockAdapter = null;
-	public ManageStock() {
-	}
+	public ManageStock() {	}
 
 
 
@@ -71,13 +71,14 @@ class ManageStock implements OnClickListener, OnItemClickListener
         }
 
         @Override
-        public boolean isViewFromObject(View view, Object object)
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object)
         {
             return view == object;
         }
 
+        @NonNull
         @Override
-        public Object instantiateItem(ViewGroup collection, int position)
+        public Object instantiateItem(@NonNull ViewGroup collection, int position)
         {
 			Category.Model modelObject = Category.Model.values()[position];
             LayoutInflater inflater = LayoutInflater.from(CoachACook.getCoach());
@@ -91,15 +92,15 @@ class ManageStock implements OnClickListener, OnItemClickListener
             ListView lvl = layout.findViewById(R.id.stock_list_view);
             String[] projection = { RecipesDB.ID,
                                     RecipesDB.NAME,
-                                    Ingredient.COLUMN_STOCK_TITLE,
-                                    Ingredient.COLUMN_UNIT_TITLE };
+                                    Ingredient.COLUMN_STOCK,
+                                    Ingredient.COLUMN_UNIT};
 
-            String selection = Ingredient.COLUMN_TYPE_TITLE + "=?" + " AND " + Ingredient.COLUMN_STOCK_TITLE + ">0";
+            String selection = Ingredient.COLUMN_TYPE + "=?" + " AND " + Ingredient.COLUMN_STOCK + ">0";
             String[] selectionArgs = { Integer.toString(modelObject.ordinal()) };
             RecipesCursorHolder c = _cursors.get(position);
             c.updateCursor(Ingredient.TABLE_NAME, projection, selection, selectionArgs);
 
-            String[] fromColumns = {RecipesDB.NAME, Ingredient.COLUMN_STOCK_TITLE, Ingredient.COLUMN_UNIT_TITLE};
+            String[] fromColumns = {RecipesDB.NAME, Ingredient.COLUMN_STOCK, Ingredient.COLUMN_UNIT};
             int[] toViews = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
 
             SimpleCursorAdapter recipesDBAdapter =
@@ -115,7 +116,7 @@ class ManageStock implements OnClickListener, OnItemClickListener
         }
 
         @Override
-        public void destroyItem(ViewGroup collection, int position, Object view)
+        public void destroyItem(@NonNull ViewGroup collection, int position, @NonNull Object view)
         {
             RecipesCursorHolder c = _cursors.get(position);
             c.close();

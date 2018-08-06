@@ -1,5 +1,7 @@
 package com.rafalesoft.org.coachacook;
 
+import android.support.annotation.NonNull;
+
 public enum Unit
 {
     GRAM(R.string.unit_gram),
@@ -30,7 +32,7 @@ public enum Unit
 
     final private int mStringResId;
     final private SI mSI;
-    final private float mSIFactor;
+    final private Double mSIFactor;
 
     Unit(int stringResId)
     {
@@ -39,39 +41,39 @@ public enum Unit
         {
             case R.string.unit_gram:
                 mSI = SI.MASS;
-                mSIFactor = 0.001f;
+                mSIFactor = 0.001;
                 break;
             case R.string.unit_kilogram:
                 mSI = SI.MASS;
-                mSIFactor = 1.0f;
+                mSIFactor = 1.0;
                 break;
             case R.string.unit_milliliter:
                 mSI = SI.VOLUME;
-                mSIFactor = 0.001f;
+                mSIFactor = 0.001;
                 break;
             case R.string.unit_liter:
                 mSI = SI.VOLUME;
-                mSIFactor = 1.0f;
+                mSIFactor = 1.0;
                 break;
             case R.string.unit_teaspoon:
                 mSI = SI.MASS;
-                mSIFactor = 0.005f;
+                mSIFactor = 0.005;
                 break;
             case R.string.unit_tablespoon:
                 mSI = SI.MASS;
-                mSIFactor = 0.01f;
+                mSIFactor = 0.01;
                 break;
             case R.string.unit_calorie:
                 mSI = SI.ENERGY;
-                mSIFactor = 1.0f / 4.184f;  // 1 Kcal = 4184 J
+                mSIFactor = 1.0 / 4.184;  // 1 Kcal = 4184 J
                 break;
-            case R.string.unit_count:
+            case R.string.unit_mole:
                 mSI = SI.MOLE;
-                mSIFactor = 1.0f;
+                mSIFactor = 1.0;
                 break;
             default:
                 mSI = SI.MASS;
-                mSIFactor = 0.001f;
+                mSIFactor = 0.001;
                 break;
         }
     }
@@ -111,18 +113,16 @@ public enum Unit
         return unit;
     }
 
+    @NonNull
     public String toString()
     {
         return CoachACook.getCoach().getString(mStringResId);
-    }
-
-    public int getStringResId()
-    {
-        return mStringResId;
     }
 
     public boolean canConvert(Unit u)
     {
         return mSI == u.mSI;
     }
+
+    public Double getSIFactor() { return mSIFactor; }
 }

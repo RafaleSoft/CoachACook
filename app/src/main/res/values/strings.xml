@@ -29,6 +29,7 @@
     <string name="unit_teaspoon">tsp</string>
     <string name="unit_tablespoon">sp</string>
     <string name="unit_calorie">cal</string>
+    <string name="unit_mole">mol</string>
     <string name="unit_count"> </string>
 
     <!-- Data files -->
