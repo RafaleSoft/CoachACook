@@ -2,7 +2,8 @@
 <Stock type="EPICERIE">
 	<Ingredient name="Pain de mie" quantity="0" image="0"/>
 	<Ingredient name="Farine" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Sucre" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Sucre en morceaux" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Sucre en poudre" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Sel" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Curry" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Poivre" quantity="1" unit="kg" image="0"/>
@@ -13,4 +14,7 @@
 	<Ingredient name="Bouillon" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Poivre de Cayenne" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Safran" quantity="1" unit="g" image="0"/>
+	<Ingredient name="Chocolat de patissier" quantify="1" unit="kg" image="0"/>
+	<Ingredient name="Levure" quantify="3"/>
+	<Ingredient name="Poudre d'amandes" quantity="100" unit="g"/>
 </Stock>

@@ -16,7 +16,7 @@
 		<Component name="Oeufs" quantity="4"/>
 		<Component name="Lait" quantity="0.5" unit="l"/>
 		<Component name="Sel" quantity="0.5" unit="tsp"/>
-		<Component name="Sucre" quantity="2" unit="sp"/>
+		<Component name="Sucre en poudre" quantity="2" unit="sp"/>
 		<Component name="Beurre" quantity="50" unit="g"/>
 		<Preparation>
 		Mettre la farine dans un saladier avec le sel et le sucre. 
@@ -102,6 +102,22 @@
 		Poivrez, versez un verre d'eau et couvrez la sauteuse.
 		Faites cuire à feu doux le temps que la lame d'un couteau passe facilement à travers les pommes de terre.
 		Avant de servir, ajoutez les pois chiches, remuez, faites-les réchauffer un peu et servir aussitôt.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Cake au chocolat" guests="6" difficulty="10" cost="20"  prepare_time="15" cook_time="30">
+		<Component name="Chocolat de patissier" quantity="150" unit="g"/>
+		<Component name="Oeufs" quantity="3"/>
+		<Component name="Sucre en poudre" quantity="100" unit="g"/>
+		<Component name="Farine" quantity="1"/>
+		<Component name="Beurre" quantity="80" unit="g"/>
+		<Component name="Poudre d'amandes" quantity="50" unit="g"/>
+		<Preparation>
+		Faire fondre le chocolat (en morceaux) au bain-marie avec 5 cuillères à soupe d'eau.
+		Dans un saladier, battre les oeufs avec le sucre, jusqu'à ce que le mélange blanchisse.
+		Ajouter la farine, la levure, le beurre fondu, la poudre d'amandes et le chocolat.
+		Verser la préparation jusqu'à mi-hauteur d'un moule à cake beurré.
+		Mettre à cuire dans un four préchauffé à 180°C (thermostat 6) pendant 30 à 35mn.
+		Attendre 5 min avant de démouler. Laisser refroidir.
 		</Preparation>
 	</Recipe>
 </Recipes>
