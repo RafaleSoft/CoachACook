@@ -1,6 +1,9 @@
 package com.rafalesoft.org.coachacook;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.util.ArrayMap;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,8 +22,13 @@ import java.util.Map;
 class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
     private final RecipeViewer _viewer = new RecipeViewer();
+    private SharedPreferences _preferences;
 
-    public BuildRecipe() { }
+    public BuildRecipe()
+    {
+        Context ctx = CoachACook.getCoach();
+        _preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+    }
 
     private class RecipeAdapter implements SimpleAdapter.ViewBinder
     {
@@ -127,8 +135,8 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
         while (!cursor.isAfterLast())
         {
             Amount a = new Amount();
-            a.set_quantity(cursor.getDouble(2));
-            a.set_unit(Unit.values()[cursor.getInt(3)]);
+            a.set_quantity(cursor.getDouble(1));
+            a.set_unit(Unit.values()[cursor.getInt(2)]);
             stock.put(cursor.getString(0),a);
             cursor.moveToNext();
         }
@@ -144,6 +152,8 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
         cursor = getCursor();
 
         RecipesDB recipesDB = CoachACook.getCoach().getRecipesDB();
+        String key = CoachACook.getCoach().getString(R.string.number_guests_key);
+        int nbGuests = Integer.parseInt(_preferences.getString(key,"1"));
 
         ArrayList<Recipe> recipes = new ArrayList<>();
         cursor.moveToFirst();

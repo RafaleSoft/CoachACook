@@ -48,9 +48,11 @@ class RecipeViewer
                         .setAction("Start !", _recipeRecognitionCallback).show();
             }
         });
+        _floatingButton.setImageResource(android.R.drawable.presence_audio_online);
 
         current_step = 0;
         String [] tmp = r.get_preparation().split("[.]");
+        recipe_steps.clear();
         recipe_steps.addAll(Arrays.asList(tmp));
     }
 
