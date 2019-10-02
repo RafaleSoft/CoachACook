@@ -21,9 +21,15 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
-public class CoachACook extends AppCompatActivity {
 
+public class CoachACook extends AppCompatActivity implements RewardedVideoAdListener
+{
     private RecipesDB _dbRecipes = null;
     private int currentView = 0;
     private ViewFlipper _mainView = null;
@@ -42,12 +48,18 @@ public class CoachACook extends AppCompatActivity {
 
     private static CoachACook theCoach = null;
     public static CoachACook getCoach() { return theCoach; }
+    private RewardedVideoAd mRewardedVideoAd;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544/5224354917");
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
+        mRewardedVideoAd.setRewardedVideoAdListener(this);
+        loadRewardedVideoAd();
 
         theCoach = this;
         _dbRecipes = new RecipesDB(this);
@@ -98,6 +110,56 @@ public class CoachACook extends AppCompatActivity {
         });
     }
 
+    private void loadRewardedVideoAd()
+    {
+        mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+                                new AdRequest.Builder().build());
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+        Toast.makeText(this, "onRewardedVideoAdLeftApplication",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
+        loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem)
+    {
+        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
+                        rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int errorCode) {
+        Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+        Toast.makeText(this, "onRewardedVideoAdLoaded", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+        Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+        Toast.makeText(this, "onRewardedVideoStarted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+        Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
+    }
+
     public View switchToView(int viewId)
     {
         View view = _mainView.findViewById(viewId);
@@ -139,6 +201,11 @@ public class CoachACook extends AppCompatActivity {
             currentView = viewId;
             int index = _mainView.indexOfChild(view);
             _mainView.setDisplayedChild(index);
+        }
+
+        if (mRewardedVideoAd.isLoaded())
+        {
+            mRewardedVideoAd.show();
         }
 
         return view;
@@ -272,8 +339,23 @@ public class CoachACook extends AppCompatActivity {
     }
 
     @Override
+    public void onResume()
+    {
+        mRewardedVideoAd.resume(this);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause()
+    {
+        mRewardedVideoAd.pause(this);
+        super.onPause();
+    }
+
+    @Override
     protected void onDestroy()
     {
+        mRewardedVideoAd.destroy(this);
         _recipeSpeech.DestroySpeech();
         _dbRecipes.close();
         super.onDestroy();        // The activity is about to be destroyed.

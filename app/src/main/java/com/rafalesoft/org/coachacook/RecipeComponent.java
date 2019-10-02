@@ -3,25 +3,25 @@ package com.rafalesoft.org.coachacook;
 public class RecipeComponent 
 {
 	public static final String TABLE_NAME = "recipe_parts";
-	public static final String COLUMN_RECIPE_TITLE = "recipeId";
-	public static final String COLUMN_INGREDIENT_TITLE = "ingredientId";
+	public static final String COLUMN_RECIPE = "recipeId";
+	public static final String COLUMN_INGREDIENT = "ingredientId";
 	public static final String COLUMN_AMOUNT_TITLE = "amount";
 	public static final String COLUMN_UNIT_TITLE = "unit";
 	
 	private String _name = null;
-	private Double _quantity = 0.0;
-	private Unit _unit = Unit.GRAM;
+	private Amount _amount = new Amount();
+
 
 	/**
 	 * Elaborates the SQL query to create ingredient table
 	 * @return the sql query string
 	 */
-	public static String getTableQuery()
+	static String getTableQuery()
 	{
 		return "CREATE TABLE " + RecipeComponent.TABLE_NAME + " ("
 				+ RecipesDB.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-				+ RecipeComponent.COLUMN_RECIPE_TITLE + " INTEGER,"
-				+ RecipeComponent.COLUMN_INGREDIENT_TITLE + " INTEGER,"
+				+ RecipeComponent.COLUMN_RECIPE + " INTEGER,"
+				+ RecipeComponent.COLUMN_INGREDIENT + " INTEGER,"
 				+ RecipeComponent.COLUMN_AMOUNT_TITLE + " REAL,"
 				+ RecipeComponent.COLUMN_UNIT_TITLE + " VARCHAR(4)"
 				+ ");";
@@ -31,7 +31,7 @@ public class RecipeComponent
 	 * Name setter.
 	 * @param value : new component name.
 	 */
-	public void set_name(String value) 
+	void set_name(String value)
 	{
 		_name = value;
 	}
@@ -40,7 +40,7 @@ public class RecipeComponent
 	 * Name getter.
 	 * @return component name.
 	 */
-	public String get_name() 
+	String get_name()
 	{
 		return _name;
 	}
@@ -49,35 +49,53 @@ public class RecipeComponent
 	 * Quantity setter.
 	 * @param value : new component quantity.
 	 */
-	public void set_quantity(double value) 
+	void set_quantity(double value)
 	{
-		_quantity = value;
+		get_amount().set_quantity(value);
 	}
 
 	/**
 	 * Quantity getter.
 	 * @return the component quantity.
 	 */
-	public Double get_quantity() 
+	Double get_quantity()
 	{
-		return _quantity;
+		return get_amount().get_quantity();
 	}
 
     /**
      * Unit getter.
      * @return the component unit.
      */
-	public Unit get_unit()
+	Unit get_unit()
 	{
-		return _unit;
+		return get_amount().get_unit();
 	}
 
     /**
      * Unit setter.
-     * @param unit : return the component unit.
+     * @param unit : new component unit.
      */
-	public void set_unit(Unit unit)
+	void set_unit(Unit unit)
 	{
-		_unit = unit;
+		get_amount().set_unit(unit);
 	}
+
+    /**
+     * Amount getter.
+     * @return the component amount.
+     */
+    Amount get_amount()
+    {
+        return _amount;
+    }
+
+    /**
+     * Amount setter.
+     * @param amount : new component amount.
+     */
+    void set_amount(Amount amount)
+    {
+        _amount = amount;
+    }
 }

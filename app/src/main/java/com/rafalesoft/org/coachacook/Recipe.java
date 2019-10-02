@@ -6,12 +6,12 @@ import org.xml.sax.Attributes;
 public class Recipe 
 {
 	public static final String TABLE_NAME = "recipes";
-	public static final String COLUMN_GUESTS_TITLE = "guests";
-	public static final String COLUMN_PREPARATION_TITLE = "preparation";
-	public static final String COLUMN_DIFFICULTY_TITLE = "difficulty";
-    public static final String COLUMN_COST_TITLE = "cost";
-	public static final String COLUMN_PREPARE_TITLE = "prepare_time";
-    public static final String COLUMN_TIME_TITLE = "cook_time";
+	public static final String COLUMN_GUESTS = "guests";
+	public static final String COLUMN_PREPARATION = "preparation";
+	public static final String COLUMN_DIFFICULTY = "difficulty";
+    public static final String COLUMN_COST = "cost";
+	public static final String COLUMN_PREPARE = "prepare_time";
+    public static final String COLUMN_TIME = "cook_time";
 
     private static final String recipe_file = "Recipes.xml";
 
@@ -41,12 +41,12 @@ public class Recipe
 		return "CREATE TABLE " + Recipe.TABLE_NAME + " ("
 				+ RecipesDB.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ RecipesDB.NAME + " VARCHAR(32) NOT NULL,"
-				+ Recipe.COLUMN_GUESTS_TITLE + " INTEGER,"
-				+ Recipe.COLUMN_PREPARATION_TITLE + " TEXT,"
-				+ Recipe.COLUMN_DIFFICULTY_TITLE + " INTEGER,"
-				+ Recipe.COLUMN_COST_TITLE + " INTEGER,"
-				+ Recipe.COLUMN_PREPARE_TITLE + " INTEGER,"
-				+ Recipe.COLUMN_TIME_TITLE + " INTEGER"
+				+ Recipe.COLUMN_GUESTS + " INTEGER,"
+				+ Recipe.COLUMN_PREPARATION + " TEXT,"
+				+ Recipe.COLUMN_DIFFICULTY + " INTEGER,"
+				+ Recipe.COLUMN_COST + " INTEGER,"
+				+ Recipe.COLUMN_PREPARE + " INTEGER,"
+				+ Recipe.COLUMN_TIME + " INTEGER"
 				+ ");";
 	}
 
@@ -226,15 +226,15 @@ public class Recipe
 					String name = attrs.getLocalName(i);
 					if (name.compareTo(RecipesDB.NAME) == 0)
 						_recipe.set_name(attrs.getValue(i));
-					else if (name.compareTo(Recipe.COLUMN_GUESTS_TITLE) == 0)
+					else if (name.compareTo(Recipe.COLUMN_GUESTS) == 0)
 						_recipe.set_guests(Integer.parseInt(attrs.getValue(i)));
-                    else if (name.compareTo(Recipe.COLUMN_DIFFICULTY_TITLE) == 0)
+                    else if (name.compareTo(Recipe.COLUMN_DIFFICULTY) == 0)
                         _recipe.set_difficulty(Integer.parseInt(attrs.getValue(i)));
-                    else if (name.compareTo(Recipe.COLUMN_COST_TITLE) == 0)
+                    else if (name.compareTo(Recipe.COLUMN_COST) == 0)
                         _recipe.set_cost(Integer.parseInt(attrs.getValue(i)));
-                    else if (name.compareTo(Recipe.COLUMN_PREPARE_TITLE) == 0)
+                    else if (name.compareTo(Recipe.COLUMN_PREPARE) == 0)
                         _recipe.set_prepare_time(Integer.parseInt(attrs.getValue(i)));
-                    else if (name.compareTo(Recipe.COLUMN_TIME_TITLE) == 0)
+                    else if (name.compareTo(Recipe.COLUMN_TIME) == 0)
                         _recipe.set_cook_time(Integer.parseInt(attrs.getValue(i)));
 				}
 			}
