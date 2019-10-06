@@ -2,7 +2,9 @@
 .gradle
 /local.properties
 /.idea/libraries
-/.idea/caches
+/.idea/workspace.xml
+/.idea/caches/*.*
+/.idea/caches/build_file_checksum.ser
 .DS_Store
 /build
 /captures

@@ -1,6 +1,6 @@
 package com.rafalesoft.org.coachacook;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 class Amount implements Comparable
 {

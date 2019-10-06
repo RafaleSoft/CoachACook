@@ -20,7 +20,7 @@ abstract class DataLoader implements ContentHandler
 {
     static RecipesDB _db = null;
 
-    public static void setCook() { _db = CoachACook.getCoach().getRecipesDB(); }
+    public static void setDatabase(RecipesDB db) { _db = db; }
 
     public boolean load_data(String filename)
     {

@@ -65,7 +65,7 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
         _dbRecipes = new RecipesDB(this);
         _recipeSpeech = new RecipeSpeech(this);
         _shopManager = new ShoppingListManager();
-        DataLoader.setCook();
+        DataLoader.setDatabase(_dbRecipes);
 
         setContentView(R.layout.activity_coach_acook);
         _mainView = findViewById(R.id.view_flipper);
