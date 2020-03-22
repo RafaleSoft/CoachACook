@@ -8,13 +8,13 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceActivity;
-import android.support.v7.app.ActionBar;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
-import android.preference.RingtonePreference;
+//import android.preference.ListPreference;
+//import android.preference.Preference;
+//import android.preference.PreferenceActivity;
+import androidx.appcompat.app.ActionBar;
+//import android.preference.PreferenceFragment;
+//import android.preference.PreferenceManager;
+//import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.view.MenuItem;
 
@@ -38,7 +38,7 @@ public class SettingsManager extends AppCompatPreferenceActivity
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener()
+    /*private static final Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener()
     {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value)
@@ -97,7 +97,7 @@ public class SettingsManager extends AppCompatPreferenceActivity
             }
             return true;
         }
-    };
+    };*/
 
     /**
      * Binds a preference's summary to its value. More specifically, when the
@@ -108,7 +108,7 @@ public class SettingsManager extends AppCompatPreferenceActivity
      *
      * @see #sBindPreferenceSummaryToValueListener
      */
-    private static void bindPreferenceSummaryToValue(Preference preference)
+    /*private static void bindPreferenceSummaryToValue(Preference preference)
     {
         // Set the listener to watch for value changes.
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
@@ -119,19 +119,19 @@ public class SettingsManager extends AppCompatPreferenceActivity
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())
                         .getString(preference.getKey(), ""));
-    }
+    }*/
 
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setupActionBar();
     }
-
+*/
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.
      */
-    private void setupActionBar()
+    /*private void setupActionBar()
     {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null)
@@ -139,9 +139,9 @@ public class SettingsManager extends AppCompatPreferenceActivity
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
         if (item.getItemId() == android.R.id.home)
@@ -150,41 +150,41 @@ public class SettingsManager extends AppCompatPreferenceActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     /**
      * {@inheritDoc}
      */
-    @Override
+    /*@Override
     public boolean onIsMultiPane()
     {
         return (getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
-    }
+    }*/
 
     /**
      * {@inheritDoc}
      */
-    @Override
+   /* @Override
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onBuildHeaders(List<Header> target)
     {
         loadHeadersFromResource(R.xml.pref_headers, target);
-    }
+    }*/
 
     /**
      * This method stops fragment injection in malicious applications.
      * Make sure to deny any unknown fragments here.
      */
-    protected boolean isValidFragment(String fragmentName)
+    /*protected boolean isValidFragment(String fragmentName)
     {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || General.class.getName().equals(fragmentName)
                 || RecipeGeneration.class.getName().equals(fragmentName)
                 || Notification.class.getName().equals(fragmentName);
-    }
+    }*/
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    /*@TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class SettingsFragment extends PreferenceFragment
     {
         @Override
@@ -204,13 +204,13 @@ public class SettingsManager extends AppCompatPreferenceActivity
             }
             return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     /**
      * This fragment shows general preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
-    public static class General extends SettingsFragment
+/*    public static class General extends SettingsFragment
     {
         @Override
         public void onCreate(Bundle savedInstanceState)
@@ -226,13 +226,13 @@ public class SettingsManager extends AppCompatPreferenceActivity
             bindPreferenceSummaryToValue(findPreference(getString(R.string.number_guests_key)));
             bindPreferenceSummaryToValue(findPreference(getString(R.string.language_key)));
         }
-    }
+    }*/
 
     /**
      * This fragment shows notification preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
-    public static class Notification extends SettingsFragment
+/*    public static class Notification extends SettingsFragment
     {
         @Override
         public void onCreate(Bundle savedInstanceState)
@@ -246,13 +246,13 @@ public class SettingsManager extends AppCompatPreferenceActivity
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
         }
-    }
+    }*/
 
     /**
      * This fragment shows data and sync preferences only. It is used when the
      * activity is showing a two-pane settings UI.
      */
-    public static class RecipeGeneration extends SettingsFragment
+/*    public static class RecipeGeneration extends SettingsFragment
     {
         @Override
         public void onCreate(Bundle savedInstanceState)
@@ -266,5 +266,5 @@ public class SettingsManager extends AppCompatPreferenceActivity
             // guidelines.
             bindPreferenceSummaryToValue(findPreference(getString(R.string.sync_frequency_key)));
         }
-    }
+    }*/
 }

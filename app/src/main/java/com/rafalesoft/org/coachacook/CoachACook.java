@@ -5,10 +5,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +39,7 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
     private ProgressBar _pg = null;
     private RecipeSpeech _recipeSpeech = null;
     private ShoppingListManager _shopManager = null;
+    private SettingsFragment _settings = null;
 
     public RecipeSpeech getRecipeSpeech()
     {
@@ -99,6 +103,12 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        _settings = new SettingsFragment();
+        fragmentTransaction.add(R.id.view_flipper, _settings);
+        fragmentTransaction.commit();
+
         FloatingActionButton fab = findViewById(R.id.fab_cart);
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -108,56 +118,6 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
                         .setAction("Show it!", _shopManager).show();
             }
         });
-    }
-
-    private void loadRewardedVideoAd()
-    {
-        mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
-                                new AdRequest.Builder().build());
-    }
-
-    @Override
-    public void onRewardedVideoAdLeftApplication() {
-        Toast.makeText(this, "onRewardedVideoAdLeftApplication",
-                Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRewardedVideoAdClosed() {
-        Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
-        loadRewardedVideoAd();
-    }
-
-    @Override
-    public void onRewarded(RewardItem rewardItem)
-    {
-        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
-                        rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRewardedVideoAdFailedToLoad(int errorCode) {
-        Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRewardedVideoAdLoaded() {
-        Toast.makeText(this, "onRewardedVideoAdLoaded", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRewardedVideoAdOpened() {
-        Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRewardedVideoStarted() {
-        Toast.makeText(this, "onRewardedVideoStarted", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRewardedVideoCompleted() {
-        Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
     }
 
     public View switchToView(int viewId)
@@ -172,23 +132,23 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
             {
                 case R.id.stock_pager:
                     layout = R.layout.stock_pager;
-                    fab.setVisibility(View.VISIBLE);
+                    fab.show();
                     break;
                 case R.id.stock_view:
                     layout = R.layout.stock_view;
-                    fab.setVisibility(View.VISIBLE);
+                    fab.show();
                     break;
                 case R.id.recipe_stockview:
                     layout = R.layout.recipe_stockview;
-                    fab.setVisibility(View.VISIBLE);
+                    fab.show();
                     break;
                 case R.id.recipe_view:
                     layout = R.layout.recipe_view;
-                    fab.setVisibility(View.INVISIBLE);
+                    fab.show();
                     break;
                 case R.id.coach_a_cook:
                     layout = R.layout.activity_coach_acook;
-                    fab.setVisibility(View.VISIBLE);
+                    fab.show();
                     break;
             }
 
@@ -284,8 +244,7 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
         switch (id)
         {
             case R.id.action_settings:
-                Intent intent = new Intent(this, SettingsManager.class);
-                startActivity(intent);
+                switchToView(_settings.getViewId());
                 return true;
             case R.id.action_reset:
                 new UpdateDataTask(true).execute();
@@ -359,6 +318,57 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
         _recipeSpeech.DestroySpeech();
         _dbRecipes.close();
         super.onDestroy();        // The activity is about to be destroyed.
+    }
+
+
+    private void loadRewardedVideoAd()
+    {
+        mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+                new AdRequest.Builder().build());
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+        Toast.makeText(this, "onRewardedVideoAdLeftApplication",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
+        loadRewardedVideoAd();
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem)
+    {
+        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
+                rewardItem.getAmount(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int errorCode) {
+        Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+        Toast.makeText(this, "onRewardedVideoAdLoaded", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+        Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+        Toast.makeText(this, "onRewardedVideoStarted", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+        Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
     }
 }
 
