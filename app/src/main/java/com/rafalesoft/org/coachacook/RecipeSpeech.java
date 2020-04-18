@@ -3,6 +3,7 @@ package com.rafalesoft.org.coachacook;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.speech.RecognitionListener;
@@ -12,6 +13,8 @@ import android.speech.tts.TextToSpeech;
 import android.speech.tts.Voice;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -26,17 +29,24 @@ public class RecipeSpeech implements RecognitionListener
     private final Context _ctx;
     private RecognitionCallback _rc = null;
 
-    private static final int _toRecognize[] = { R.string.speech_demarre,
-                                                R.string.speech_apres,
-                                                R.string.speech_avant,
-                                                R.string.speech_repete,
-                                                R.string.speech_recommence,
-                                                R.string.speech_termine};
+    private static final int _toRecognize[] = { R.string.speech_start,
+                                                R.string.speech_next,
+                                                R.string.speech_previous,
+                                                R.string.speech_repeat,
+                                                R.string.speech_restart,
+                                                R.string.speech_finish};
 
     public interface RecognitionCallback {
-        void onRecognized(int stringId);
+        boolean onRecognized(int stringId);
     }
 
+    public void stopRecognize()
+    {
+        if (null != _sr)
+            _sr.stopListening();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public boolean speak(String speech)
     {
         return (null != _tts) && (SUCCESS == _tts.speak(speech,
@@ -54,43 +64,45 @@ public class RecipeSpeech implements RecognitionListener
             Toast toast = Toast.makeText(ctx, "Speech recognition unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
-        else
+        else if (null == _sr)
         {
             _sr = SpeechRecognizer.createSpeechRecognizer(ctx);
             _sr.setRecognitionListener(this);
         }
 
-        _tts = new TextToSpeech(ctx, new OnInitListener()
-        {
-            @Override
-            public void onInit(int i)
+        if (null == _tts)
+            _tts = new TextToSpeech(ctx, new OnInitListener()
             {
-                if (SUCCESS == i)
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                @Override
+                public void onInit(int i)
                 {
-                    Set<Voice> voices = _tts.getVoices();
-                    String lan = PreferenceManager.getDefaultSharedPreferences(_ctx)
-                        .getString(_ctx.getString(R.string.language_key), "");
-
-                    if (SUCCESS != _tts.setLanguage(new Locale(lan)))
+                    if (SUCCESS == i)
                     {
-                        Toast toast = Toast.makeText(_ctx, "Unsupported language "+lan, Toast.LENGTH_SHORT);
-                        toast.show();
+                        Set<Voice> voices = _tts.getVoices();
+                        String lan = PreferenceManager.getDefaultSharedPreferences(_ctx)
+                            .getString(_ctx.getString(R.string.language_key), "");
+
+                        if (SUCCESS != _tts.setLanguage(new Locale(lan)))
+                        {
+                            Toast toast = Toast.makeText(_ctx, ctx.getString(R.string.speech_language)+lan, Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+
+                        Voice V = null;
+                        for (Voice vv : voices)
+                            if (vv.getLocale().toString().equals(lan))
+                                V = vv;
+
+                        if (null != V)
+                            _tts.setVoice(V);
+                        _tts.speak(ctx.getString(R.string.welcome), QUEUE_ADD, null, "bienvenue");
                     }
-
-                    Voice V = null;
-                    for (Voice vv : voices)
-                        if (vv.getLocale().toString().equals(lan))
-                            V = vv;
-
-                    if (null != V)
-                        _tts.setVoice(V);
-                    _tts.speak("Bienvenue a Coach eu cook", QUEUE_ADD, null, "bienvenue");
                 }
-            }
-        });
+            });
     }
 
-    public void Recognize(RecognitionCallback rc)
+    public void recognize(RecognitionCallback rc)
     {
         if (null != _sr)
         {
@@ -130,7 +142,7 @@ public class RecipeSpeech implements RecognitionListener
     }
 
 
-    public void DestroySpeech()
+    public void destroySpeech()
     {
         if (null != _tts)
             _tts.shutdown();
@@ -182,6 +194,8 @@ public class RecipeSpeech implements RecognitionListener
                 break;
             case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
                 Log.e("STT",  "Insufficient permissions ");
+                Toast toast = Toast.makeText(_ctx, _ctx.getString(R.string.permission_audio), Toast.LENGTH_SHORT);
+                toast.show();
                 break;
             case SpeechRecognizer.ERROR_NETWORK:
                 Log.e("STT",  "Other network related errors");
@@ -205,7 +219,7 @@ public class RecipeSpeech implements RecognitionListener
                 break;
         }
 
-        Recognize(_rc);
+        recognize(_rc);
     }
 
     @Override

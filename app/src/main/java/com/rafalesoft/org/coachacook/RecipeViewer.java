@@ -3,6 +3,8 @@ package com.rafalesoft.org.coachacook;
 import android.graphics.Color;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import android.os.Build;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +77,7 @@ class RecipeViewer
             if (_active)
             {
                 if (null != _rs)
-                    _rs.Recognize(_recipeRecognitionCallback);
+                    _rs.recognize(_recipeRecognitionCallback);
                 else
                     _active = false;
             }
@@ -84,30 +88,36 @@ class RecipeViewer
                 _floatingButton.setImageResource(android.R.drawable.ic_btn_speak_now);
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
-        public void onRecognized(int stringId)
+        public boolean onRecognized(int stringId)
         {
             if (recipe_steps.size() == 0)
-                return;
+                return false;
 
             _floatingButton.setImageResource(android.R.drawable.presence_audio_online);
             boolean spk = false;
             switch (stringId)
             {
+                case R.string.speech_stopwatch:
+                {
+                    break;
+                }
                 case R.string.speech_not_understood:
                 {
                     spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_not_understood));
-                    _rs.Recognize(this);
+                    _rs.recognize(this);
                     break;
                 }
-                case R.string.speech_demarre:
+                case R.string.speech_start:
+                case R.string.speech_restart:
                 {
                     spk = _rs.speak(recipe_steps.get(0));
                     current_step = 1;
-                    _rs.Recognize(this);
+                    _rs.recognize(this);
                     break;
                 }
-                case R.string.speech_apres:
+                case R.string.speech_next:
                 {
                     if (current_step < recipe_steps.size())
                     {
@@ -116,10 +126,10 @@ class RecipeViewer
                     }
                     else
                         spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_recipe_over));
-                    _rs.Recognize(this);
+                    _rs.recognize(this);
                     break;
                 }
-                case R.string.speech_avant:
+                case R.string.speech_previous:
                 {
                     if (current_step > 0)
                     {
@@ -128,10 +138,10 @@ class RecipeViewer
                     }
                     else
                         spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_recipe_start));
-                    _rs.Recognize(this);
+                    _rs.recognize(this);
                     break;
                 }
-                case R.string.speech_repete:
+                case R.string.speech_repeat:
                 {
                     if (current_step < recipe_steps.size())
                     {
@@ -141,19 +151,13 @@ class RecipeViewer
                     }
                     else
                         spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_recipe_over));
-                    _rs.Recognize(this);
+                    _rs.recognize(this);
                     break;
                 }
-                case R.string.speech_recommence:
-                {
-                    spk = _rs.speak(recipe_steps.get(0));
-                    current_step = 1;
-                    _rs.Recognize(this);
-                    break;
-                }
-                case R.string.speech_termine:
+                case R.string.speech_finish:
                 {
                     spk = _rs.speak(CoachACook.getCoach().getString(R.string.speech_recipe_over));
+                    _rs.stopRecognize();
                     current_step = 0;
                     CoachACook.getCoach().onBackPressed();
                     break;
@@ -165,6 +169,7 @@ class RecipeViewer
                 Log.d("STT","onRecognized failed");
             else
                 updateSpan();
+            return spk;
         }
     }
 

@@ -2,7 +2,6 @@ package com.rafalesoft.org.coachacook;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -163,11 +162,6 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
             _mainView.setDisplayedChild(index);
         }
 
-        if (mRewardedVideoAd.isLoaded())
-        {
-            mRewardedVideoAd.show();
-        }
-
         return view;
     }
 
@@ -187,6 +181,11 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
         }
         protected void onPreExecute()
         {
+            //if (mRewardedVideoAd.isLoaded())
+            //{
+            //    mRewardedVideoAd.show();
+            //}
+
             _pg.setVisibility(View.VISIBLE);
             Button chooseButton = _mainView.findViewById(R.id.cook_book);
             chooseButton.setEnabled(false);
@@ -274,28 +273,37 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
                 break;
             default:
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setMessage(R.string.exit_message);
-                builder.setPositiveButton(R.string.exit_yes, new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        finish();
-                    }
-                });
-
-                builder.setNegativeButton(R.string.exit_no, new DialogInterface.OnClickListener()
-                {
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                if (currentView == _settings.getViewId())
+                    switchToView(R.id.coach_a_cook);
+                else
+                    quitApplication();
                 break;
             }
         }
     }
+
+    private final void quitApplication()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.exit_message);
+        builder.setPositiveButton(R.string.exit_yes, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+                finish();
+            }
+        });
+
+        builder.setNegativeButton(R.string.exit_no, new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int id)
+            {
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
     @Override
     public void onResume()
@@ -315,7 +323,7 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
     protected void onDestroy()
     {
         mRewardedVideoAd.destroy(this);
-        _recipeSpeech.DestroySpeech();
+        _recipeSpeech.destroySpeech();
         _dbRecipes.close();
         super.onDestroy();        // The activity is about to be destroyed.
     }

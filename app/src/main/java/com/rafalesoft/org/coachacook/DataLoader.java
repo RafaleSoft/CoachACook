@@ -60,9 +60,13 @@ abstract class DataLoader implements ContentHandler
                 dataDir = new File(Environment.getDataDirectory() + xmlPath);
                 if (!dataDir.exists())
                 {
-                    dataDir = new File(ctx.getFilesDir() + xmlPath);
+                    dataDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + xmlPath);
                     if (!dataDir.exists())
-                        return "";
+                    {
+                        dataDir = new File(ctx.getFilesDir() + xmlPath);
+                        if (!dataDir.exists())
+                            return "";
+                    }
                 }
             }
         }
