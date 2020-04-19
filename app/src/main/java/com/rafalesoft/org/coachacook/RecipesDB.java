@@ -7,7 +7,10 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 
@@ -61,6 +64,7 @@ public class RecipesDB
 		return clear;
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.N)
 	public boolean updateData()
 	{
         boolean res = Ingredient.load_ingredients();

@@ -1,5 +1,9 @@
 package com.rafalesoft.org.coachacook;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import org.xml.sax.Attributes;
 
 import static com.rafalesoft.org.coachacook.Category.Model.MODEL_SIZE;
@@ -146,6 +150,7 @@ public class Ingredient
 	}
 
 
+	@RequiresApi(api = Build.VERSION_CODES.N)
 	public static boolean load_ingredients()
 	{
 		IngredientLoader loader = new IngredientLoader();

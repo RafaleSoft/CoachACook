@@ -2,11 +2,13 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <device id="pixel_2" />
+      </config>
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="warn" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="CMakeSettings">
@@ -18,13 +20,13 @@
     <list default="true" id="c648d028-ee88-4882-88bd-f710fd3f62eb" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/CoachACook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/CoachACook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeSpeech.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeSpeech.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipesDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipesDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_coach_acook.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_coach_acook.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -117,18 +119,20 @@
   </component>
   <component name="ProjectId" id="1YzqNpwhIg9w7n5rZDp7QCMmBke" />
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-04-19T14:46:26.862Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="E:/Android/AndroidSDK" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Boissons.xml" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="PsdUISettings">
-    <option name="MODULE_TAB" value="Default Config" />
+    <option name="MODULE_TAB" value="Properties" />
     <option name="LAST_EDITED_SIGNING_CONFIG" value="config" />
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
@@ -290,15 +294,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Ingredient.java</url>
-          <line>150</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
         <watch expression="_mainView" language="JAVA" />

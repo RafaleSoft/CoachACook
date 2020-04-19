@@ -3,9 +3,12 @@ package com.rafalesoft.org.coachacook;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
@@ -168,17 +171,45 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
     private class UpdateDataTask extends AsyncTask<Void, Void, Boolean>
     {
         private final boolean _reset;
+        private int count = 10;
+
         UpdateDataTask(boolean reset)
         {
             _reset = reset;
+            count = Category.Model.values().length + 1;
         }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
         protected Boolean doInBackground(Void... v)
         {
             if (_reset)
                 return _dbRecipes.reset();
             else
+            {
+                int download_file = 0;
+                String files[] = new String[count];
+                for (Category.Model model :Category.Model.values())
+                    files[download_file++] = model.getCategoryFile();
+                files[download_file++] = Recipe.getRecipe_file();
+
+                for (download_file =0; download_file < count; download_file++)
+                {
+                    String filename = files[download_file];
+                    DataLoader.downloadFile(filename);
+                    publishProgress(download_file);
+                }
+
+                publishProgress(100);
                 return _dbRecipes.updateData();
+            }
         }
+
+        @RequiresApi(api = Build.VERSION_CODES.N)
+        private void publishProgress(int i)
+        {
+            _pg.setProgress(i);
+        }
+
         protected void onPreExecute()
         {
             //if (mRewardedVideoAd.isLoaded())
@@ -219,7 +250,7 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
                 else
                     message = theCoach.getResources().getString(R.string.data_not_updated);
             }
-            Toast toast = Toast.makeText(theCoach, message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(theCoach, message, Toast.LENGTH_LONG);
             toast.show();
         }
     }

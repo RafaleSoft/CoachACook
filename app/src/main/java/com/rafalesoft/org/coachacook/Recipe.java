@@ -1,5 +1,9 @@
 package com.rafalesoft.org.coachacook;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import org.xml.sax.Attributes;
 
@@ -31,6 +35,8 @@ public class Recipe
     {
         _name = name;
     }
+
+    public static final String getRecipe_file() { return recipe_file; }
 
 	/**
 	 * Elaborates the SQL query to create ingredient table
@@ -199,6 +205,7 @@ public class Recipe
 			return null;
 	}
 	
+	@RequiresApi(api = Build.VERSION_CODES.N)
 	public static boolean load_recipes()
 	{
 		RecipeLoader loader = new RecipeLoader();
