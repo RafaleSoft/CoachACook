@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Stock type="CHARCUTERIE">
+	<Ingredient name="Bacon" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Blancs de poulet" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Jambons" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Lardons" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Longanisse" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Emincés" quantity="0" unit="kg" image="0"/>
-	<Ingredient name="Bacon" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Saucissons" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Saucisses" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Rillettes" quantity="0" unit="kg" image="0"/>

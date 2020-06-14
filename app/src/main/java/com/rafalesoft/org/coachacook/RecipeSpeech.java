@@ -46,13 +46,15 @@ public class RecipeSpeech implements RecognitionListener
             _sr.stopListening();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public boolean speak(String speech)
     {
-        return (null != _tts) && (SUCCESS == _tts.speak(speech,
-                                                        QUEUE_ADD,
-                                                        null,
-                                                        "recipe_step"));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            return (null != _tts) && (SUCCESS == _tts.speak(speech,
+                                                            QUEUE_ADD,
+                                                            null,
+                                                            "recipe_step"));
+        else
+            return (null != _tts) && (SUCCESS == _tts.speak(speech, QUEUE_ADD, null));
     }
 
     public RecipeSpeech(Context ctx)
@@ -73,13 +75,11 @@ public class RecipeSpeech implements RecognitionListener
         if (null == _tts)
             _tts = new TextToSpeech(ctx, new OnInitListener()
             {
-                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void onInit(int i)
                 {
                     if (SUCCESS == i)
                     {
-                        Set<Voice> voices = _tts.getVoices();
                         String lan = PreferenceManager.getDefaultSharedPreferences(_ctx)
                             .getString(_ctx.getString(R.string.language_key), "");
 
@@ -89,14 +89,20 @@ public class RecipeSpeech implements RecognitionListener
                             toast.show();
                         }
 
-                        Voice V = null;
-                        for (Voice vv : voices)
-                            if (vv.getLocale().toString().equals(lan))
-                                V = vv;
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                        {
+                            Voice V = null;
+                            Set<Voice> voices = _tts.getVoices();
+                            for (Voice vv : voices)
+                                if (vv.getLocale().toString().equals(lan))
+                                    V = vv;
 
-                        if (null != V)
-                            _tts.setVoice(V);
-                        _tts.speak(ctx.getString(R.string.welcome), QUEUE_ADD, null, "bienvenue");
+                            if (null != V)
+                                _tts.setVoice(V);
+                            _tts.speak(ctx.getString(R.string.welcome), QUEUE_ADD, null, "bienvenue");
+                        }
+                        else
+                            _tts.speak(ctx.getString(R.string.welcome), QUEUE_ADD, null);
                     }
                 }
             });

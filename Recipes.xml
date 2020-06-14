@@ -104,4 +104,82 @@
 		Avant de servir, ajoutez les pois chiches, remuez, faites-les réchauffer un peu et servir aussitôt.
 		</Preparation>
 	</Recipe>
+	<Recipe name="Salade Mexicaine" guests="6" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Salade frisée" quantity="1"/>
+		<Component name="Avocat" quantity="2"/>
+		<Component name="Coeur de palmier" quantity="1"/>
+		<Component name="Haricots rouges" quantity="400" unit="g"/>
+		<Component name="Endive" quantity="1"/>
+		<Component name="Poivron jaune" quantity="0.5"/>
+		<Component name="Citron" quantity="1.5"/>
+		<Component name="Vinaigre Xeres" quantity="3" unit="sp"/>
+		<Component name="Huile d olive" quantity="6" unit="sp"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Egouttez et rincez les haricots rouges.
+		Egouttez les coeurs de palmier et coupez-les en rondelles.
+		Lavez la salade à grande eau.
+		Coupez les endives en morceaux.
+		Epluchez les avocats et détaillez-les en petits morceaux ou en lamelles. Citonnez-les avec le jus du demi-citron pour éviter qu'ils noircissent.
+		Dans nubol, mélangez le jus de citron, le vinaigre et l'huile. Salez et poivrez.
+		Assaisonnez séparément la frisée, les endives et les coeurs de palmier.
+		Dans un grand plat, déposez la frisée, ajoutez les endives, les haricots rouges, les coeurs de palmier et les avocats et parsemez de petits morceaux de poivron.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Salade Chinoise" guests="4" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Carottes" quantity="1" unit="kg"/>
+		<Component name="Germes de soja" quantity="500" unit="g"/>
+		<Component name="Crevettes roses" quantity="300" unit="g"/>
+		<Component name="Citron" quantity="1"/>
+		<Component name="Huile d olive" quantity="2" unit="sp"/>
+		<Component name="Huile de colza" quantity="1" unit="sp"/>
+		<Component name="Vinaigre Xeres" quantity="2" unit="sp"/>
+		<Component name="Coriandre" quantity="1"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Lavez, épluchez et râpez les carottes. Assaisonnez-les avec l'huile d'olive, le citron, le sel, le poivre et la coriandre ciselée. Couvrez d'un film plastique et placez au réfrigérateur.
+		Ebouillantez le soja et égouttez-le. Assaisonnez-le de vinaigre, d'huile de colza et de la moitié de la coriandre. Couvrez et placez au réfrigérateur.
+		Décortiquez les crevettes. Egouttez les carottes et le soja.
+		Juste avant de servir, mélangez les deux légumes. Déposez les crevettes et parsemez du reste de coriandre ciselée.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Salade de Boulghour et poulet au cumin" guests="4" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Boulghour" quantity="400" unit="g"/>
+		<Component name="Pois chiches" quantity="250" unit="g"/>
+		<Component name="Blancs de poulet" quantity="500" unit="g"/>
+		<Component name="Oignons" quantity="3"/>
+		<Component name="Courgette" quantity="3"/>
+		<Component name="Citron" quantity="2"/>
+		<Component name="Huile d olive" quantity="4" unit="sp"/>
+		<Component name="Cumin" quantity="1" unit="sp"/>
+		<Component name="Coriandre" quantity="1"/>		
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Faites cuire le boulghour. Lavez les courgettes et coupez-les en cubes.
+		Faites les cuire à la vapeur 10 minutes. Coupez les blancs de poulet en morceaux.
+		Faites les cuire 3 à 4 minutes dans de l'eau bouillante salée. Egouttez-les.
+		Assaisonnez-les de une cuillérée à soupe d'huile d'olive, de sel de poivre et peu de cumin.
+		Faites de même pour les cubes de courgette. Prélevez le zeste de un demi citron.
+		Epluchez et hachez les oignons. Dans un saladier, mélangez le boulghour, les pois chiches égouttés, les oignons, l'huile restante, le zeste et le jus des citrons, le cumin et la coriandre ciselée.
+		Ajoutez les courgettes et le poulet. Rectifiez l'assaisonnement.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Pâtes au perto et au thon" guests="4" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Penne" quantity="400" unit="g"/>
+		<Component name="Thon" quantity="300" unit="g"/>
+		<Component name="Pesto" quantity="150" unit="g"/>
+		<Component name="Citron" quantity="0.5"/>
+		<Component name="Huile d olive" quantity="40" unit="ml"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Faire cuire les pâtes. Ouvrir la boite de thon, égoutter et éliminer l'huile puis émietter le thon et le mettre dans un bol.
+		Y ajouter le pesto, le jus de citron, l'huile d'olive et assez d'eau de cuisson des pâtes pour délayer la sauce.
+		Bien mélanger et vérifier l'assaisonnement. Ajouter les pâtes égouttées dans le bol avec la sauce. 
+		Bien mélanger et servir dans les assiettes chaudes.
+		</Preparation>
+	</Recipe>
 </Recipes>

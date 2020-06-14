@@ -50,7 +50,8 @@ abstract class DataLoader implements ContentHandler
                 boolean fileExist = false;
                 for (FTPFile f : files)
                 {
-                    if (f.getName() == filename)
+                    String fname = f.getName();
+                    if (0 == fname.compareTo(filename))
                         fileExist = true;
                 }
 
