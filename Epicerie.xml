@@ -23,7 +23,6 @@
 	<Ingredient name="Safran" quantity="1" unit="g" image="0"/>
 	<Ingredient name="Sel" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Sucre" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Rhum" quantity="0.5" unit="l" image="0"/>
 	<Ingredient name="Thym" quantity="0" image="0"/>
 	<Ingredient name="Vanille" quantity="1" image="0"/>
 	<Ingredient name="Vinaigre" quantity="2" unit="l" image="0"/>

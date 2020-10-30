@@ -184,7 +184,7 @@
 		Bien mélanger et servir dans les assiettes chaudes.
 		</Preparation>
 	</Recipe>
-	<Recipe name="Meringues" guests="3" difficulty="10" cost="10"  prepare_time="15" cook_time="60">
+	<Recipe name="Meringues" guests="2" difficulty="10" cost="10"  prepare_time="15" cook_time="60">
 		<Component name="Oeufs" quantity="2"/>
 		<Component name="Sucre" quantity="60" unit="g"/>
 		<Preparation>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Stock type="BOISSONS">
-	<Ingredient name="Vin Blanc" quantity="0.75" unit="l" image="0"/>
+	<Ingredient name="Rhum" quantity="0.5" unit="l" image="0"/>
 	<Ingredient name="Ricard" quantity="0.75" unit="l" image="0"/>
+	<Ingredient name="Vin Blanc" quantity="0.75" unit="l" image="0"/>
 </Stock>

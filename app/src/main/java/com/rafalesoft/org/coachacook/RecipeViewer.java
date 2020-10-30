@@ -1,5 +1,6 @@
 package com.rafalesoft.org.coachacook;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -16,6 +17,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -194,6 +196,15 @@ class RecipeViewer
 
     private class RecipeComponentAdapter implements SimpleAdapter.ViewBinder
     {
+        private final int preferred_guests;
+        private final int recipe_guests;
+
+        public RecipeComponentAdapter(int p, int r)
+        {
+            preferred_guests = p;
+            recipe_guests = r;
+        }
+
         @Override
         public boolean setViewValue(View view, Object data, String textRepresentation)
         {
@@ -216,7 +227,8 @@ class RecipeViewer
                         tv.setText(stock.get_name());
                         break;
                     case R.id.stock_item_quantity:
-                        tv.setText(Double.toString(stock.get_quantity()));
+                        double q = (double) preferred_guests * (double)stock.get_quantity();
+                        tv.setText(Double.toString(q / recipe_guests));
                         break;
                     case R.id.stock_item_unit:
                         tv.setText(stock.get_unit().toString());
@@ -261,8 +273,11 @@ class RecipeViewer
         String[] from = { "I", "V", "U" };
         int[] to = { R.id.stock_item_name, R.id.stock_item_quantity, R.id.stock_item_unit};
 
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(CoachACook.getCoach());
+        String preferred_guests = preferences.getString((String) CoachACook.getCoach().getResources().getText(R.string.number_guests_key),"");
+
         SimpleAdapter adapter = new SimpleAdapter(CoachACook.getCoach(), data, R.layout.stock_view_item, from, to);
-        adapter.setViewBinder(new RecipeComponentAdapter());
+        adapter.setViewBinder(new RecipeComponentAdapter(Integer.parseInt(preferred_guests), r.get_guests()));
 
         ListView table = recipeView.findViewById(R.id.recipe_ingredients);
         table.setAdapter(adapter);

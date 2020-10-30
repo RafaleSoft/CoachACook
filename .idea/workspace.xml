@@ -21,30 +21,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c648d028-ee88-4882-88bd-f710fd3f62eb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Charcuterie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Charcuterie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Boissons.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Boissons.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Epicerie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Epicerie.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Fruits.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Fruits.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Legumes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Legumes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Poissonnerie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Poissonnerie.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Recipes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Recipes.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/CoachACook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/CoachACook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeSpeech.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeSpeech.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/BuildRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/BuildRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/ManageStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/ManageStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/SettingsManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/stock_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/stock_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_notification.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_recipe_gen.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[ad071702171106f9ad]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -141,6 +138,7 @@
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="E:/Android/AndroidSDK" />
+    <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
@@ -307,6 +305,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="552" y="240" key="#Plugins/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016132679" />
+    <state x="690" y="346" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604057340688">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="690" y="346" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604057340688" />
     <state x="92" y="92" width="1736" height="1016" key="AVDManager" timestamp="1604017140413">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -315,28 +317,53 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="740" y="340" key="FileChooserDialogImpl/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604015971108" />
-    <state width="1876" height="235" key="GridCell.Tab.0.bottom" timestamp="1604016155743">
+    <state width="1876" height="330" key="GridCell.Tab.0.bottom" timestamp="1604061052680">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1876" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155743" />
-    <state width="1876" height="235" key="GridCell.Tab.0.center" timestamp="1604016155743">
+    <state width="1876" height="330" key="GridCell.Tab.0.bottom/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.0.center" timestamp="1604061052680">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1876" height="235" key="GridCell.Tab.0.center/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155743" />
-    <state width="1876" height="235" key="GridCell.Tab.0.left" timestamp="1604016155742">
+    <state width="1876" height="330" key="GridCell.Tab.0.center/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.0.left" timestamp="1604061052680">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1876" height="235" key="GridCell.Tab.0.left/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155742" />
-    <state width="1876" height="235" key="GridCell.Tab.0.right" timestamp="1604016155743">
+    <state width="1876" height="330" key="GridCell.Tab.0.left/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.0.right" timestamp="1604061052680">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state width="1876" height="235" key="GridCell.Tab.0.right/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155743" />
+    <state width="1876" height="330" key="GridCell.Tab.0.right/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.1.bottom" timestamp="1604061052681">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.bottom/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052681" />
+    <state width="1876" height="330" key="GridCell.Tab.1.center" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.center/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.1.left" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.left/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.1.right" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.right/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
     <state x="461" y="231" key="SettingsEditor" timestamp="1604016114124">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="461" y="231" key="SettingsEditor/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016114124" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/ManageStock.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
         <watch expression="_mainView" language="JAVA" />

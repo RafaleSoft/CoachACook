@@ -175,6 +175,8 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
 
             if (distance >= 0)
                 recipes.add(recipe);
+
+            cursor.moveToNext();
         }
 
         return recipes;
