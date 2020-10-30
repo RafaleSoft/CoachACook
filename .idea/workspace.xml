@@ -11,6 +11,9 @@
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
@@ -18,23 +21,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c648d028-ee88-4882-88bd-f710fd3f62eb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Charcuterie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Charcuterie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Epicerie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Epicerie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fruits.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Fruits.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Legumes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Legumes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Poissonnerie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Poissonnerie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recipes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Recipes.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/CoachACook.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/CoachACook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/Recipe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipesDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipesDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_coach_acook.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_coach_acook.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeSpeech.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeSpeech.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="ad071702171106f9ad" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -118,37 +128,37 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1YzqNpwhIg9w7n5rZDp7QCMmBke" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-04-19T14:46:26.862Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="android.sdk.path" value="E:/Android/AndroidSDK" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Boissons.xml" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="PsdUISettings">
     <option name="MODULE_TAB" value="Properties" />
     <option name="LAST_EDITED_SIGNING_CONFIG" value="config" />
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -181,12 +191,13 @@
       </method>
     </configuration>
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
-      <module name="app" />
+      <module name="CoachACook.app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="specific_activity" />
@@ -222,19 +233,18 @@
       </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="com.rafalesoft.org.coachacook.CoachACook" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -271,9 +281,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -292,6 +300,41 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="240" key="#Plugins" timestamp="1604016132679">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="552" y="240" key="#Plugins/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016132679" />
+    <state x="92" y="92" width="1736" height="1016" key="AVDManager" timestamp="1604017140413">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="92" y="92" width="1736" height="1016" key="AVDManager/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604017140413" />
+    <state x="740" y="340" key="FileChooserDialogImpl" timestamp="1604015971108">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="740" y="340" key="FileChooserDialogImpl/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604015971108" />
+    <state width="1876" height="235" key="GridCell.Tab.0.bottom" timestamp="1604016155743">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="235" key="GridCell.Tab.0.bottom/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155743" />
+    <state width="1876" height="235" key="GridCell.Tab.0.center" timestamp="1604016155743">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="235" key="GridCell.Tab.0.center/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155743" />
+    <state width="1876" height="235" key="GridCell.Tab.0.left" timestamp="1604016155742">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="235" key="GridCell.Tab.0.left/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155742" />
+    <state width="1876" height="235" key="GridCell.Tab.0.right" timestamp="1604016155743">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="235" key="GridCell.Tab.0.right/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016155743" />
+    <state x="461" y="231" key="SettingsEditor" timestamp="1604016114124">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="461" y="231" key="SettingsEditor/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016114124" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

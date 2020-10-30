@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Stock type="FRUIT">
-	<Ingredient name="Pomelos rose" quantity="0" image="0"/>
-	<Ingredient name="Pomelos blanc" quantity="0" image="0"/>
+	<Ingredient name="Ananas" quantity="0" image="0"/>
+	<Ingredient name="Banane" quantity="0" image="0"/>
 	<Ingredient name="Citron" quantity="0" image="0"/>
 	<Ingredient name="Citron vert" quantity="0" image="0"/>
 	<Ingredient name="Orange" quantity="0" image="0"/>
 	<Ingredient name="Orange" quantity="0" image="0"/>
+	<Ingredient name="Pomelos rose" quantity="0" image="0"/>
+	<Ingredient name="Pomelos blanc" quantity="0" image="0"/>
 	<Ingredient name="Pomme" quantity="6" image="0"/>
 	<Ingredient name="Pomme Granny Smith" quantity="6" image="0"/>
 	<Ingredient name="Pomme Pink Lady" quantity="6" image="0"/>
@@ -27,8 +29,6 @@
 	<Ingredient name="Kiwi" quantity="0" image="0"/>
 	<Ingredient name="Fruit de la passion" quantity="0" image="0"/>
 	<Ingredient name="Grenade" quantity="0" image="0"/>
-	<Ingredient name="Banane" quantity="0" image="0"/>
-	<Ingredient name="Ananas" quantity="0" image="0"/>
 	<Ingredient name="Mangue" quantity="0" image="0"/>
 	<Ingredient name="Noix de coco" quantity="0" image="0"/>
 	<Ingredient name="Gingembre" quantity="0" image="0"/>

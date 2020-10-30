@@ -216,7 +216,7 @@ public class CoachACook extends AppCompatActivity implements RewardedVideoAdList
             //{
             //    mRewardedVideoAd.show();
             //}
-
+            _pg.setProgress(0);
             _pg.setVisibility(View.VISIBLE);
             Button chooseButton = _mainView.findViewById(R.id.cook_book);
             chooseButton.setEnabled(false);

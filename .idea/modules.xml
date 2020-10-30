@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CoachACook.iml" filepath="$PROJECT_DIR$/CoachACook.iml" group="CoachACook" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="CoachACook/app" />
+      <module fileurl="file://$PROJECT_DIR$/CoachACook.iml" filepath="$PROJECT_DIR$/CoachACook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/CoachACook.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/CoachACook.app.iml" />
     </modules>
   </component>
 </project>

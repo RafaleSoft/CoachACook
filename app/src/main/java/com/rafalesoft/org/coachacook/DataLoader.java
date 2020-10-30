@@ -50,7 +50,8 @@ abstract class DataLoader implements ContentHandler
                 boolean fileExist = false;
                 for (FTPFile f : files)
                 {
-                    if (f.getName() == filename)
+                    String fname = f.getName();
+                    if (0 == fname.compareTo(filename))
                         fileExist = true;
                 }
 
@@ -90,7 +91,7 @@ abstract class DataLoader implements ContentHandler
             String xmlSource = findFilePath(CoachACook.getCoach(), filename);
             if (!xmlSource.isEmpty())
             {
-                Log.d("DataLoader", "parsing " + xmlSource);
+                Log.d("DataLoader", "parsing: " + xmlSource);
                 input = new FileInputStream(xmlSource);
             }
             else
@@ -98,6 +99,10 @@ abstract class DataLoader implements ContentHandler
 
             Xml.parse(input, Xml.Encoding.ISO_8859_1, this);
             input.close();
+
+            File toDelete = new File(xmlSource);
+            if (toDelete.delete())
+                Log.d("DataLoader", "delete loaded file: " + xmlSource);
         }
         catch (IOException | SAXException | SQLException e)
         {
