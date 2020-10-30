@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Stock type="EPICERIE">
-	<Ingredient name="Pain de mie" quantity="0" image="0"/>
-	<Ingredient name="Farine" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Sucre en morceaux" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Sucre en poudre" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Sel" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Ail" quantity="0" image="0"/>
+	<Ingredient name="Aneth" quantity="0" image="0"/>
+	<Ingredient name="Bouillon" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Boulghour" quantity="500" unit="g" image="0"/>
+	<Ingredient name="Chocolat de patissier" quantify="1" unit="kg" image="0"/>
+	<Ingredient name="Coeur de palmier" quantity="0" unit="g" image="0"/>
+	<Ingredient name="Coriandre" quantity="1" image="0"/>
+	<Ingredient name="Cumin" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Curry" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Poivre" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Menthe" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Farine" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Haricots rouges" quantity="0" unit="g" image="0"/>
 	<Ingredient name="Huile" quantity="1" unit="l" image="0"/>
 	<Ingredient name="Huile d olive" quantity="1" unit="l" image="0"/>
-	<Ingredient name="Vinaigre" quantity="1" unit="l" image="0"/>
-	<Ingredient name="Bouillon" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Poivre de Cayenne" quantity="1" unit="kg" image="0"/>
-	<Ingredient name="Safran" quantity="1" unit="g" image="0"/>
-	<Ingredient name="Chocolat de patissier" quantify="1" unit="kg" image="0"/>
+	<Ingredient name="Huile de colza" quantity="1" unit="l" image="0"/>
 	<Ingredient name="Levure" quantify="3"/>
+	<Ingredient name="Menthe" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Pain de mie" quantity="0" image="0"/>
+	<Ingredient name="Penne" quantity="0" image="0"/>
+	<Ingredient name="Pesto" quantity="0" image="0"/>
+	<Ingredient name="Pois chiches" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Poivre" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Poivre de Cayenne" quantity="1" unit="kg" image="0"/>
 	<Ingredient name="Poudre d'amandes" quantity="100" unit="g"/>
+	<Ingredient name="Safran" quantity="1" unit="g" image="0"/>
+	<Ingredient name="Sel" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Sucre" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Sucre en morceaux" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Sucre en poudre" quantity="1" unit="kg" image="0"/>
+	<Ingredient name="Thym" quantity="0" image="0"/>
+	<Ingredient name="Vanille" quantity="1" image="0"/>
+	<Ingredient name="Vinaigre" quantity="2" unit="l" image="0"/>
+	<Ingredient name="Vinaigre Xeres" quantity="1" unit="l" image="0"/>
 </Stock>

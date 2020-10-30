@@ -29,19 +29,23 @@
     <string name="unit_teaspoon">tsp</string>
     <string name="unit_tablespoon">sp</string>
     <string name="unit_calorie">cal</string>
+    <string name="unit_mole">mol</string>
     <string name="unit_count"> </string>
 
     <!-- Speech -->
-    <string name="speech_quitte">quitte</string>
-    <string name="speech_termine">termine</string>
-    <string name="speech_demarre">démarre</string>
-    <string name="speech_apres">après</string>
-    <string name="speech_avant">avant</string>
-    <string name="speech_repete">répète</string>
-    <string name="speech_recommence">recommence</string>
+    <string name="welcome">Bienvenue a Coach eu cook</string>
+    <string name="speech_quit">quitte</string>
+    <string name="speech_finish">termine</string>
+    <string name="speech_start">démarre</string>
+    <string name="speech_next">après</string>
+    <string name="speech_previous">avant</string>
+    <string name="speech_repeat">répète</string>
+    <string name="speech_restart">recommence</string>
+    <string name="speech_stopwatch">chronomètre</string>
     <string name="speech_not_understood">Je n\'ai pas compris, veuillez répéter</string>
     <string name="speech_recipe_start">C\'est le début dela recette</string>
     <string name="speech_recipe_over">La recette est terminée</string>
+    <string name="speech_language">Langue non supportée</string>
 
     <!-- GUI -->
         <!-- Buttons -->
@@ -77,6 +81,8 @@
         <string name="data_erased">Recipe and ingredients database empty!</string>
         <string name="data_not_erased">Failed to erase recipe and ingredients database!</string>
 
+        <!-- Toasts -->
+        <string name="permission_audio">\"Permission non accordée pour enregistrement audio\"</string>
 
     <!-- Dialogs -->
     <string name="exit_message">Etes-vous sûr de vouloir quitter ?</string>

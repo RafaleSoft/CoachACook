@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen   xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="general_category"
+        app:title="@string/pref_header_general">
+
+        <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+        <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+        <EditTextPreference
+            android:defaultValue="1"
+            android:inputType="number"
+            android:key="@string/number_recipes_key"
+            android:summary="@string/pref_summary_number_recipes"
+            android:title="@string/pref_title_number_recipes" />
+
+        <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+             dismiss it. -->
+        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_guests_list_titles"
+            android:entryValues="@array/pref_guests_list_values"
+            android:key="@string/number_guests_key"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_number_guests"
+            android:summary="@string/pref_summary_number_guests"/>
+
+        <ListPreference
+            android:defaultValue="fr_FR"
+            android:entries="@array/pref_language_list_titles"
+            android:entryValues="@array/pref_language_list_values"
+            android:key="@string/language_key"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_language"
+            android:summary="@string/pref_summary_language"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="notification_category"
+        app:title="@string/pref_header_notifications">
+
+        <!-- A 'parent' preference, which enables/disables child preferences (below)
+            when checked/unchecked. -->
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="notifications_new_message"
+            android:title="@string/pref_title_new_message_notifications" />
+
+        <!-- NOTE: This preference will be enabled only when the checkbox above is checked. -->
+        <SwitchPreference
+            android:defaultValue="true"
+            android:dependency="notifications_new_message"
+            android:key="notifications_new_message_vibrate"
+            android:title="@string/pref_title_vibrate" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="recipe_category"
+        app:title="@string/pref_header_recipe_gen">
+
+        <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to dismiss it. -->
+        <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+        <ListPreference
+            android:defaultValue="180"
+            android:entries="@array/pref_sync_frequency_titles"
+            android:entryValues="@array/pref_sync_frequency_values"
+            android:key="@string/sync_frequency_key"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"
+            android:title="@string/pref_title_sync_frequency" />
+
+        <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
+             design guidelines. -->
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/switch_menu_starter"
+            android:title="@string/pref_title_menu_starter"
+            android:summary="@string/pref_summary_menu_starter"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/switch_menu_main"
+            android:title="@string/pref_title_menu_main"
+            android:summary="@string/pref_summary_menu_main"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/switch_menu_dessert"
+            android:title="@string/pref_title_menu_dessert"
+            android:summary="@string/pref_summary_menu_dessert"/>
+
+        <Preference android:title="@string/pref_title_system_sync_settings">
+            <intent android:action="android.settings.SYNC_SETTINGS" />
+        </Preference>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config>
+        <device id="pixel_2" />
+      </config>
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c648d028-ee88-4882-88bd-f710fd3f62eb" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Boissons.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Boissons.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Epicerie.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Epicerie.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Recipes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Recipes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/BuildRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/BuildRecipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/ManageStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/ManageStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/RecipeViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/SettingsManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/stock_dialog.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/stock_dialog.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_notification.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/pref_recipe_gen.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[ad071702171106f9ad]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/app">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoachACook" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoachACook" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoachACook" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoachACook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoachACook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoachACook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoachACook" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>android:attr/dialogCornerRadius</find>
+      <find>androidx.loader</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1YzqNpwhIg9w7n5rZDp7QCMmBke" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_2_API_29" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-04-19T14:46:26.862Z" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="android.project.structure.last.selected" value="SDK Location" />
+    <property name="android.project.structure.proportion" value="0.15" />
+    <property name="android.sdk.path" value="E:/Android/AndroidSDK" />
+    <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Properties" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="config" />
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration name="&lt;template&gt;" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" default="true" selected="false">
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="CoachACook.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="specific_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="com.rafalesoft.org.coachacook.CoachACook" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c648d028-ee88-4882-88bd-f710fd3f62eb" name="Default" comment="" />
+      <created>1538949753862</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1538949753862</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="240" key="#Plugins" timestamp="1604016132679">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="552" y="240" key="#Plugins/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016132679" />
+    <state x="690" y="346" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604057340688">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="690" y="346" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604057340688" />
+    <state x="92" y="92" width="1736" height="1016" key="AVDManager" timestamp="1604017140413">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="92" y="92" width="1736" height="1016" key="AVDManager/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604017140413" />
+    <state x="740" y="340" key="FileChooserDialogImpl" timestamp="1604015971108">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="740" y="340" key="FileChooserDialogImpl/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604015971108" />
+    <state width="1876" height="330" key="GridCell.Tab.0.bottom" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.0.bottom/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.0.center" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.0.center/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.0.left" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.0.left/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.0.right" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.0.right/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.1.bottom" timestamp="1604061052681">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.bottom/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052681" />
+    <state width="1876" height="330" key="GridCell.Tab.1.center" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.center/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.1.left" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.left/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state width="1876" height="330" key="GridCell.Tab.1.right" timestamp="1604061052680">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state width="1876" height="330" key="GridCell.Tab.1.right/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604061052680" />
+    <state x="461" y="231" key="SettingsEditor" timestamp="1604016114124">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="461" y="231" key="SettingsEditor/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1604016114124" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="568" y="300" key="#Custom_Plugin_Repositories" timestamp="1591524907845">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="568" y="300" key="#Custom_Plugin_Repositories/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1591524907845" />
+    <state x="552" y="257" key="#Notifications" timestamp="1591525187911">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="552" y="257" key="#Notifications/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1591525187911" />
+    <state x="477" y="331" key="#PSD" timestamp="1591524258337">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="477" y="331" key="#PSD/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1591524258337" />
+    <state x="461" y="231" key="SettingsEditor" timestamp="1591525167395">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="461" y="231" key="SettingsEditor/0.0.1920.1200/1920.0.1920.1160@0.0.1920.1200" timestamp="1591525167395" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/rafalesoft/org/coachacook/ManageStock.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="_mainView" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>Android API 27 Platform</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

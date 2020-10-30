@@ -27,7 +27,8 @@
         android:ems="10"
         android:hint="@string/ingredient_amount"
         android:inputType="numberDecimal"
-        android:labelFor="@+id/stock_dialog">
+        android:labelFor="@+id/stock_dialog"
+        android:importantForAutofill="no">
 
         <requestFocus />
     </EditText>

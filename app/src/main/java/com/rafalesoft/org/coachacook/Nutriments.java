@@ -57,7 +57,7 @@ class Nutriments
     {
         return "CREATE TABLE " + Nutriments.TABLE_NAME + " ("
                 + RecipesDB.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + RecipeComponent.COLUMN_INGREDIENT_TITLE + " INTEGER,"
+                + RecipeComponent.COLUMN_INGREDIENT + " INTEGER,"
                 + Nutriments.COLUMN_E1 + " REAL,"
                 + Nutriments.COLUMN_C1 + " REAL,"
                 + Nutriments.COLUMN_C2 + " REAL,"

@@ -1,12 +1,14 @@
 package com.rafalesoft.org.coachacook;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.preference.PreferenceManager;
 import android.util.ArrayMap;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
@@ -19,7 +21,14 @@ import java.util.Map;
 
 class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItemClickListener
 {
-    public BuildRecipe() { }
+    private final RecipeViewer _viewer = new RecipeViewer();
+    private SharedPreferences _preferences;
+
+    public BuildRecipe()
+    {
+        Context ctx = CoachACook.getCoach();
+        _preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+    }
 
     private class RecipeAdapter implements SimpleAdapter.ViewBinder
     {
@@ -77,6 +86,7 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
 	@Override
 	public void onClick(View v)
 	{
+	    //TODO : make onClick content asynchronous (AsyncContentProvider ?)
         ArrayList<Recipe> recipes = genRecipes();
 
         View stock = CoachACook.getCoach().switchToView(R.id.recipe_stockview);
@@ -108,71 +118,65 @@ class BuildRecipe extends RecipesCursorHolder implements OnClickListener, OnItem
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
     {
-        View recipeView = CoachACook.getCoach().switchToView(R.id.recipe_view);
-
-        TextView recipe_name = view.findViewById(R.id.recipe_item_name);
-        TextView tv_name = recipeView.findViewById(R.id.recipe_name);
-        tv_name.setText(recipe_name.getText());
-
-        Recipe r = CoachACook.getCoach().getRecipesDB().getRecipe(recipe_name.getText().toString());
-
-        TextView tv_desc = recipeView.findViewById(R.id.recipe_description);
-        tv_desc.setText(r.get_preparation());
-
-        List<String> component_list = new ArrayList<>();
-        for (int item=0;item<r.nbComponents();item++)
-        {
-            RecipeComponent c = r.getComponent(item);
-            String ingredient = Integer.valueOf(c.get_quantity().intValue()).toString() +
-                    " " + (null == c.get_unit() ? "":c.get_unit()) + " " + c.get_name();
-            component_list.add(ingredient);
-        }
-
-        // Create an ArrayAdapter from List
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>
-                (CoachACook.getCoach(), android.R.layout.simple_list_item_1, component_list);
-
-        ListView table = recipeView.findViewById(R.id.recipe_ingredients);
-        table.setAdapter(arrayAdapter);
+        _viewer.initView(view);
     }
 
     private ArrayList<Recipe> genRecipes()
     {
         String projection [] = {RecipesDB.NAME,
-                                Ingredient.COLUMN_TYPE_TITLE,
-                                Ingredient.COLUMN_STOCK_TITLE,
-                                Ingredient.COLUMN_UNIT_TITLE};
+                                Ingredient.COLUMN_STOCK,
+                                Ingredient.COLUMN_UNIT};
         String selectionArgs [] = {};
-        updateCursor(Ingredient.TABLE_NAME,projection,"Ingredient.COLUMN_STOCK_TITLE > 0",selectionArgs);
+        updateCursor(Ingredient.TABLE_NAME,projection,Ingredient.COLUMN_STOCK + " > 0",selectionArgs);
         Cursor cursor = getCursor();
 
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        Map<String,Amount> stock = new ArrayMap<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast())
         {
-            Ingredient i = new Ingredient();
-            i.set_name(cursor.getString(0));
-            i.set_type(Category.Model.values()[cursor.getInt(1)]);
-            i.set_quantity(cursor.getDouble(2));
-            i.set_unit(Unit.values()[cursor.getInt(3)]);
+            Amount a = new Amount();
+            a.set_quantity(cursor.getDouble(1));
+            a.set_unit(Unit.values()[cursor.getInt(2)]);
+            stock.put(cursor.getString(0),a);
             cursor.moveToNext();
         }
 
         String projection2 [] = {   RecipesDB.NAME,
                                     RecipesDB.ID,
-                                    Recipe.COLUMN_DIFFICULTY_TITLE,
-                                    Recipe.COLUMN_COST_TITLE,
-                                    Recipe.COLUMN_PREPARE_TITLE,
-                                    Recipe.COLUMN_TIME_TITLE,
-                                    Recipe.COLUMN_GUESTS_TITLE};
+                                    Recipe.COLUMN_DIFFICULTY,
+                                    Recipe.COLUMN_COST,
+                                    Recipe.COLUMN_PREPARE,
+                                    Recipe.COLUMN_TIME,
+                                    Recipe.COLUMN_GUESTS};
         updateCursor(Recipe.TABLE_NAME,projection2);
         cursor = getCursor();
+
+        RecipesDB recipesDB = CoachACook.getCoach().getRecipesDB();
+        String key = CoachACook.getCoach().getString(R.string.number_guests_key);
+        int nbGuests = Integer.parseInt(_preferences.getString(key,"1"));
 
         ArrayList<Recipe> recipes = new ArrayList<>();
         cursor.moveToFirst();
         while (!cursor.isAfterLast())
         {
+            String recipe_name = cursor.getString(0);
+            Recipe recipe = recipesDB.getRecipe(recipe_name);
+            Double distance = 0.0;
+            for (int i=0;i<recipe.nbComponents();i++)
+            {
+                RecipeComponent c = recipe.getComponent(i);
+                Amount s = stock.get(c.get_name());
+                Amount n = c.get_amount();
 
+                //  If stock contains less than required
+                if (s.compareTo(n) < 0)
+                    distance = distance + c.get_quantity() * c.get_unit().getSIFactor();
+            }
+
+            if (distance >= 0)
+                recipes.add(recipe);
+
+            cursor.moveToNext();
         }
 
         return recipes;

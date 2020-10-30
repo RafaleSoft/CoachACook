@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <Stock type="POISSONNERIE">
+	<Ingredient name="Crevettes roses" quantity="0" image="0"/>
 	<Ingredient name="Filets de Colin" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Filets de Limande" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Filets de Merlan" quantity="0" unit="kg" image="0"/>
@@ -10,12 +11,12 @@
 	<Ingredient name="Filets de Bar" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Filets de Hareng" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Filets de Maqueraux" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Moules" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Pavés de Truite" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Pavés de Saumon" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Poissons Fumés" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Poissons Panés" quantity="0" unit="kg" image="0"/>
-	<Ingredient name="Crevettes roses" quantity="0" image="0"/>
 	<Ingredient name="Poulpe" quantity="0" unit="kg" image="0"/>
-	<Ingredient name="Moules" quantity="0" unit="kg" image="0"/>
 	<Ingredient name="Saumon fumé" quantity="0" unit="kg" image="0"/>
+	<Ingredient name="Thon" quantity="0" unit="kg" image="0"/>
 </Stock>

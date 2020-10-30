@@ -9,7 +9,8 @@
 		<Preparation>
 		Faire dorer l'oignon.
 		Eplucher les légumes, les couper en morceaux. 
-		Quand l'oignon est doré, ajouter les légumes et recouvrir d'eau</Preparation>
+		Quand l'oignon est doré, ajouter les légumes et recouvrir d'eau.
+		</Preparation>
 	</Recipe>
 	<Recipe name="Crêpes" guests="4" difficulty="20" cost="20"  prepare_time="20" cook_time="90">
 		<Component name="Farine" quantity="250" unit="g"/>
@@ -28,7 +29,8 @@
 		Cuire les crêpes dans une poêle chaude (pas besoin de matière grasse, elle est déjà dans la pâte). 
 		Verser une petite louche de pâte dans la poêle, faire un mouvement de rotation pour répartir la pâte sur toute la surface, poser sur le feu et quand le tour de la crêpe se colore en roux clair, il est temps de la retourner. 
 		Laisser cuire environ une minute de ce côté et la crêpe est prête. 
-		Répéter jusqu'à épuisement de la pâte. </Preparation>
+		Répéter jusqu'à épuisement de la pâte.
+		</Preparation>
 	</Recipe>
 	<Recipe name="Sauté de porc au curry" guests="6" difficulty="75" cost="30"  prepare_time="40" cook_time="90">
 		<Component name="Echine de porc" quantity="1.25" unit="kg"/>
@@ -118,6 +120,112 @@
 		Verser la préparation jusqu'à mi-hauteur d'un moule à cake beurré.
 		Mettre à cuire dans un four préchauffé à 180°C (thermostat 6) pendant 30 à 35mn.
 		Attendre 5 min avant de démouler. Laisser refroidir.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Salade Mexicaine" guests="6" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Salade frisée" quantity="1"/>
+		<Component name="Avocat" quantity="2"/>
+		<Component name="Coeur de palmier" quantity="1"/>
+		<Component name="Haricots rouges" quantity="400" unit="g"/>
+		<Component name="Endive" quantity="1"/>
+		<Component name="Poivron jaune" quantity="0.5"/>
+		<Component name="Citron" quantity="1.5"/>
+		<Component name="Vinaigre Xeres" quantity="3" unit="sp"/>
+		<Component name="Huile d olive" quantity="6" unit="sp"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Egouttez et rincez les haricots rouges.
+		Egouttez les coeurs de palmier et coupez-les en rondelles.
+		Lavez la salade à grande eau.
+		Coupez les endives en morceaux.
+		Epluchez les avocats et détaillez-les en petits morceaux ou en lamelles. Citonnez-les avec le jus du demi-citron pour éviter qu'ils noircissent.
+		Dans nubol, mélangez le jus de citron, le vinaigre et l'huile. Salez et poivrez.
+		Assaisonnez séparément la frisée, les endives et les coeurs de palmier.
+		Dans un grand plat, déposez la frisée, ajoutez les endives, les haricots rouges, les coeurs de palmier et les avocats et parsemez de petits morceaux de poivron.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Salade Chinoise" guests="4" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Carottes" quantity="1" unit="kg"/>
+		<Component name="Germes de soja" quantity="500" unit="g"/>
+		<Component name="Crevettes roses" quantity="300" unit="g"/>
+		<Component name="Citron" quantity="1"/>
+		<Component name="Huile d olive" quantity="2" unit="sp"/>
+		<Component name="Huile de colza" quantity="1" unit="sp"/>
+		<Component name="Vinaigre Xeres" quantity="2" unit="sp"/>
+		<Component name="Coriandre" quantity="1"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Lavez, épluchez et râpez les carottes. Assaisonnez-les avec l'huile d'olive, le citron, le sel, le poivre et la coriandre ciselée. Couvrez d'un film plastique et placez au réfrigérateur.
+		Ebouillantez le soja et égouttez-le. Assaisonnez-le de vinaigre, d'huile de colza et de la moitié de la coriandre. Couvrez et placez au réfrigérateur.
+		Décortiquez les crevettes. Egouttez les carottes et le soja.
+		Juste avant de servir, mélangez les deux légumes. Déposez les crevettes et parsemez du reste de coriandre ciselée.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Salade de Boulghour et poulet au cumin" guests="4" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Boulghour" quantity="400" unit="g"/>
+		<Component name="Pois chiches" quantity="250" unit="g"/>
+		<Component name="Blancs de poulet" quantity="500" unit="g"/>
+		<Component name="Oignons" quantity="3"/>
+		<Component name="Courgette" quantity="3"/>
+		<Component name="Citron" quantity="2"/>
+		<Component name="Huile d olive" quantity="4" unit="sp"/>
+		<Component name="Cumin" quantity="1" unit="sp"/>
+		<Component name="Coriandre" quantity="1"/>		
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Faites cuire le boulghour. Lavez les courgettes et coupez-les en cubes.
+		Faites les cuire à la vapeur 10 minutes. Coupez les blancs de poulet en morceaux.
+		Faites les cuire 3 à 4 minutes dans de l'eau bouillante salée. Egouttez-les.
+		Assaisonnez-les de une cuillérée à soupe d'huile d'olive, de sel de poivre et peu de cumin.
+		Faites de même pour les cubes de courgette. Prélevez le zeste de un demi citron.
+		Epluchez et hachez les oignons. Dans un saladier, mélangez le boulghour, les pois chiches égouttés, les oignons, l'huile restante, le zeste et le jus des citrons, le cumin et la coriandre ciselée.
+		Ajoutez les courgettes et le poulet. Rectifiez l'assaisonnement.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Pâtes au perto et au thon" guests="4" difficulty="10" cost="20"  prepare_time="15" cook_time="0">
+		<Component name="Penne" quantity="400" unit="g"/>
+		<Component name="Thon" quantity="300" unit="g"/>
+		<Component name="Pesto" quantity="150" unit="g"/>
+		<Component name="Citron" quantity="0.5"/>
+		<Component name="Huile d olive" quantity="40" unit="ml"/>
+		<Component name="Sel" quantity="0.5" unit="tsp"/>
+		<Component name="Poivre" quantity="0.5" unit="tsp"/>
+		<Preparation>
+		Faire cuire les pâtes. Ouvrir la boite de thon, égoutter et éliminer l'huile puis émietter le thon et le mettre dans un bol.
+		Y ajouter le pesto, le jus de citron, l'huile d'olive et assez d'eau de cuisson des pâtes pour délayer la sauce.
+		Bien mélanger et vérifier l'assaisonnement. Ajouter les pâtes égouttées dans le bol avec la sauce. 
+		Bien mélanger et servir dans les assiettes chaudes.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Meringues" guests="2" difficulty="10" cost="10"  prepare_time="15" cook_time="60">
+		<Component name="Oeufs" quantity="2"/>
+		<Component name="Sucre" quantity="60" unit="g"/>
+		<Preparation>
+		Sortir les oeufs du réfrigérateur 15 minutes avant de les utiliser.
+		Séparer les blancs, ajouter une pincée de sel. Battre lesblancs en neige ferme.
+		Ajouter le sucre par petites quantités tout en continuant à battre.
+		Préchauffer le four à 120 degrés.
+		Déposer de petits tas de meringue sur une plaque de four recouverte de papier cuisson.
+		Cuire entre 30 minutes et 1 heure.
+		</Preparation>
+	</Recipe>
+	<Recipe name="Cannelés bordelais" guests="3" difficulty="20" cost="20"  prepare_time="30" cook_time="90">
+		<Component name="Oeufs" quantity="2"/>
+		<Component name="Sucre" quantity="100" unit="g"/>
+		<Component name="Farine" quantity="100" unit="g"/>
+		<Component name="Beurre" quantity="40" unit="g"/>
+		<Component name="Rhum" quantity="0.02" unit="l"/>
+		<Component name="Lait" quantity="0.3" unit="l"/>
+		<Component name="Vanille" quantity="1"/>
+		<Preparation>
+		Porter le lait à ébullition avec la gousse de vanille coupée en deux.
+		Laisser infuser et ajouter le beurre pour le faire fondre.
+		Mélanger la farine, le sucre et les oeufs. Ajoutez-y lentement le lait puis le rhum.
+		Laisser reposer 24 heures au réfrigérateur.
+		Verser le mélange dans les moules bien beurrés et mettre au four à 180 degrés 15 minutes puis à 150 degrés pendant 75 minutes.
 		</Preparation>
 	</Recipe>
 </Recipes>

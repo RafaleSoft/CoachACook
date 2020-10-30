@@ -29,22 +29,26 @@
     <string name="unit_teaspoon">tsp</string>
     <string name="unit_tablespoon">sp</string>
     <string name="unit_calorie">cal</string>
+    <string name="unit_mole">mol</string>
     <string name="unit_count"> </string>
 
     <!-- Data files -->
 
 
     <!-- Speech -->
-    <string name="speech_quitte">quitte</string>
-    <string name="speech_termine">termine</string>
-    <string name="speech_demarre">démarre</string>
-    <string name="speech_apres">après</string>
-    <string name="speech_avant">avant</string>
-    <string name="speech_repete">répète</string>
-    <string name="speech_recommence">recommence</string>
-    <string name="speech_not_understood">Je n\'ai pas compris, veuillez répéter</string>
-    <string name="speech_recipe_start">C\'est le début dela recette</string>
-    <string name="speech_recipe_over">La recette est terminée</string>
+    <string name="welcome">Welcome to Coach a cook</string>
+    <string name="speech_quit">quit</string>
+    <string name="speech_finish">finish</string>
+    <string name="speech_start">start</string>
+    <string name="speech_next">next</string>
+    <string name="speech_previous">previous</string>
+    <string name="speech_repeat">repeat</string>
+    <string name="speech_restart">restart</string>
+    <string name="speech_stopwatch">stopwatch</string>
+    <string name="speech_not_understood">I did not understood, please repeat</string>
+    <string name="speech_recipe_start">The recipe starts</string>
+    <string name="speech_recipe_over">La recipe is over</string>
+    <string name="speech_language">Unsupported language</string>
 
     <!-- GUI -->
         <!-- Buttons -->
@@ -79,6 +83,9 @@
         <string name="data_not_updated">Failed to update recipe and ingredients database!</string>
         <string name="data_erased">Recipe and ingredients database empty!</string>
         <string name="data_not_erased">Failed to erase recipe and ingredients database!</string>
+
+        <!-- Toasts -->
+        <string name="permission_audio">Audio recording permission not granted</string>
 
 
     <!-- Dialogs -->
